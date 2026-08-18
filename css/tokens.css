@@ -4,8 +4,6 @@
   --ink: #17181A;
   --ink-soft: #5B5C56;
   --border: rgba(23, 24, 26, 0.16);
-  --accent: #17181A;
-  --accent-ink: #FAFAF7;
   --danger: #FFFFFF;
   --danger-bg: #E3401D;
   --danger-border: #E3401D;
@@ -13,6 +11,7 @@
   --caution-border: #17181A;
   --info: #77786F;
   --radius: 2px;
+  --shadow: 0 6px 20px rgba(23, 24, 26, 0.12);
   --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
   --tracking: 0.05em;
 }
@@ -24,8 +23,6 @@
     --ink: #F2F1ED;
     --ink-soft: #9C9D96;
     --border: rgba(242, 241, 237, 0.16);
-    --accent: #F2F1ED;
-    --accent-ink: #111214;
     --danger: #FFFFFF;
     --danger-bg: #C4331A;
     --danger-border: #C4331A;

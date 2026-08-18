@@ -56,6 +56,11 @@ test('never renders a javascript: url as a live link', () => {
   assert.doesNotMatch(out, /<a href="javascript:/);
 });
 
+test('exposes an h1 heading so route-change focus management can find it', () => {
+  const out = renderRecipe(recipe, avoidances).toString();
+  assert.match(out, /<h1[^>]*tabindex="-1"[^>]*>Parmesan-Crusted Butter Beans<\/h1>/);
+});
+
 test('renders every ingredient and step line', () => {
   const out = renderRecipe(recipe, avoidances).toString();
   for (const line of recipe.ingredients) assert.match(out, new RegExp(line.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
@@ -70,4 +75,9 @@ test('renders the persistent disclaimer footer', () => {
 test('renderNotFound names the missing id and does not throw', () => {
   const out = renderNotFound('made-up-id').toString();
   assert.match(out, /made-up-id/);
+});
+
+test('renderNotFound exposes an h1 heading so route-change focus management can find it', () => {
+  const out = renderNotFound('made-up-id').toString();
+  assert.match(out, /<h1[^>]*tabindex="-1"[^>]*>Recipe not found<\/h1>/);
 });

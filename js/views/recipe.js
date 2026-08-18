@@ -1,8 +1,8 @@
-import { html, raw } from '../ui/html.js';
+import { html } from '../ui/html.js';
 import { computeBadges } from '../ui/badges.js';
 
 function badgeHtml(badge) {
-  return html`<span class="badge badge-${raw(badge.weight)}">${badge.text}</span>`;
+  return html`<span class="badge badge-${badge.weight}">${badge.text}</span>`;
 }
 
 function sourceLine(recipe) {

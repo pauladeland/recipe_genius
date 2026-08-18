@@ -2,6 +2,15 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseRoute } from '../js/state.js';
 
+function fakeLocalStorage(initial = {}) {
+  const store = { ...initial };
+  return {
+    getItem: (key) => (key in store ? store[key] : null),
+    setItem: (key, value) => { store[key] = String(value); },
+    removeItem: (key) => { delete store[key]; },
+  };
+}
+
 test('empty hash routes to the list view', () => {
   assert.deepEqual(parseRoute(''), { name: 'list' });
 });
@@ -20,4 +29,34 @@ test('#/settings routes to the settings view', () => {
 
 test('an unrecognized hash falls back to the list view', () => {
   assert.deepEqual(parseRoute('#/nonsense'), { name: 'list' });
+});
+
+test('a malformed percent-encoded recipe id falls back to the list view instead of throwing', () => {
+  assert.deepEqual(parseRoute('#/r/%E0%A4%A'), { name: 'list' });
+});
+
+test('loadSettings returns the system/empty default when nothing is stored', async () => {
+  globalThis.localStorage = fakeLocalStorage();
+  const { loadSettings } = await import(`../js/state.js?t=${Date.now()}`);
+  assert.deepEqual(loadSettings(), { theme: 'system', avoidanceIds: [] });
+});
+
+test('saveSettings then loadSettings round-trips theme and avoidanceIds under the documented key', async () => {
+  globalThis.localStorage = fakeLocalStorage();
+  const { loadSettings, saveSettings } = await import(`../js/state.js?t=${Date.now()}`);
+  saveSettings({ theme: 'dark', avoidanceIds: ['milk', 'yeast'] });
+  assert.equal(globalThis.localStorage.getItem('recipe-genius:settings'), '{"theme":"dark","avoidanceIds":["milk","yeast"]}');
+  assert.deepEqual(loadSettings(), { theme: 'dark', avoidanceIds: ['milk', 'yeast'] });
+});
+
+test('loadSettings falls back to defaults on corrupt stored JSON instead of throwing', async () => {
+  globalThis.localStorage = fakeLocalStorage({ 'recipe-genius:settings': '{not valid json' });
+  const { loadSettings } = await import(`../js/state.js?t=${Date.now()}`);
+  assert.deepEqual(loadSettings(), { theme: 'system', avoidanceIds: [] });
+});
+
+test('saveSettings does not throw when localStorage.setItem throws', async () => {
+  globalThis.localStorage = { setItem() { throw new Error('quota exceeded'); } };
+  const { saveSettings } = await import(`../js/state.js?t=${Date.now()}`);
+  assert.doesNotThrow(() => saveSettings({ theme: 'dark', avoidanceIds: [] }));
 });

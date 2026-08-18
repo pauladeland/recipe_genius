@@ -4,7 +4,13 @@ export function parseRoute(hash) {
   const path = (hash || '#/').replace(/^#/, '');
   if (path === '' || path === '/') return { name: 'list' };
   const recipeMatch = path.match(/^\/r\/([^/?]+)/);
-  if (recipeMatch) return { name: 'recipe', recipeId: decodeURIComponent(recipeMatch[1]) };
+  if (recipeMatch) {
+    try {
+      return { name: 'recipe', recipeId: decodeURIComponent(recipeMatch[1]) };
+    } catch {
+      return { name: 'list' };
+    }
+  }
   if (path.startsWith('/settings')) return { name: 'settings' };
   return { name: 'list' };
 }
@@ -24,5 +30,10 @@ export function loadSettings() {
 }
 
 export function saveSettings(settings) {
-  localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  try {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  } catch {
+    // localStorage can throw (private browsing, quota) -- settings just
+    // won't persist this session rather than crashing the app.
+  }
 }

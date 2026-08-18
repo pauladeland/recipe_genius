@@ -29,3 +29,8 @@ test('marks the active theme button as pressed', () => {
   const button = out.slice(darkIndex, darkIndex + 80);
   assert.match(button, /aria-pressed="true"/);
 });
+
+test('exposes an h1 heading so route-change focus management can find it', () => {
+  const out = renderSettings(avoidances, { theme: 'system', avoidanceIds: [] }).toString();
+  assert.match(out, /<h1[^>]*tabindex="-1"[^>]*>Settings<\/h1>/);
+});
