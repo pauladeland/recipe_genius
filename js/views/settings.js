@@ -23,7 +23,7 @@ export function renderSettings(avoidances, settings) {
     <h1 tabindex="-1">Settings</h1>
     <section class="settings-section">
       <h2>Your allergies &amp; sensitivities</h2>
-      <p>These pre-check the Allergens filter on Browse each time you open the app. They never hide a recipe &mdash; every recipe still shows, badged.</p>
+      <p>These badge matching recipes everywhere they appear. They never hide a recipe &mdash; every recipe still shows, badged.</p>
       <div>${avoidances.map((a) => avoidanceRow(a, settings.avoidanceIds))}</div>
     </section>
     <section class="settings-section">

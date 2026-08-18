@@ -11,7 +11,7 @@ const source = createStaticJsonSource();
 
 let libraryData = null;
 let settings = loadSettings();
-let filterState = { query: '', cuisines: [], allergenIds: [...settings.avoidanceIds], maxPrep: Infinity, maxCook: Infinity };
+let filterState = { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity };
 
 applyTheme(settings.theme);
 
@@ -103,7 +103,6 @@ async function render() {
   setNavCurrent(route.name);
 
   if (route.name === 'list') {
-    filterState = { ...filterState, allergenIds: [...settings.avoidanceIds] };
     renderCurrentList();
   } else if (route.name === 'recipe') {
     const recipe = libraryData.recipes.find((r) => r.id === route.recipeId);
