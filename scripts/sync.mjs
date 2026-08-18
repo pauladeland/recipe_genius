@@ -2,7 +2,7 @@
 // GitHub Action entrypoint. Fetches the public Sheet via Sheets API v4,
 // transforms it, matches avoidances, validates, and commits
 // data/library.json only if content changed. Zero npm dependencies.
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { execSync } from 'node:child_process';
 
@@ -55,8 +55,17 @@ async function main() {
   const avoidances = rowsToObjects(avoidanceRows).map(transformAvoidanceRow).filter((a) => a.active);
   const protocols = rowsToObjects(protocolRows).map(transformProtocolRow).filter((p) => p.active);
   const avoidanceIds = new Set(avoidances.map((a) => a.id));
-  const activeRecipes = allRecipes.filter((r) => r.status === 'active');
   const warnings = [];
+
+  const KNOWN_STATUSES = new Set(['active', 'draft', 'archived']);
+  for (const r of allRecipes) {
+    const normalized = String(r.status).trim().toLowerCase();
+    if (!KNOWN_STATUSES.has(normalized)) {
+      warnings.push(`Recipe "${r.id}": unrecognized status "${r.status}" — treated as inactive.`);
+    }
+  }
+
+  const activeRecipes = allRecipes.filter((r) => String(r.status).trim().toLowerCase() === 'active');
 
   for (const recipe of activeRecipes) {
     let flags = matchAllAvoidances(recipe.ingredients, avoidances);
@@ -104,6 +113,7 @@ async function main() {
     return;
   }
 
+  mkdirSync('data', { recursive: true });
   writeFileSync(OUT_PATH, JSON.stringify(library, null, 2) + '\n');
   console.log(`Wrote ${OUT_PATH} with ${activeRecipes.length} recipes.`);
 

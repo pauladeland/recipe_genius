@@ -10,6 +10,15 @@ const ALLOWED_RECIPE_KEYS = new Set([
   'flags', 'protocolCompliance',
 ]);
 
+const ALLOWED_AVOIDANCE_KEYS = new Set([
+  'id', 'label', 'severity', 'active', 'terms', 'hiddenTerms', 'exceptions',
+  'substitutions', 'notes',
+]);
+
+const ALLOWED_PROTOCOL_KEYS = new Set([
+  'id', 'label', 'excludes', 'active', 'advisory', 'notes',
+]);
+
 export function validateRecipes(recipes, previousCount) {
   const errors = [];
   const warnings = [];
@@ -24,6 +33,10 @@ export function validateRecipes(recipes, previousCount) {
     if (!r.title) errors.push(`Recipe "${r.id || '(no id)'}" has no title.`);
     if (ids.has(r.id)) errors.push(`Duplicate recipe id: "${r.id}"`);
     ids.add(r.id);
+
+    if (!Array.isArray(r.ingredients) || r.ingredients.length === 0) {
+      errors.push(`Recipe "${r.id}" is active but has no ingredient lines — refusing to publish an unscreened recipe.`);
+    }
 
     if (r.totalMinutes != null && r.prepMinutes != null && r.cookMinutes != null) {
       if (r.totalMinutes < r.prepMinutes + r.cookMinutes) {
@@ -72,6 +85,26 @@ export function validateNoPrivateLeak(recipe) {
   return errors;
 }
 
+export function validateNoPrivateLeakAvoidance(avoidance) {
+  const errors = [];
+  for (const key of Object.keys(avoidance)) {
+    if (!ALLOWED_AVOIDANCE_KEYS.has(key)) {
+      errors.push(`Avoidance "${avoidance.id}" has an unrecognized field "${key}" not in the public allowlist.`);
+    }
+  }
+  return errors;
+}
+
+export function validateNoPrivateLeakProtocol(protocol) {
+  const errors = [];
+  for (const key of Object.keys(protocol)) {
+    if (!ALLOWED_PROTOCOL_KEYS.has(key)) {
+      errors.push(`Protocol "${protocol.id}" has an unrecognized field "${key}" not in the public allowlist.`);
+    }
+  }
+  return errors;
+}
+
 export function runAllGates({ recipes, avoidances, protocols, previousCount }) {
   const avoidanceIds = new Set(avoidances.map((a) => a.id));
   const allErrors = [];
@@ -86,6 +119,14 @@ export function runAllGates({ recipes, avoidances, protocols, previousCount }) {
 
   for (const recipe of recipes) {
     allErrors.push(...validateNoPrivateLeak(recipe));
+  }
+
+  for (const avoidance of avoidances) {
+    allErrors.push(...validateNoPrivateLeakAvoidance(avoidance));
+  }
+
+  for (const protocol of protocols) {
+    allErrors.push(...validateNoPrivateLeakProtocol(protocol));
   }
 
   if (allErrors.length > 0) {
