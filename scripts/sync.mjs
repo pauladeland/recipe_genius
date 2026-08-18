@@ -56,6 +56,7 @@ async function main() {
   const protocols = rowsToObjects(protocolRows).map(transformProtocolRow).filter((p) => p.active);
   const avoidanceIds = new Set(avoidances.map((a) => a.id));
   const warnings = [];
+  const overrideErrors = [];
 
   const KNOWN_STATUSES = new Set(['active', 'draft', 'archived']);
   for (const r of allRecipes) {
@@ -69,8 +70,9 @@ async function main() {
 
   for (const recipe of activeRecipes) {
     let flags = matchAllAvoidances(recipe.ingredients, avoidances);
-    const { overrides, warnings: overrideWarnings } = parseOverrides(recipe.allergenOverride, avoidanceIds);
+    const { overrides, warnings: overrideWarnings, errors: overrideTokenErrors } = parseOverrides(recipe.allergenOverride, avoidanceIds);
     warnings.push(...overrideWarnings.map((w) => `${recipe.id}: ${w}`));
+    overrideErrors.push(...overrideTokenErrors.map((e) => `${recipe.id}: ${e}`));
     flags = applyOverrides(flags, overrides);
     recipe.flags = flags;
 
@@ -79,6 +81,11 @@ async function main() {
       recipe.protocolCompliance[protocol.id] = checkProtocolCompliance(flags, protocol).compliant;
     }
     delete recipe.allergenOverride; // input-only column, not part of the public shape
+  }
+
+  if (overrideErrors.length > 0) {
+    console.error('Malformed allergen_override force token(s) — data/library.json was NOT modified:\n' + overrideErrors.join('\n'));
+    process.exit(1);
   }
 
   const previous = readPreviousLibrary();

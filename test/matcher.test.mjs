@@ -129,6 +129,21 @@ test('an unknown override token produces a warning, not a throw', () => {
   assert.equal(warnings.length, 1);
 });
 
+test('a malformed + token (wrong quote style) produces an error, not a warning, and does not throw', () => {
+  const { overrides, warnings, errors } = parseOverrides('+milk:\'wrong quotes\'', new Set(['milk', 'yeast']));
+  assert.equal(overrides.length, 0);
+  assert.equal(warnings.length, 0);
+  assert.equal(errors.length, 1);
+  assert.match(errors[0], /force token/);
+});
+
+test('a + token with an unknown id produces an error, not a warning', () => {
+  const { overrides, warnings, errors } = parseOverrides('+nonexistent:"reason"', new Set(['milk', 'yeast']));
+  assert.equal(overrides.length, 0);
+  assert.equal(warnings.length, 0);
+  assert.equal(errors.length, 1);
+});
+
 test('protocol compliance fails on a certain match, passes on possible only', () => {
   const protocol = { id: 'vegetarian', excludes: ['meat', 'fish'] };
   assert.equal(
