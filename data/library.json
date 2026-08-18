@@ -1,0 +1,1186 @@
+{
+  "meta": {
+    "generatedAt": "2026-08-18T19:20:57.230Z",
+    "schemaVersion": 1,
+    "recipeCount": 10,
+    "warnings": [
+      "simple-jerky-marinade: Unrecognized allergen_override token: \"From a YouTube video titled \"A Cozy Van Life Morning\" (on-screen tag notes paid promotion)\"",
+      "simple-jerky-marinade: Unrecognized allergen_override token: \"channel name and direct link not captured. No quantities or timing were given in the source.\"",
+      "pressed-juicery-greens-1-5: Unrecognized allergen_override token: \"This documents a commercial product's label, not a home recipe. No quantities or preparation method are disclosed\"",
+      "pressed-juicery-greens-1-5: Unrecognized allergen_override token: \"the URL links to the company's general site, not a verified product page.\""
+    ]
+  },
+  "avoidances": [
+    {
+      "id": "milk",
+      "label": "Milk / Dairy",
+      "severity": "allergy",
+      "active": true,
+      "terms": [
+        "milk",
+        "butter",
+        "ghee",
+        "cream",
+        "cheese",
+        "yogurt",
+        "casein",
+        "whey",
+        "buttermilk",
+        "half and half",
+        "creme fraiche",
+        "paneer",
+        "condensed milk",
+        "evaporated milk",
+        "custard",
+        "parmesan",
+        "parmigiano",
+        "cheddar",
+        "mozzarella",
+        "feta",
+        "brie",
+        "gouda",
+        "swiss",
+        "provolone",
+        "ricotta",
+        "mascarpone",
+        "blue cheese",
+        "gruyere",
+        "manchego"
+      ],
+      "hiddenTerms": [
+        "chocolate",
+        "caramel",
+        "nougat",
+        "pesto",
+        "ranch",
+        "au gratin",
+        "brioche",
+        "scalloped"
+      ],
+      "exceptions": [
+        "peanut butter",
+        "almond butter",
+        "cocoa butter",
+        "apple butter",
+        "nut butter",
+        "butter lettuce",
+        "butter bean",
+        "shea butter",
+        "dairy-free butter",
+        "dairy-free cheese",
+        "dairy-free milk",
+        "vegan butter",
+        "vegan cheese",
+        "plant-based butter",
+        "plant-based cheese",
+        "dairy-free yogurt",
+        "vegan yogurt"
+      ],
+      "substitutions": "oat milk; coconut cream; olive oil for butter",
+      "notes": "True allergy. Also an AIP and vegan exclusion."
+    },
+    {
+      "id": "egg",
+      "label": "Egg",
+      "severity": "sensitivity",
+      "active": true,
+      "terms": [
+        "egg",
+        "eggs",
+        "egg white",
+        "egg yolk",
+        "albumen",
+        "meringue"
+      ],
+      "hiddenTerms": [
+        "mayonnaise",
+        "aioli",
+        "hollandaise",
+        "custard",
+        "brioche",
+        "challah",
+        "caesar dressing"
+      ],
+      "exceptions": [
+        "eggplant"
+      ],
+      "substitutions": "flax egg; applesauce; aquafaba",
+      "notes": "Also an AIP and vegan exclusion."
+    },
+    {
+      "id": "yeast",
+      "label": "Yeast",
+      "severity": "sensitivity",
+      "active": true,
+      "terms": [
+        "yeast",
+        "active dry yeast",
+        "nutritional yeast",
+        "brewer's yeast",
+        "baker's yeast"
+      ],
+      "hiddenTerms": [
+        "soy sauce",
+        "tamari",
+        "vinegar",
+        "bouillon",
+        "stock cube",
+        "broth cube",
+        "miso",
+        "worcestershire",
+        "marmite",
+        "vegemite",
+        "beer",
+        "wine",
+        "bread",
+        "sourdough",
+        "tempeh",
+        "kombucha"
+      ],
+      "exceptions": [
+        "yeast-free",
+        "coconut aminos"
+      ],
+      "substitutions": "coconut aminos for soy sauce; fresh stock for bouillon",
+      "notes": "Hides in far more than people expect. Check labels."
+    },
+    {
+      "id": "grains",
+      "label": "Grains",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "wheat",
+        "flour",
+        "rice",
+        "oat",
+        "oats",
+        "barley",
+        "rye",
+        "corn",
+        "cornmeal",
+        "pasta",
+        "bread",
+        "couscous",
+        "quinoa",
+        "farro",
+        "bulgur"
+      ],
+      "hiddenTerms": [
+        "breadcrumbs",
+        "panko",
+        "soy sauce",
+        "beer",
+        "tortilla"
+      ],
+      "exceptions": [],
+      "substitutions": "cassava flour; almond flour",
+      "notes": "AIP exclusion."
+    },
+    {
+      "id": "legumes",
+      "label": "Legumes",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "bean",
+        "beans",
+        "lentil",
+        "lentils",
+        "chickpea",
+        "peanut",
+        "soy",
+        "soybean",
+        "tofu",
+        "edamame",
+        "pea",
+        "peas"
+      ],
+      "hiddenTerms": [
+        "hummus",
+        "tempeh",
+        "miso",
+        "tamari"
+      ],
+      "exceptions": [
+        "green bean",
+        "butter bean"
+      ],
+      "substitutions": null,
+      "notes": "AIP exclusion. Green beans are AIP-permitted."
+    },
+    {
+      "id": "nightshades",
+      "label": "Nightshades",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "tomato",
+        "potato",
+        "pepper",
+        "bell pepper",
+        "chili",
+        "eggplant",
+        "paprika",
+        "cayenne",
+        "chipotle",
+        "jalapeno",
+        "salsa"
+      ],
+      "hiddenTerms": [
+        "ketchup",
+        "marinara",
+        "curry powder",
+        "hot sauce",
+        "taco seasoning"
+      ],
+      "exceptions": [
+        "sweet potato",
+        "black pepper",
+        "peppercorn"
+      ],
+      "substitutions": "sweet potato for potato",
+      "notes": "AIP exclusion. Sweet potato and black pepper are fine."
+    },
+    {
+      "id": "nuts",
+      "label": "Tree nuts",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "almond",
+        "cashew",
+        "walnut",
+        "pecan",
+        "pistachio",
+        "hazelnut",
+        "macadamia",
+        "brazil nut",
+        "pine nut",
+        "nut butter"
+      ],
+      "hiddenTerms": [
+        "pesto",
+        "marzipan",
+        "nutella"
+      ],
+      "exceptions": [
+        "nutmeg",
+        "coconut"
+      ],
+      "substitutions": "coconut; seeds if tolerated",
+      "notes": "AIP exclusion."
+    },
+    {
+      "id": "seeds",
+      "label": "Seeds",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "sesame",
+        "sunflower seed",
+        "pumpkin seed",
+        "chia",
+        "flax",
+        "poppy seed",
+        "cumin",
+        "coriander",
+        "mustard",
+        "mustard seed",
+        "fennel seed",
+        "tahini"
+      ],
+      "hiddenTerms": [
+        "hummus",
+        "everything bagel"
+      ],
+      "exceptions": [],
+      "substitutions": null,
+      "notes": "AIP excludes seed-based spices too."
+    },
+    {
+      "id": "alcohol",
+      "label": "Alcohol",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "wine",
+        "beer",
+        "vodka",
+        "rum",
+        "bourbon",
+        "whiskey",
+        "sherry",
+        "mirin",
+        "brandy"
+      ],
+      "hiddenTerms": [
+        "vanilla extract",
+        "deglaze"
+      ],
+      "exceptions": [],
+      "substitutions": "broth for deglazing",
+      "notes": "AIP exclusion."
+    },
+    {
+      "id": "refined-sugar",
+      "label": "Refined sugar",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "sugar",
+        "white sugar",
+        "brown sugar",
+        "corn syrup",
+        "high fructose",
+        "powdered sugar"
+      ],
+      "hiddenTerms": [
+        "ketchup",
+        "bbq sauce",
+        "teriyaki"
+      ],
+      "exceptions": [
+        "coconut sugar"
+      ],
+      "substitutions": "maple syrup; honey; dates",
+      "notes": "AIP exclusion."
+    },
+    {
+      "id": "meat",
+      "label": "Meat & poultry",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "beef",
+        "pork",
+        "chicken",
+        "turkey",
+        "lamb",
+        "bacon",
+        "sausage",
+        "ham",
+        "prosciutto",
+        "duck",
+        "veal",
+        "venison",
+        "elk",
+        "bison",
+        "goat",
+        "rabbit"
+      ],
+      "hiddenTerms": [
+        "gelatin",
+        "lard",
+        "chicken stock",
+        "beef broth",
+        "bone broth",
+        "worcestershire"
+      ],
+      "exceptions": [],
+      "substitutions": "mushroom; jackfruit; lentils",
+      "notes": "Vegetarian and vegan exclusion. Gelatin and stock are the sneaky ones."
+    },
+    {
+      "id": "fish",
+      "label": "Fish & seafood",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "fish",
+        "salmon",
+        "tuna",
+        "cod",
+        "shrimp",
+        "prawn",
+        "crab",
+        "lobster",
+        "scallop",
+        "clam",
+        "mussel",
+        "oyster",
+        "anchovy"
+      ],
+      "hiddenTerms": [
+        "fish sauce",
+        "worcestershire",
+        "caesar dressing",
+        "oyster sauce",
+        "nuoc cham"
+      ],
+      "exceptions": [],
+      "substitutions": "coconut aminos; capers",
+      "notes": "Vegetarian and vegan exclusion. Anchovy hides in Caesar and Worcestershire."
+    },
+    {
+      "id": "honey",
+      "label": "Honey",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "honey"
+      ],
+      "hiddenTerms": [],
+      "exceptions": [
+        "honeydew",
+        "honeycrisp"
+      ],
+      "substitutions": "maple syrup; agave",
+      "notes": "Vegan exclusion only."
+    },
+    {
+      "id": "high-carb",
+      "label": "High carb",
+      "severity": "protocol",
+      "active": true,
+      "terms": [
+        "rice",
+        "pasta",
+        "bread",
+        "potato",
+        "sugar",
+        "flour",
+        "corn",
+        "oats",
+        "banana",
+        "tortilla"
+      ],
+      "hiddenTerms": [
+        "breading",
+        "batter",
+        "glaze"
+      ],
+      "exceptions": [],
+      "substitutions": null,
+      "notes": "Keto heuristic only — advisory, never a compliance claim."
+    }
+  ],
+  "protocols": [
+    {
+      "id": "aip",
+      "label": "AIP / Hashimoto's",
+      "excludes": [
+        "grains",
+        "legumes",
+        "milk",
+        "egg",
+        "nuts",
+        "seeds",
+        "nightshades",
+        "alcohol",
+        "refined-sugar"
+      ],
+      "active": true,
+      "advisory": false,
+      "notes": "Autoimmune protocol. Highly restrictive; computable from ingredients."
+    },
+    {
+      "id": "vegetarian",
+      "label": "Vegetarian",
+      "excludes": [
+        "meat",
+        "fish"
+      ],
+      "active": true,
+      "advisory": false,
+      "notes": "Watch gelatin, rennet, anchovy, fish sauce."
+    },
+    {
+      "id": "vegan",
+      "label": "Vegan",
+      "excludes": [
+        "meat",
+        "fish",
+        "milk",
+        "egg",
+        "honey"
+      ],
+      "active": true,
+      "advisory": false,
+      "notes": "Vegetarian plus dairy, eggs, honey."
+    },
+    {
+      "id": "keto",
+      "label": "Keto",
+      "excludes": [
+        "high-carb"
+      ],
+      "active": true,
+      "advisory": true,
+      "notes": "ADVISORY ONLY. Real keto needs net carbs per serving, which requires nutrition data. Flags obvious disqualifiers; never claims compliance."
+    }
+  ],
+  "recipes": [
+    {
+      "id": "chimichurri-sauce",
+      "title": "Chimichurri Sauce",
+      "status": "active",
+      "cuisine": "Argentinian",
+      "protein": [
+        "none"
+      ],
+      "tags": [
+        "sauce",
+        "marinade",
+        "condiment",
+        "no-cook",
+        "quick"
+      ],
+      "ingredients": [
+        "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil"
+      ],
+      "steps": [
+        "Combine shallot, chile, garlic, vinegar, and salt in a medium bowl. Let sit 10 minutes.\\nStir in cilantro, parsley, and oregano.\\nWhisk in the olive oil.\\nTransfer 1/2 cup chimichurri to a small bowl; season with salt and reserve as sauce.\\nOptional marinade: toss remaining chimichurri with beef, chicken, or pork. Cover and chill at least 3 hours or overnight, then grill and spoon reserved chimichurri over the meat."
+      ],
+      "prepMinutes": 15,
+      "cookMinutes": 0,
+      "totalMinutes": 25,
+      "servingsCount": 8,
+      "servings": "About 1½ cups — roughly 8 servings as a sauce (estimated, BA's stated yield wasn't visible)",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "Bon Appétit",
+      "sourceNote": null,
+      "image": "https://www.bonappetit.com/recipe/chimichurri-sauce-2",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "jalapeno",
+          "level": "certain",
+          "line": "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    },
+    {
+      "id": "almond-pulp-scrap-crackers",
+      "title": "Almond Pulp Scrap Crackers",
+      "status": "active",
+      "cuisine": null,
+      "protein": [
+        "none"
+      ],
+      "tags": [
+        "snack",
+        "cracker",
+        "zero-waste",
+        "gluten-free",
+        "vegan",
+        "dehydrator-optional"
+      ],
+      "ingredients": [
+        "1 cup almond pulp||Skins of 1 cup almonds||2 Tbsp flax seeds||2 Tbsp chia seeds||2 Tbsp thyme"
+      ],
+      "steps": [
+        "Blend all ingredients into a grainy dough that holds its shape when you squeeze a handful.||Transfer onto a lined dehydrator tray or baking sheet.||Bake at 350°F for 30 minutes, flipping halfway through.||Alternative: dehydrate at 130°F for 8 hours instead of baking."
+      ],
+      "prepMinutes": 10,
+      "cookMinutes": 30,
+      "totalMinutes": 40,
+      "servingsCount": 6,
+      "servings": "Makes about 20-24 crackers (~6 servings, estimated — not stated in the original post)",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "@modhippiehabits (Instagram)",
+      "sourceNote": null,
+      "image": "https://www.instagram.com/modhippiehabits/",
+      "imageAlt": "Specific post permalink not captured from screenshot — links to the account only.",
+      "flags": [
+        {
+          "allergenId": "nuts",
+          "term": "almond",
+          "level": "certain",
+          "line": "1 cup almond pulp||Skins of 1 cup almonds||2 Tbsp flax seeds||2 Tbsp chia seeds||2 Tbsp thyme",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nuts",
+          "term": "almonds",
+          "level": "certain",
+          "line": "1 cup almond pulp||Skins of 1 cup almonds||2 Tbsp flax seeds||2 Tbsp chia seeds||2 Tbsp thyme",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "seeds",
+          "term": "flax",
+          "level": "certain",
+          "line": "1 cup almond pulp||Skins of 1 cup almonds||2 Tbsp flax seeds||2 Tbsp chia seeds||2 Tbsp thyme",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "seeds",
+          "term": "chia",
+          "level": "certain",
+          "line": "1 cup almond pulp||Skins of 1 cup almonds||2 Tbsp flax seeds||2 Tbsp chia seeds||2 Tbsp thyme",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    },
+    {
+      "id": "ground-venison-jerky",
+      "title": "Ground Venison Jerky",
+      "status": "active",
+      "cuisine": null,
+      "protein": [
+        "venison",
+        "pork"
+      ],
+      "tags": [
+        "jerky",
+        "dehydrator",
+        "batch-cook",
+        "freezer-friendly",
+        "homestead"
+      ],
+      "ingredients": [
+        "7 lbs venison||1 lb bacon||1 cup dried apples, chopped||16g celery powder||72g salt||2 Tbsp black pepper||1/4 cup onion powder||1/4 cup smoked paprika||2 Tbsp garlic powder||2 tsp ground nutmeg||1 cup water"
+      ],
+      "steps": [
+        "Grind the venison, bacon, and apples (first on coarse, then on fine).||Mix in the rest of the ingredients.||Cover and refrigerate for 24-48 hours.||Load the jerky gun and press the mixture directly onto dehydrator trays.||Dehydrate at 160°F until dry (roughly 4-5 hours, varies by dehydrator).||Store in the fridge for 3-4 weeks, or freeze for up to 1 year."
+      ],
+      "prepMinutes": 30,
+      "cookMinutes": 240,
+      "totalMinutes": 1710,
+      "servingsCount": 50,
+      "servings": "Makes roughly 3-4 lbs finished jerky — about 50 snack-sized servings (rough estimate; yield depends on moisture loss)",
+      "sourceType": "screenshot-unknown",
+      "sourceName": null,
+      "sourceUrl": null,
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": "Source unknown — screenshot only, no attributable site or account visible.",
+      "flags": [
+        {
+          "allergenId": "nightshades",
+          "term": "paprika",
+          "level": "certain",
+          "line": "7 lbs venison||1 lb bacon||1 cup dried apples, chopped||16g celery powder||72g salt||2 Tbsp black pepper||1/4 cup onion powder||1/4 cup smoked paprika||2 Tbsp garlic powder||2 tsp ground nutmeg||1 cup water",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "meat",
+          "term": "venison",
+          "level": "certain",
+          "line": "7 lbs venison||1 lb bacon||1 cup dried apples, chopped||16g celery powder||72g salt||2 Tbsp black pepper||1/4 cup onion powder||1/4 cup smoked paprika||2 Tbsp garlic powder||2 tsp ground nutmeg||1 cup water",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "meat",
+          "term": "bacon",
+          "level": "certain",
+          "line": "7 lbs venison||1 lb bacon||1 cup dried apples, chopped||16g celery powder||72g salt||2 Tbsp black pepper||1/4 cup onion powder||1/4 cup smoked paprika||2 Tbsp garlic powder||2 tsp ground nutmeg||1 cup water",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": true
+      }
+    },
+    {
+      "id": "parmesan-crusted-butter-beans",
+      "title": "Parmesan-Crusted Butter Beans",
+      "status": "active",
+      "cuisine": "Italian-inspired",
+      "protein": [
+        "beans"
+      ],
+      "tags": [
+        "snack",
+        "appetizer",
+        "cheese",
+        "vegetarian",
+        "one-pan"
+      ],
+      "ingredients": [
+        "1 (15-ounce) can butter beans, drained and rinsed||6 ounces Parmesan, freshly grated (about 2 cups)||1 tablespoon finely chopped fresh rosemary||1 tablespoon Calabrian chili paste||Extra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)"
+      ],
+      "steps": [
+        "Position a rack in the center of the oven and preheat to 400°F. Line a quarter-sheet pan with parchment paper.||Transfer the butter beans to a cutting board and pat dry.||In a small bowl, combine the Parmesan, rosemary, chili paste, and 2 tablespoons oil; mix to combine.||Scatter the cheese mixture in a thick, even layer across the lined sheet pan. Layer the butter beans on top, making sure none overlap.||Bake until the cheese is golden brown and crisp, 40 to 45 minutes. Remove from the oven and let cool to room temperature.||Carefully slide the beans off the parchment paper, slice into big chunks, and serve."
+      ],
+      "prepMinutes": 10,
+      "cookMinutes": 43,
+      "totalMinutes": 63,
+      "servingsCount": 6,
+      "servings": "Serves 6",
+      "sourceType": "book",
+      "sourceName": null,
+      "sourceUrl": "Justine Snacks — cookbook (page photographed reads as a printed book, not Instagram; let me know the exact title if you'd like it recorded)",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "parmesan",
+          "level": "certain",
+          "line": "1 (15-ounce) can butter beans, drained and rinsed||6 ounces Parmesan, freshly grated (about 2 cups)||1 tablespoon finely chopped fresh rosemary||1 tablespoon Calabrian chili paste||Extra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "milk",
+          "term": "cheese",
+          "level": "certain",
+          "line": "1 (15-ounce) can butter beans, drained and rinsed||6 ounces Parmesan, freshly grated (about 2 cups)||1 tablespoon finely chopped fresh rosemary||1 tablespoon Calabrian chili paste||Extra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "chili",
+          "level": "certain",
+          "line": "1 (15-ounce) can butter beans, drained and rinsed||6 ounces Parmesan, freshly grated (about 2 cups)||1 tablespoon finely chopped fresh rosemary||1 tablespoon Calabrian chili paste||Extra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": false,
+        "keto": true
+      }
+    },
+    {
+      "id": "red-wine-vinaigrette",
+      "title": "Red Wine Vinaigrette Dressing",
+      "status": "active",
+      "cuisine": null,
+      "protein": [
+        "none"
+      ],
+      "tags": [
+        "dressing",
+        "vinaigrette",
+        "condiment",
+        "no-cook",
+        "quick",
+        "make-ahead"
+      ],
+      "ingredients": [
+        "1/2 cup extra-virgin olive oil||1/4 cup red wine vinegar||1 Tbsp Dijon mustard||1 Tbsp pure maple syrup||1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)||1/2 tsp freshly ground black pepper||1/4 tsp garlic powder"
+      ],
+      "steps": [
+        "Combine all ingredients in a small bowl or a jar with a tight lid.||Whisk until emulsified, or seal the jar and shake vigorously.||Taste and adjust salt and pepper as needed."
+      ],
+      "prepMinutes": 5,
+      "cookMinutes": 0,
+      "totalMinutes": 5,
+      "servingsCount": 7,
+      "servings": "Makes 1 scant cup (about 7 servings at 2 Tbsp each, estimated)",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "Bon Appétit",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": "No specific page URL or preparation steps were visible in this screenshot — only the ingredients list was captured.",
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1/2 cup extra-virgin olive oil||1/4 cup red wine vinegar||1 Tbsp Dijon mustard||1 Tbsp pure maple syrup||1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)||1/2 tsp freshly ground black pepper||1/4 tsp garlic powder",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "1/2 cup extra-virgin olive oil||1/4 cup red wine vinegar||1 Tbsp Dijon mustard||1 Tbsp pure maple syrup||1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)||1/2 tsp freshly ground black pepper||1/4 tsp garlic powder",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "seeds",
+          "term": "mustard",
+          "level": "certain",
+          "line": "1/2 cup extra-virgin olive oil||1/4 cup red wine vinegar||1 Tbsp Dijon mustard||1 Tbsp pure maple syrup||1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)||1/2 tsp freshly ground black pepper||1/4 tsp garlic powder",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1/2 cup extra-virgin olive oil||1/4 cup red wine vinegar||1 Tbsp Dijon mustard||1 Tbsp pure maple syrup||1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)||1/2 tsp freshly ground black pepper||1/4 tsp garlic powder",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    },
+    {
+      "id": "simple-jerky-marinade",
+      "title": "Simple Jerky Marinade",
+      "status": "active",
+      "cuisine": null,
+      "protein": [
+        "venison",
+        "beef"
+      ],
+      "tags": [
+        "marinade",
+        "jerky",
+        "dehydrator",
+        "make-ahead",
+        "soy-free"
+      ],
+      "ingredients": [
+        "Coconut aminos (amount not specified by source)||Himalayan pink salt (amount not specified by source)||Crushed red pepper (amount not specified by source)||Black pepper (amount not specified by source)||Onion powder (amount not specified by source)||Garlic powder (amount not specified by source)"
+      ],
+      "steps": [
+        "Combine all marinade ingredients (quantities not specified by source — adjust to taste).||Marinate meat of choice, sliced for jerky, in the mixture (duration not specified by source).||Dehydrate until dry (temperature and time not specified by source — see the Ground Venison Jerky recipe in this library for a reference range)."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": null,
+      "totalMinutes": null,
+      "servingsCount": null,
+      "servings": null,
+      "sourceType": null,
+      "sourceName": null,
+      "sourceUrl": "screenshot-unknown",
+      "sourceNote": null,
+      "image": "A Cozy Van Life Morning (YouTube video)",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "nightshades",
+          "term": "pepper",
+          "level": "certain",
+          "line": "Coconut aminos (amount not specified by source)||Himalayan pink salt (amount not specified by source)||Crushed red pepper (amount not specified by source)||Black pepper (amount not specified by source)||Onion powder (amount not specified by source)||Garlic powder (amount not specified by source)",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    },
+    {
+      "id": "zucchini-noodles-kale-sauce",
+      "title": "Zucchini Noodles in Kale Sauce",
+      "status": "active",
+      "cuisine": null,
+      "protein": [
+        "nuts"
+      ],
+      "tags": [
+        "vegan",
+        "dairy-free",
+        "zoodles",
+        "blender",
+        "gluten-free"
+      ],
+      "ingredients": [
+        "4 kale leaves, stems removed (for boiling)||1 teaspoon dry basil||1/3 cup pecans||1/3 cup cashews||1/4 cup nutritional yeast||1/4 cup tahini||Roasted garlic cloves (amount not specified by source)||Salt and pepper, to taste||1 teaspoon turmeric powder||1 1/3 cups water reserved from boiling the kale||2 large zucchini, spiralized into noodles||Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)"
+      ],
+      "steps": [
+        "Boil the kale leaves (stems removed) for 3 minutes; reserve 1 1/3 cups of the boiling water.||Add the boiled kale, basil, pecans, cashews, nutritional yeast, tahini, garlic, salt, pepper, turmeric, and reserved kale water to a blender.||Blend until smooth and creamy (implied by the source's description; exact blend time not stated).||Spiralize the zucchini into noodles.||Combine the kale sauce with the zucchini noodles.||Garnish with black pepper, chili, and sesame seeds; serve."
+      ],
+      "prepMinutes": 12,
+      "cookMinutes": 3,
+      "totalMinutes": 15,
+      "servingsCount": 2,
+      "servings": "About 2 servings as a light main (estimated; not stated by source)",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "@littlekalegirl (Instagram)",
+      "sourceNote": null,
+      "image": "https://www.instagram.com/littlekalegirl/",
+      "imageAlt": "Specific post permalink not captured — links to the account only. Also tags @vitamix_aunz (sponsored blender mention).",
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "nutritional yeast",
+          "level": "certain",
+          "line": "4 kale leaves, stems removed (for boiling)||1 teaspoon dry basil||1/3 cup pecans||1/3 cup cashews||1/4 cup nutritional yeast||1/4 cup tahini||Roasted garlic cloves (amount not specified by source)||Salt and pepper, to taste||1 teaspoon turmeric powder||1 1/3 cups water reserved from boiling the kale||2 large zucchini, spiralized into noodles||Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "pepper",
+          "level": "certain",
+          "line": "4 kale leaves, stems removed (for boiling)||1 teaspoon dry basil||1/3 cup pecans||1/3 cup cashews||1/4 cup nutritional yeast||1/4 cup tahini||Roasted garlic cloves (amount not specified by source)||Salt and pepper, to taste||1 teaspoon turmeric powder||1 1/3 cups water reserved from boiling the kale||2 large zucchini, spiralized into noodles||Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "chili",
+          "level": "certain",
+          "line": "4 kale leaves, stems removed (for boiling)||1 teaspoon dry basil||1/3 cup pecans||1/3 cup cashews||1/4 cup nutritional yeast||1/4 cup tahini||Roasted garlic cloves (amount not specified by source)||Salt and pepper, to taste||1 teaspoon turmeric powder||1 1/3 cups water reserved from boiling the kale||2 large zucchini, spiralized into noodles||Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nuts",
+          "term": "pecans",
+          "level": "certain",
+          "line": "4 kale leaves, stems removed (for boiling)||1 teaspoon dry basil||1/3 cup pecans||1/3 cup cashews||1/4 cup nutritional yeast||1/4 cup tahini||Roasted garlic cloves (amount not specified by source)||Salt and pepper, to taste||1 teaspoon turmeric powder||1 1/3 cups water reserved from boiling the kale||2 large zucchini, spiralized into noodles||Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nuts",
+          "term": "cashews",
+          "level": "certain",
+          "line": "4 kale leaves, stems removed (for boiling)||1 teaspoon dry basil||1/3 cup pecans||1/3 cup cashews||1/4 cup nutritional yeast||1/4 cup tahini||Roasted garlic cloves (amount not specified by source)||Salt and pepper, to taste||1 teaspoon turmeric powder||1 1/3 cups water reserved from boiling the kale||2 large zucchini, spiralized into noodles||Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "seeds",
+          "term": "tahini",
+          "level": "certain",
+          "line": "4 kale leaves, stems removed (for boiling)||1 teaspoon dry basil||1/3 cup pecans||1/3 cup cashews||1/4 cup nutritional yeast||1/4 cup tahini||Roasted garlic cloves (amount not specified by source)||Salt and pepper, to taste||1 teaspoon turmeric powder||1 1/3 cups water reserved from boiling the kale||2 large zucchini, spiralized into noodles||Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "seeds",
+          "term": "sesame",
+          "level": "certain",
+          "line": "4 kale leaves, stems removed (for boiling)||1 teaspoon dry basil||1/3 cup pecans||1/3 cup cashews||1/4 cup nutritional yeast||1/4 cup tahini||Roasted garlic cloves (amount not specified by source)||Salt and pepper, to taste||1 teaspoon turmeric powder||1 1/3 cups water reserved from boiling the kale||2 large zucchini, spiralized into noodles||Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    },
+    {
+      "id": "spinach-potato-cakes-with-cheese",
+      "title": "Spinach Potato Cakes with Cheese",
+      "status": "active",
+      "cuisine": null,
+      "protein": [
+        "none"
+      ],
+      "tags": [
+        "vegan",
+        "dairy-free",
+        "potato",
+        "pan-fried",
+        "snack"
+      ],
+      "ingredients": [
+        "1 large baking potato||1 tbsp olive oil, plus more for frying||4 cups spinach, chopped||2 cloves minced garlic||2 tbsp nutritional yeast||2 tsp garlic powder||1/2 tsp salt||3 tbsp flour||2 tbsp dairy-free butter||1/4 cup dairy-free cheese"
+      ],
+      "steps": [
+        "Preheat the oven to 200°C/400°F.||Wrap the potato in foil and bake for 45 minutes, until fully softened.||Meanwhile, heat the olive oil in a pan and cook the spinach until wilted.||Peel and mash the potato, then mix thoroughly with the spinach, garlic, nutritional yeast, garlic powder, salt, and flour.||On a floured surface, shape about 1/4 cup of the mixture into a flat circle.||Place about 1 teaspoon of dairy-free butter and 1 tablespoon of dairy-free cheese in the middle, then fold the edges together to form the potato cake shape.||Fry the potato cakes in olive oil for 3-4 minutes, then flip and fry 1-2 minutes more, until crispy."
+      ],
+      "prepMinutes": 15,
+      "cookMinutes": 55,
+      "totalMinutes": 70,
+      "servingsCount": 4,
+      "servings": "About 4 servings (roughly 10-12 potato cakes; estimated, not stated by source)",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "@earthofmariaa (Instagram)",
+      "sourceNote": null,
+      "image": "https://www.instagram.com/earthofmariaa/",
+      "imageAlt": "Recipe credited to @earthofmariaa within the post; screenshot was shared via @vegan.planvn's repost. Specific post permalink not captured.",
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "nutritional yeast",
+          "level": "certain",
+          "line": "1 large baking potato||1 tbsp olive oil, plus more for frying||4 cups spinach, chopped||2 cloves minced garlic||2 tbsp nutritional yeast||2 tsp garlic powder||1/2 tsp salt||3 tbsp flour||2 tbsp dairy-free butter||1/4 cup dairy-free cheese",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "grains",
+          "term": "flour",
+          "level": "certain",
+          "line": "1 large baking potato||1 tbsp olive oil, plus more for frying||4 cups spinach, chopped||2 cloves minced garlic||2 tbsp nutritional yeast||2 tsp garlic powder||1/2 tsp salt||3 tbsp flour||2 tbsp dairy-free butter||1/4 cup dairy-free cheese",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "potato",
+          "level": "certain",
+          "line": "1 large baking potato||1 tbsp olive oil, plus more for frying||4 cups spinach, chopped||2 cloves minced garlic||2 tbsp nutritional yeast||2 tsp garlic powder||1/2 tsp salt||3 tbsp flour||2 tbsp dairy-free butter||1/4 cup dairy-free cheese",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "potato",
+          "level": "certain",
+          "line": "1 large baking potato||1 tbsp olive oil, plus more for frying||4 cups spinach, chopped||2 cloves minced garlic||2 tbsp nutritional yeast||2 tsp garlic powder||1/2 tsp salt||3 tbsp flour||2 tbsp dairy-free butter||1/4 cup dairy-free cheese",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "flour",
+          "level": "certain",
+          "line": "1 large baking potato||1 tbsp olive oil, plus more for frying||4 cups spinach, chopped||2 cloves minced garlic||2 tbsp nutritional yeast||2 tsp garlic powder||1/2 tsp salt||3 tbsp flour||2 tbsp dairy-free butter||1/4 cup dairy-free cheese",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": false
+      }
+    },
+    {
+      "id": "vegan-nut-butter-balls",
+      "title": "Vegan Nut Butter Balls",
+      "status": "active",
+      "cuisine": null,
+      "protein": [
+        "nuts"
+      ],
+      "tags": [
+        "vegan",
+        "no-bake",
+        "snack",
+        "protein-ball",
+        "make-ahead"
+      ],
+      "ingredients": [
+        "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)||1/4 cup quick-cooking oats||1/3 cup vanilla protein powder||1/4 cup unsweetened flaked coconut||1/2 teaspoon ground cinnamon||1/4 cup apple cider||1 tablespoon maple syrup||1/3 cup rice cereal"
+      ],
+      "steps": [
+        "In a bowl, add all the ingredients except the rice cereal, and mix until thoroughly combined.||Gently mix in the rice cereal, if using.||Shape the mixture into 16 balls, each about 1 inch in diameter.||Store the balls in the refrigerator for up to 3 weeks."
+      ],
+      "prepMinutes": 15,
+      "cookMinutes": 0,
+      "totalMinutes": 15,
+      "servingsCount": 16,
+      "servings": "Makes 16 servings (16 balls, about 1 inch each)",
+      "sourceType": "book",
+      "sourceName": null,
+      "sourceUrl": "Hannah Grant — The Grand Tour Cookbook",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": "Recipe courtesy of Hannah Grant and The Grand Tour Cookbook, per the page's own attribution. References an alternate \"Toasted Almond Spread with Cinnamon\" on page 263 of the same book.",
+      "flags": [
+        {
+          "allergenId": "grains",
+          "term": "oats",
+          "level": "certain",
+          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)||1/4 cup quick-cooking oats||1/3 cup vanilla protein powder||1/4 cup unsweetened flaked coconut||1/2 teaspoon ground cinnamon||1/4 cup apple cider||1 tablespoon maple syrup||1/3 cup rice cereal",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "grains",
+          "term": "rice",
+          "level": "certain",
+          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)||1/4 cup quick-cooking oats||1/3 cup vanilla protein powder||1/4 cup unsweetened flaked coconut||1/2 teaspoon ground cinnamon||1/4 cup apple cider||1 tablespoon maple syrup||1/3 cup rice cereal",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nuts",
+          "term": "nut butter",
+          "level": "certain",
+          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)||1/4 cup quick-cooking oats||1/3 cup vanilla protein powder||1/4 cup unsweetened flaked coconut||1/2 teaspoon ground cinnamon||1/4 cup apple cider||1 tablespoon maple syrup||1/3 cup rice cereal",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nuts",
+          "term": "almond",
+          "level": "certain",
+          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)||1/4 cup quick-cooking oats||1/3 cup vanilla protein powder||1/4 cup unsweetened flaked coconut||1/2 teaspoon ground cinnamon||1/4 cup apple cider||1 tablespoon maple syrup||1/3 cup rice cereal",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "oats",
+          "level": "certain",
+          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)||1/4 cup quick-cooking oats||1/3 cup vanilla protein powder||1/4 cup unsweetened flaked coconut||1/2 teaspoon ground cinnamon||1/4 cup apple cider||1 tablespoon maple syrup||1/3 cup rice cereal",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "rice",
+          "level": "certain",
+          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)||1/4 cup quick-cooking oats||1/3 cup vanilla protein powder||1/4 cup unsweetened flaked coconut||1/2 teaspoon ground cinnamon||1/4 cup apple cider||1 tablespoon maple syrup||1/3 cup rice cereal",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": false
+      }
+    },
+    {
+      "id": "pressed-juicery-greens-1-5",
+      "title": "Greens 1.5 Juice (Pressed Juicery-Inspired)",
+      "status": "active",
+      "cuisine": null,
+      "protein": [
+        "none"
+      ],
+      "tags": [
+        "juice",
+        "vegan",
+        "reference",
+        "cold-pressed"
+      ],
+      "ingredients": [
+        "Kale (amount not specified by label)||Spinach (amount not specified by label)||Romaine (amount not specified by label)||Parsley (amount not specified by label)||Cucumber (amount not specified by label)||Celery (amount not specified by label)||Lemon (amount not specified by label)||Sea salt (amount not specified by label)"
+      ],
+      "steps": [
+        "This entry documents a store-bought product's label; no preparation method is disclosed by the source.||If attempting a home version: wash and juice the kale, spinach, romaine, parsley, cucumber, and celery, then stir in fresh lemon juice and a pinch of sea salt to taste.||Proportions here are a guess — the manufacturer's exact ratios aren't public."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": null,
+      "totalMinutes": null,
+      "servingsCount": null,
+      "servings": "1",
+      "sourceType": "1 bottle (15.2 fl oz / 450 mL), per the product label",
+      "sourceName": null,
+      "sourceUrl": "url",
+      "sourceNote": null,
+      "image": "Pressed Juicery — Greens 1.5 (product label)",
+      "imageAlt": "https://www.pressedjuicery.com/",
+      "flags": [],
+      "protocolCompliance": {
+        "aip": true,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    }
+  ]
+}
