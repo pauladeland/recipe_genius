@@ -1,14 +1,9 @@
 {
   "meta": {
-    "generatedAt": "2026-08-18T19:20:57.230Z",
+    "generatedAt": "2026-08-18T19:44:54.636Z",
     "schemaVersion": 1,
     "recipeCount": 10,
-    "warnings": [
-      "simple-jerky-marinade: Unrecognized allergen_override token: \"From a YouTube video titled \"A Cozy Van Life Morning\" (on-screen tag notes paid promotion)\"",
-      "simple-jerky-marinade: Unrecognized allergen_override token: \"channel name and direct link not captured. No quantities or timing were given in the source.\"",
-      "pressed-juicery-greens-1-5: Unrecognized allergen_override token: \"This documents a commercial product's label, not a home recipe. No quantities or preparation method are disclosed\"",
-      "pressed-juicery-greens-1-5: Unrecognized allergen_override token: \"the URL links to the company's general site, not a verified product page.\""
-    ]
+    "warnings": []
   },
   "avoidances": [
     {
@@ -874,7 +869,7 @@
       "servings": null,
       "sourceType": null,
       "sourceName": null,
-      "sourceUrl": "screenshot-unknown",
+      "sourceUrl": "From a YouTube video titled \"A Cozy Van Life Morning\" (on-screen tag notes paid promotion); channel name and direct link not captured. No quantities or timing were given in the source.",
       "sourceNote": null,
       "image": "A Cozy Van Life Morning (YouTube video)",
       "imageAlt": null,
@@ -1170,7 +1165,7 @@
       "servings": "1",
       "sourceType": "1 bottle (15.2 fl oz / 450 mL), per the product label",
       "sourceName": null,
-      "sourceUrl": "url",
+      "sourceUrl": "This documents a commercial product's label, not a home recipe. No quantities or preparation method are disclosed; the URL links to the company's general site, not a verified product page.",
       "sourceNote": null,
       "image": "Pressed Juicery — Greens 1.5 (product label)",
       "imageAlt": "https://www.pressedjuicery.com/",
