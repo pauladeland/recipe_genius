@@ -1,0 +1,38 @@
+name: Sync recipes from Google Sheet
+
+on:
+  schedule:
+    - cron: '0 13,1 * * *'
+  workflow_dispatch:
+    inputs:
+      allow_shrink:
+        description: 'Allow the recipe count to drop below the 60% sanity floor'
+        required: false
+        default: 'false'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'lib/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-recipes
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/sync.mjs
+        env:
+          SHEETS_API_KEY: ${{ secrets.SHEETS_API_KEY }}
+          PUBLIC_SHEET_ID: '1ySWODVSk8yonZTQwfo4OYwRRnJew7EnskVcOix2Trag'
+          ALLOW_SHRINK: ${{ github.event.inputs.allow_shrink }}
+          CI: 'true'
