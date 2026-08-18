@@ -47,7 +47,7 @@ export function renderRecipe(recipe, avoidances) {
 export function renderNotFound(recipeId) {
   return html`
     <div class="empty-state">
-      <h2 tabindex="-1">Recipe not found</h2>
+      <h1 tabindex="-1">Recipe not found</h1>
       <p>There's no recipe with id "${recipeId}". It may have been archived or renamed.</p>
       <p><a href="#/">Back to browse</a></p>
     </div>

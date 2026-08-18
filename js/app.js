@@ -119,7 +119,7 @@ async function main() {
   try {
     libraryData = await source.loadPublic();
   } catch (err) {
-    root.innerHTML = `<div class="empty-state"><h2 tabindex="-1">Couldn't load recipes</h2><p>Check your connection and reload. (${err.message})</p></div>`;
+    root.innerHTML = `<div class="empty-state"><h1 tabindex="-1">Couldn't load recipes</h1><p>Check your connection and reload. (${err.message})</p></div>`;
     focusHeading();
     return;
   }
