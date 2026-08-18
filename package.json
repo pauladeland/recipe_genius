@@ -1,0 +1,10 @@
+{
+  "name": "recipe_genius",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test test/",
+    "sync": "node scripts/sync.mjs"
+  }
+}
