@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recipe Genius</title>
+<script>
+  (function () {
+    try {
+      var settings = JSON.parse(localStorage.getItem('recipe-genius:settings'));
+      if (settings && (settings.theme === 'light' || settings.theme === 'dark')) {
+        document.documentElement.setAttribute('data-theme', settings.theme);
+      }
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="app-header">
+  <a href="#/">Recipe Genius</a>
+  <nav aria-label="Primary">
+    <a href="#/">Browse</a>
+    <a href="#/settings">Settings</a>
+  </nav>
+</header>
+<main id="main" tabindex="-1"></main>
+<div aria-live="polite" class="skip-link" id="live-region"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
