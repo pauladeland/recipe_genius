@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-19T16:00:32.549Z",
+    "generatedAt": "2026-08-19T16:21:27.636Z",
     "schemaVersion": 1,
     "recipeCount": 10,
     "warnings": []
@@ -592,10 +592,17 @@
         "dehydrator-optional"
       ],
       "ingredients": [
-        "1 cup almond pulp\\nSkins of 1 cup almonds\\n2 Tbsp flax seeds\\n2 Tbsp chia seeds\\n2 Tbsp thyme"
+        "1 cup almond pulp",
+        "Skins of 1 cup almonds",
+        "2 Tbsp flax seeds",
+        "2 Tbsp chia seeds",
+        "2 Tbsp thyme"
       ],
       "steps": [
-        "Blend all ingredients into a grainy dough that holds its shape when you squeeze a handful.\\nTransfer onto a lined dehydrator tray or baking sheet.\\nBake at 350°F for 30 minutes, flipping halfway through.\\nAlternative: dehydrate at 130°F for 8 hours instead of baking."
+        "Blend all ingredients into a grainy dough that holds its shape when you squeeze a handful.",
+        "Transfer onto a lined dehydrator tray or baking sheet.",
+        "Bake at 350°F for 30 minutes, flipping halfway through.",
+        "Alternative: dehydrate at 130°F for 8 hours instead of baking."
       ],
       "prepMinutes": 10,
       "cookMinutes": 30,
@@ -613,29 +620,29 @@
           "allergenId": "nuts",
           "term": "almond",
           "level": "certain",
-          "line": "1 cup almond pulp\\nSkins of 1 cup almonds\\n2 Tbsp flax seeds\\n2 Tbsp chia seeds\\n2 Tbsp thyme",
+          "line": "1 cup almond pulp",
           "lineIndex": 0
         },
         {
           "allergenId": "nuts",
           "term": "almonds",
           "level": "certain",
-          "line": "1 cup almond pulp\\nSkins of 1 cup almonds\\n2 Tbsp flax seeds\\n2 Tbsp chia seeds\\n2 Tbsp thyme",
-          "lineIndex": 0
+          "line": "Skins of 1 cup almonds",
+          "lineIndex": 1
         },
         {
           "allergenId": "seeds",
           "term": "flax",
           "level": "certain",
-          "line": "1 cup almond pulp\\nSkins of 1 cup almonds\\n2 Tbsp flax seeds\\n2 Tbsp chia seeds\\n2 Tbsp thyme",
-          "lineIndex": 0
+          "line": "2 Tbsp flax seeds",
+          "lineIndex": 2
         },
         {
           "allergenId": "seeds",
           "term": "chia",
           "level": "certain",
-          "line": "1 cup almond pulp\\nSkins of 1 cup almonds\\n2 Tbsp flax seeds\\n2 Tbsp chia seeds\\n2 Tbsp thyme",
-          "lineIndex": 0
+          "line": "2 Tbsp chia seeds",
+          "lineIndex": 3
         }
       ],
       "protocolCompliance": {
@@ -662,10 +669,25 @@
         "homestead"
       ],
       "ingredients": [
-        "7 lbs venison\\n1 lb bacon\\n1 cup dried apples, chopped\\n16g celery powder\\n72g salt\\n2 Tbsp black pepper\\n1/4 cup onion powder\\n1/4 cup smoked paprika\\n2 Tbsp garlic powder\\n2 tsp ground nutmeg\\n1 cup water"
+        "7 lbs venison",
+        "1 lb bacon",
+        "1 cup dried apples, chopped",
+        "16g celery powder",
+        "72g salt",
+        "2 Tbsp black pepper",
+        "1/4 cup onion powder",
+        "1/4 cup smoked paprika",
+        "2 Tbsp garlic powder",
+        "2 tsp ground nutmeg",
+        "1 cup water"
       ],
       "steps": [
-        "Grind the venison, bacon, and apples (first on coarse, then on fine).\\nMix in the rest of the ingredients.\\nCover and refrigerate for 24-48 hours.\\nLoad the jerky gun and press the mixture directly onto dehydrator trays.\\nDehydrate at 160°F until dry (roughly 4-5 hours, varies by dehydrator).\\nStore in the fridge for 3-4 weeks, or freeze for up to 1 year."
+        "Grind the venison, bacon, and apples (first on coarse, then on fine).",
+        "Mix in the rest of the ingredients.",
+        "Cover and refrigerate for 24-48 hours.",
+        "Load the jerky gun and press the mixture directly onto dehydrator trays.",
+        "Dehydrate at 160°F until dry (roughly 4-5 hours, varies by dehydrator).",
+        "Store in the fridge for 3-4 weeks, or freeze for up to 1 year."
       ],
       "prepMinutes": 30,
       "cookMinutes": 240,
@@ -683,22 +705,22 @@
           "allergenId": "nightshades",
           "term": "paprika",
           "level": "certain",
-          "line": "7 lbs venison\\n1 lb bacon\\n1 cup dried apples, chopped\\n16g celery powder\\n72g salt\\n2 Tbsp black pepper\\n1/4 cup onion powder\\n1/4 cup smoked paprika\\n2 Tbsp garlic powder\\n2 tsp ground nutmeg\\n1 cup water",
-          "lineIndex": 0
+          "line": "1/4 cup smoked paprika",
+          "lineIndex": 7
         },
         {
           "allergenId": "meat",
           "term": "venison",
           "level": "certain",
-          "line": "7 lbs venison\\n1 lb bacon\\n1 cup dried apples, chopped\\n16g celery powder\\n72g salt\\n2 Tbsp black pepper\\n1/4 cup onion powder\\n1/4 cup smoked paprika\\n2 Tbsp garlic powder\\n2 tsp ground nutmeg\\n1 cup water",
+          "line": "7 lbs venison",
           "lineIndex": 0
         },
         {
           "allergenId": "meat",
           "term": "bacon",
           "level": "certain",
-          "line": "7 lbs venison\\n1 lb bacon\\n1 cup dried apples, chopped\\n16g celery powder\\n72g salt\\n2 Tbsp black pepper\\n1/4 cup onion powder\\n1/4 cup smoked paprika\\n2 Tbsp garlic powder\\n2 tsp ground nutmeg\\n1 cup water",
-          "lineIndex": 0
+          "line": "1 lb bacon",
+          "lineIndex": 1
         }
       ],
       "protocolCompliance": {
@@ -724,10 +746,19 @@
         "one-pan"
       ],
       "ingredients": [
-        "1 (15-ounce) can butter beans, drained and rinsed\\n6 ounces Parmesan, freshly grated (about 2 cups)\\n1 tablespoon finely chopped fresh rosemary\\n1 tablespoon Calabrian chili paste\\nExtra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)"
+        "1 (15-ounce) can butter beans, drained and rinsed",
+        "6 ounces Parmesan, freshly grated (about 2 cups)",
+        "1 tablespoon finely chopped fresh rosemary",
+        "1 tablespoon Calabrian chili paste",
+        "Extra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)"
       ],
       "steps": [
-        "Position a rack in the center of the oven and preheat to 400°F. Line a quarter-sheet pan with parchment paper.\\nTransfer the butter beans to a cutting board and pat dry.\\nIn a small bowl, combine the Parmesan, rosemary, chili paste, and 2 tablespoons oil; mix to combine.\\nScatter the cheese mixture in a thick, even layer across the lined sheet pan. Layer the butter beans on top, making sure none overlap.\\nBake until the cheese is golden brown and crisp, 40 to 45 minutes. Remove from the oven and let cool to room temperature.\\nCarefully slide the beans off the parchment paper, slice into big chunks, and serve."
+        "Position a rack in the center of the oven and preheat to 400°F. Line a quarter-sheet pan with parchment paper.",
+        "Transfer the butter beans to a cutting board and pat dry.",
+        "In a small bowl, combine the Parmesan, rosemary, chili paste, and 2 tablespoons oil; mix to combine.",
+        "Scatter the cheese mixture in a thick, even layer across the lined sheet pan. Layer the butter beans on top, making sure none overlap.",
+        "Bake until the cheese is golden brown and crisp, 40 to 45 minutes. Remove from the oven and let cool to room temperature.",
+        "Carefully slide the beans off the parchment paper, slice into big chunks, and serve."
       ],
       "prepMinutes": 10,
       "cookMinutes": 43,
@@ -745,22 +776,22 @@
           "allergenId": "milk",
           "term": "parmesan",
           "level": "certain",
-          "line": "1 (15-ounce) can butter beans, drained and rinsed\\n6 ounces Parmesan, freshly grated (about 2 cups)\\n1 tablespoon finely chopped fresh rosemary\\n1 tablespoon Calabrian chili paste\\nExtra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)",
-          "lineIndex": 0
+          "line": "6 ounces Parmesan, freshly grated (about 2 cups)",
+          "lineIndex": 1
         },
         {
           "allergenId": "milk",
           "term": "cheese",
           "level": "certain",
-          "line": "1 (15-ounce) can butter beans, drained and rinsed\\n6 ounces Parmesan, freshly grated (about 2 cups)\\n1 tablespoon finely chopped fresh rosemary\\n1 tablespoon Calabrian chili paste\\nExtra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)",
-          "lineIndex": 0
+          "line": "Extra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)",
+          "lineIndex": 4
         },
         {
           "allergenId": "nightshades",
           "term": "chili",
           "level": "certain",
-          "line": "1 (15-ounce) can butter beans, drained and rinsed\\n6 ounces Parmesan, freshly grated (about 2 cups)\\n1 tablespoon finely chopped fresh rosemary\\n1 tablespoon Calabrian chili paste\\nExtra-virgin olive oil (about 2 tablespoons, used in the cheese mixture)",
-          "lineIndex": 0
+          "line": "1 tablespoon Calabrian chili paste",
+          "lineIndex": 3
         }
       ],
       "protocolCompliance": {
@@ -787,10 +818,18 @@
         "make-ahead"
       ],
       "ingredients": [
-        "1/2 cup extra-virgin olive oil\\n1/4 cup red wine vinegar\\n1 Tbsp Dijon mustard\\n1 Tbsp pure maple syrup\\n1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)\\n1/2 tsp freshly ground black pepper\\n1/4 tsp garlic powder"
+        "1/2 cup extra-virgin olive oil",
+        "1/4 cup red wine vinegar",
+        "1 Tbsp Dijon mustard",
+        "1 Tbsp pure maple syrup",
+        "1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)",
+        "1/2 tsp freshly ground black pepper",
+        "1/4 tsp garlic powder"
       ],
       "steps": [
-        "Combine all ingredients in a small bowl or a jar with a tight lid.\\nWhisk until emulsified, or seal the jar and shake vigorously.\\nTaste and adjust salt and pepper as needed."
+        "Combine all ingredients in a small bowl or a jar with a tight lid.",
+        "Whisk until emulsified, or seal the jar and shake vigorously.",
+        "Taste and adjust salt and pepper as needed."
       ],
       "prepMinutes": 5,
       "cookMinutes": 0,
@@ -808,29 +847,29 @@
           "allergenId": "yeast",
           "term": "wine",
           "level": "possible",
-          "line": "1/2 cup extra-virgin olive oil\\n1/4 cup red wine vinegar\\n1 Tbsp Dijon mustard\\n1 Tbsp pure maple syrup\\n1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)\\n1/2 tsp freshly ground black pepper\\n1/4 tsp garlic powder",
-          "lineIndex": 0
+          "line": "1/4 cup red wine vinegar",
+          "lineIndex": 1
         },
         {
           "allergenId": "yeast",
           "term": "vinegar",
           "level": "possible",
-          "line": "1/2 cup extra-virgin olive oil\\n1/4 cup red wine vinegar\\n1 Tbsp Dijon mustard\\n1 Tbsp pure maple syrup\\n1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)\\n1/2 tsp freshly ground black pepper\\n1/4 tsp garlic powder",
-          "lineIndex": 0
+          "line": "1/4 cup red wine vinegar",
+          "lineIndex": 1
         },
         {
           "allergenId": "seeds",
           "term": "mustard",
           "level": "certain",
-          "line": "1/2 cup extra-virgin olive oil\\n1/4 cup red wine vinegar\\n1 Tbsp Dijon mustard\\n1 Tbsp pure maple syrup\\n1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)\\n1/2 tsp freshly ground black pepper\\n1/4 tsp garlic powder",
-          "lineIndex": 0
+          "line": "1 Tbsp Dijon mustard",
+          "lineIndex": 2
         },
         {
           "allergenId": "alcohol",
           "term": "wine",
           "level": "certain",
-          "line": "1/2 cup extra-virgin olive oil\\n1/4 cup red wine vinegar\\n1 Tbsp Dijon mustard\\n1 Tbsp pure maple syrup\\n1 1/4 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)\\n1/2 tsp freshly ground black pepper\\n1/4 tsp garlic powder",
-          "lineIndex": 0
+          "line": "1/4 cup red wine vinegar",
+          "lineIndex": 1
         }
       ],
       "protocolCompliance": {
@@ -857,10 +896,17 @@
         "soy-free"
       ],
       "ingredients": [
-        "Coconut aminos (amount not specified by source)\\nHimalayan pink salt (amount not specified by source)\\nCrushed red pepper (amount not specified by source)\\nBlack pepper (amount not specified by source)\\nOnion powder (amount not specified by source)\\nGarlic powder (amount not specified by source)"
+        "Coconut aminos (amount not specified by source)",
+        "Himalayan pink salt (amount not specified by source)",
+        "Crushed red pepper (amount not specified by source)",
+        "Black pepper (amount not specified by source)",
+        "Onion powder (amount not specified by source)",
+        "Garlic powder (amount not specified by source)"
       ],
       "steps": [
-        "Combine all marinade ingredients (quantities not specified by source — adjust to taste).\\nMarinate meat of choice, sliced for jerky, in the mixture (duration not specified by source).\\nDehydrate until dry (temperature and time not specified by source — see the Ground Venison Jerky recipe in this library for a reference range)."
+        "Combine all marinade ingredients (quantities not specified by source — adjust to taste).",
+        "Marinate meat of choice, sliced for jerky, in the mixture (duration not specified by source).",
+        "Dehydrate until dry (temperature and time not specified by source — see the Ground Venison Jerky recipe in this library for a reference range)."
       ],
       "prepMinutes": null,
       "cookMinutes": null,
@@ -878,8 +924,8 @@
           "allergenId": "nightshades",
           "term": "pepper",
           "level": "certain",
-          "line": "Coconut aminos (amount not specified by source)\\nHimalayan pink salt (amount not specified by source)\\nCrushed red pepper (amount not specified by source)\\nBlack pepper (amount not specified by source)\\nOnion powder (amount not specified by source)\\nGarlic powder (amount not specified by source)",
-          "lineIndex": 0
+          "line": "Crushed red pepper (amount not specified by source)",
+          "lineIndex": 2
         }
       ],
       "protocolCompliance": {
@@ -905,10 +951,26 @@
         "gluten-free"
       ],
       "ingredients": [
-        "4 kale leaves, stems removed (for boiling)\\n1 teaspoon dry basil\\n1/3 cup pecans\\n1/3 cup cashews\\n1/4 cup nutritional yeast\\n1/4 cup tahini\\nRoasted garlic cloves (amount not specified by source)\\nSalt and pepper, to taste\\n1 teaspoon turmeric powder\\n1 1/3 cups water reserved from boiling the kale\\n2 large zucchini, spiralized into noodles\\nBlack pepper, chili, and sesame seeds, for garnish (amounts not specified by source)"
+        "4 kale leaves, stems removed (for boiling)",
+        "1 teaspoon dry basil",
+        "1/3 cup pecans",
+        "1/3 cup cashews",
+        "1/4 cup nutritional yeast",
+        "1/4 cup tahini",
+        "Roasted garlic cloves (amount not specified by source)",
+        "Salt and pepper, to taste",
+        "1 teaspoon turmeric powder",
+        "1 1/3 cups water reserved from boiling the kale",
+        "2 large zucchini, spiralized into noodles",
+        "Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)"
       ],
       "steps": [
-        "Boil the kale leaves (stems removed) for 3 minutes; reserve 1 1/3 cups of the boiling water.\\nAdd the boiled kale, basil, pecans, cashews, nutritional yeast, tahini, garlic, salt, pepper, turmeric, and reserved kale water to a blender.\\nBlend until smooth and creamy (implied by the source's description; exact blend time not stated).\\nSpiralize the zucchini into noodles.\\nCombine the kale sauce with the zucchini noodles.\\nGarnish with black pepper, chili, and sesame seeds; serve."
+        "Boil the kale leaves (stems removed) for 3 minutes; reserve 1 1/3 cups of the boiling water.",
+        "Add the boiled kale, basil, pecans, cashews, nutritional yeast, tahini, garlic, salt, pepper, turmeric, and reserved kale water to a blender.",
+        "Blend until smooth and creamy (implied by the source's description; exact blend time not stated).",
+        "Spiralize the zucchini into noodles.",
+        "Combine the kale sauce with the zucchini noodles.",
+        "Garnish with black pepper, chili, and sesame seeds; serve."
       ],
       "prepMinutes": 12,
       "cookMinutes": 3,
@@ -926,50 +988,50 @@
           "allergenId": "yeast",
           "term": "nutritional yeast",
           "level": "certain",
-          "line": "4 kale leaves, stems removed (for boiling)\\n1 teaspoon dry basil\\n1/3 cup pecans\\n1/3 cup cashews\\n1/4 cup nutritional yeast\\n1/4 cup tahini\\nRoasted garlic cloves (amount not specified by source)\\nSalt and pepper, to taste\\n1 teaspoon turmeric powder\\n1 1/3 cups water reserved from boiling the kale\\n2 large zucchini, spiralized into noodles\\nBlack pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
-          "lineIndex": 0
+          "line": "1/4 cup nutritional yeast",
+          "lineIndex": 4
         },
         {
           "allergenId": "nightshades",
           "term": "pepper",
           "level": "certain",
-          "line": "4 kale leaves, stems removed (for boiling)\\n1 teaspoon dry basil\\n1/3 cup pecans\\n1/3 cup cashews\\n1/4 cup nutritional yeast\\n1/4 cup tahini\\nRoasted garlic cloves (amount not specified by source)\\nSalt and pepper, to taste\\n1 teaspoon turmeric powder\\n1 1/3 cups water reserved from boiling the kale\\n2 large zucchini, spiralized into noodles\\nBlack pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
-          "lineIndex": 0
+          "line": "Salt and pepper, to taste",
+          "lineIndex": 7
         },
         {
           "allergenId": "nightshades",
           "term": "chili",
           "level": "certain",
-          "line": "4 kale leaves, stems removed (for boiling)\\n1 teaspoon dry basil\\n1/3 cup pecans\\n1/3 cup cashews\\n1/4 cup nutritional yeast\\n1/4 cup tahini\\nRoasted garlic cloves (amount not specified by source)\\nSalt and pepper, to taste\\n1 teaspoon turmeric powder\\n1 1/3 cups water reserved from boiling the kale\\n2 large zucchini, spiralized into noodles\\nBlack pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
-          "lineIndex": 0
+          "line": "Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
+          "lineIndex": 11
         },
         {
           "allergenId": "nuts",
           "term": "pecans",
           "level": "certain",
-          "line": "4 kale leaves, stems removed (for boiling)\\n1 teaspoon dry basil\\n1/3 cup pecans\\n1/3 cup cashews\\n1/4 cup nutritional yeast\\n1/4 cup tahini\\nRoasted garlic cloves (amount not specified by source)\\nSalt and pepper, to taste\\n1 teaspoon turmeric powder\\n1 1/3 cups water reserved from boiling the kale\\n2 large zucchini, spiralized into noodles\\nBlack pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
-          "lineIndex": 0
+          "line": "1/3 cup pecans",
+          "lineIndex": 2
         },
         {
           "allergenId": "nuts",
           "term": "cashews",
           "level": "certain",
-          "line": "4 kale leaves, stems removed (for boiling)\\n1 teaspoon dry basil\\n1/3 cup pecans\\n1/3 cup cashews\\n1/4 cup nutritional yeast\\n1/4 cup tahini\\nRoasted garlic cloves (amount not specified by source)\\nSalt and pepper, to taste\\n1 teaspoon turmeric powder\\n1 1/3 cups water reserved from boiling the kale\\n2 large zucchini, spiralized into noodles\\nBlack pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
-          "lineIndex": 0
+          "line": "1/3 cup cashews",
+          "lineIndex": 3
         },
         {
           "allergenId": "seeds",
           "term": "tahini",
           "level": "certain",
-          "line": "4 kale leaves, stems removed (for boiling)\\n1 teaspoon dry basil\\n1/3 cup pecans\\n1/3 cup cashews\\n1/4 cup nutritional yeast\\n1/4 cup tahini\\nRoasted garlic cloves (amount not specified by source)\\nSalt and pepper, to taste\\n1 teaspoon turmeric powder\\n1 1/3 cups water reserved from boiling the kale\\n2 large zucchini, spiralized into noodles\\nBlack pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
-          "lineIndex": 0
+          "line": "1/4 cup tahini",
+          "lineIndex": 5
         },
         {
           "allergenId": "seeds",
           "term": "sesame",
           "level": "certain",
-          "line": "4 kale leaves, stems removed (for boiling)\\n1 teaspoon dry basil\\n1/3 cup pecans\\n1/3 cup cashews\\n1/4 cup nutritional yeast\\n1/4 cup tahini\\nRoasted garlic cloves (amount not specified by source)\\nSalt and pepper, to taste\\n1 teaspoon turmeric powder\\n1 1/3 cups water reserved from boiling the kale\\n2 large zucchini, spiralized into noodles\\nBlack pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
-          "lineIndex": 0
+          "line": "Black pepper, chili, and sesame seeds, for garnish (amounts not specified by source)",
+          "lineIndex": 11
         }
       ],
       "protocolCompliance": {
@@ -995,10 +1057,25 @@
         "snack"
       ],
       "ingredients": [
-        "1 large baking potato\\n1 tbsp olive oil, plus more for frying\\n4 cups spinach, chopped\\n2 cloves minced garlic\\n2 tbsp nutritional yeast\\n2 tsp garlic powder\\n1/2 tsp salt\\n3 tbsp flour\\n2 tbsp dairy-free butter\\n1/4 cup dairy-free cheese"
+        "1 large baking potato",
+        "1 tbsp olive oil, plus more for frying",
+        "4 cups spinach, chopped",
+        "2 cloves minced garlic",
+        "2 tbsp nutritional yeast",
+        "2 tsp garlic powder",
+        "1/2 tsp salt",
+        "3 tbsp flour",
+        "2 tbsp dairy-free butter",
+        "1/4 cup dairy-free cheese"
       ],
       "steps": [
-        "Preheat the oven to 200°C/400°F.\\nWrap the potato in foil and bake for 45 minutes, until fully softened.\\nMeanwhile, heat the olive oil in a pan and cook the spinach until wilted.\\nPeel and mash the potato, then mix thoroughly with the spinach, garlic, nutritional yeast, garlic powder, salt, and flour.\\nOn a floured surface, shape about 1/4 cup of the mixture into a flat circle.\\nPlace about 1 teaspoon of dairy-free butter and 1 tablespoon of dairy-free cheese in the middle, then fold the edges together to form the potato cake shape.\\nFry the potato cakes in olive oil for 3-4 minutes, then flip and fry 1-2 minutes more, until crispy."
+        "Preheat the oven to 200°C/400°F.",
+        "Wrap the potato in foil and bake for 45 minutes, until fully softened.",
+        "Meanwhile, heat the olive oil in a pan and cook the spinach until wilted.",
+        "Peel and mash the potato, then mix thoroughly with the spinach, garlic, nutritional yeast, garlic powder, salt, and flour.",
+        "On a floured surface, shape about 1/4 cup of the mixture into a flat circle.",
+        "Place about 1 teaspoon of dairy-free butter and 1 tablespoon of dairy-free cheese in the middle, then fold the edges together to form the potato cake shape.",
+        "Fry the potato cakes in olive oil for 3-4 minutes, then flip and fry 1-2 minutes more, until crispy."
       ],
       "prepMinutes": 15,
       "cookMinutes": 55,
@@ -1016,36 +1093,36 @@
           "allergenId": "yeast",
           "term": "nutritional yeast",
           "level": "certain",
-          "line": "1 large baking potato\\n1 tbsp olive oil, plus more for frying\\n4 cups spinach, chopped\\n2 cloves minced garlic\\n2 tbsp nutritional yeast\\n2 tsp garlic powder\\n1/2 tsp salt\\n3 tbsp flour\\n2 tbsp dairy-free butter\\n1/4 cup dairy-free cheese",
-          "lineIndex": 0
+          "line": "2 tbsp nutritional yeast",
+          "lineIndex": 4
         },
         {
           "allergenId": "grains",
           "term": "flour",
           "level": "certain",
-          "line": "1 large baking potato\\n1 tbsp olive oil, plus more for frying\\n4 cups spinach, chopped\\n2 cloves minced garlic\\n2 tbsp nutritional yeast\\n2 tsp garlic powder\\n1/2 tsp salt\\n3 tbsp flour\\n2 tbsp dairy-free butter\\n1/4 cup dairy-free cheese",
-          "lineIndex": 0
+          "line": "3 tbsp flour",
+          "lineIndex": 7
         },
         {
           "allergenId": "nightshades",
           "term": "potato",
           "level": "certain",
-          "line": "1 large baking potato\\n1 tbsp olive oil, plus more for frying\\n4 cups spinach, chopped\\n2 cloves minced garlic\\n2 tbsp nutritional yeast\\n2 tsp garlic powder\\n1/2 tsp salt\\n3 tbsp flour\\n2 tbsp dairy-free butter\\n1/4 cup dairy-free cheese",
+          "line": "1 large baking potato",
           "lineIndex": 0
         },
         {
           "allergenId": "high-carb",
           "term": "potato",
           "level": "certain",
-          "line": "1 large baking potato\\n1 tbsp olive oil, plus more for frying\\n4 cups spinach, chopped\\n2 cloves minced garlic\\n2 tbsp nutritional yeast\\n2 tsp garlic powder\\n1/2 tsp salt\\n3 tbsp flour\\n2 tbsp dairy-free butter\\n1/4 cup dairy-free cheese",
+          "line": "1 large baking potato",
           "lineIndex": 0
         },
         {
           "allergenId": "high-carb",
           "term": "flour",
           "level": "certain",
-          "line": "1 large baking potato\\n1 tbsp olive oil, plus more for frying\\n4 cups spinach, chopped\\n2 cloves minced garlic\\n2 tbsp nutritional yeast\\n2 tsp garlic powder\\n1/2 tsp salt\\n3 tbsp flour\\n2 tbsp dairy-free butter\\n1/4 cup dairy-free cheese",
-          "lineIndex": 0
+          "line": "3 tbsp flour",
+          "lineIndex": 7
         }
       ],
       "protocolCompliance": {
@@ -1071,10 +1148,20 @@
         "make-ahead"
       ],
       "ingredients": [
-        "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)\\n1/4 cup quick-cooking oats\\n1/3 cup vanilla protein powder\\n1/4 cup unsweetened flaked coconut\\n1/2 teaspoon ground cinnamon\\n1/4 cup apple cider\\n1 tablespoon maple syrup\\n1/3 cup rice cereal"
+        "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)",
+        "1/4 cup quick-cooking oats",
+        "1/3 cup vanilla protein powder",
+        "1/4 cup unsweetened flaked coconut",
+        "1/2 teaspoon ground cinnamon",
+        "1/4 cup apple cider",
+        "1 tablespoon maple syrup",
+        "1/3 cup rice cereal"
       ],
       "steps": [
-        "In a bowl, add all the ingredients except the rice cereal, and mix until thoroughly combined.\\nGently mix in the rice cereal, if using.\\nShape the mixture into 16 balls, each about 1 inch in diameter.\\nStore the balls in the refrigerator for up to 3 weeks."
+        "In a bowl, add all the ingredients except the rice cereal, and mix until thoroughly combined.",
+        "Gently mix in the rice cereal, if using.",
+        "Shape the mixture into 16 balls, each about 1 inch in diameter.",
+        "Store the balls in the refrigerator for up to 3 weeks."
       ],
       "prepMinutes": 15,
       "cookMinutes": 0,
@@ -1092,43 +1179,43 @@
           "allergenId": "grains",
           "term": "oats",
           "level": "certain",
-          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)\\n1/4 cup quick-cooking oats\\n1/3 cup vanilla protein powder\\n1/4 cup unsweetened flaked coconut\\n1/2 teaspoon ground cinnamon\\n1/4 cup apple cider\\n1 tablespoon maple syrup\\n1/3 cup rice cereal",
-          "lineIndex": 0
+          "line": "1/4 cup quick-cooking oats",
+          "lineIndex": 1
         },
         {
           "allergenId": "grains",
           "term": "rice",
           "level": "certain",
-          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)\\n1/4 cup quick-cooking oats\\n1/3 cup vanilla protein powder\\n1/4 cup unsweetened flaked coconut\\n1/2 teaspoon ground cinnamon\\n1/4 cup apple cider\\n1 tablespoon maple syrup\\n1/3 cup rice cereal",
-          "lineIndex": 0
+          "line": "1/3 cup rice cereal",
+          "lineIndex": 7
         },
         {
           "allergenId": "nuts",
           "term": "nut butter",
           "level": "certain",
-          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)\\n1/4 cup quick-cooking oats\\n1/3 cup vanilla protein powder\\n1/4 cup unsweetened flaked coconut\\n1/2 teaspoon ground cinnamon\\n1/4 cup apple cider\\n1 tablespoon maple syrup\\n1/3 cup rice cereal",
+          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)",
           "lineIndex": 0
         },
         {
           "allergenId": "nuts",
           "term": "almond",
           "level": "certain",
-          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)\\n1/4 cup quick-cooking oats\\n1/3 cup vanilla protein powder\\n1/4 cup unsweetened flaked coconut\\n1/2 teaspoon ground cinnamon\\n1/4 cup apple cider\\n1 tablespoon maple syrup\\n1/3 cup rice cereal",
+          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)",
           "lineIndex": 0
         },
         {
           "allergenId": "high-carb",
           "term": "oats",
           "level": "certain",
-          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)\\n1/4 cup quick-cooking oats\\n1/3 cup vanilla protein powder\\n1/4 cup unsweetened flaked coconut\\n1/2 teaspoon ground cinnamon\\n1/4 cup apple cider\\n1 tablespoon maple syrup\\n1/3 cup rice cereal",
-          "lineIndex": 0
+          "line": "1/4 cup quick-cooking oats",
+          "lineIndex": 1
         },
         {
           "allergenId": "high-carb",
           "term": "rice",
           "level": "certain",
-          "line": "1/2 cup natural nut butter, or Toasted Almond Spread with Cinnamon (page 263 of the same book)\\n1/4 cup quick-cooking oats\\n1/3 cup vanilla protein powder\\n1/4 cup unsweetened flaked coconut\\n1/2 teaspoon ground cinnamon\\n1/4 cup apple cider\\n1 tablespoon maple syrup\\n1/3 cup rice cereal",
-          "lineIndex": 0
+          "line": "1/3 cup rice cereal",
+          "lineIndex": 7
         }
       ],
       "protocolCompliance": {
@@ -1153,10 +1240,19 @@
         "cold-pressed"
       ],
       "ingredients": [
-        "Kale (amount not specified by label)\\nSpinach (amount not specified by label)\\nRomaine (amount not specified by label)\\nParsley (amount not specified by label)\\nCucumber (amount not specified by label)\\nCelery (amount not specified by label)\\nLemon (amount not specified by label)\\nSea salt (amount not specified by label)"
+        "Kale (amount not specified by label)",
+        "Spinach (amount not specified by label)",
+        "Romaine (amount not specified by label)",
+        "Parsley (amount not specified by label)",
+        "Cucumber (amount not specified by label)",
+        "Celery (amount not specified by label)",
+        "Lemon (amount not specified by label)",
+        "Sea salt (amount not specified by label)"
       ],
       "steps": [
-        "This entry documents a store-bought product's label; no preparation method is disclosed by the source.\\nIf attempting a home version: wash and juice the kale, spinach, romaine, parsley, cucumber, and celery, then stir in fresh lemon juice and a pinch of sea salt to taste.\\nProportions here are a guess — the manufacturer's exact ratios aren't public."
+        "This entry documents a store-bought product's label; no preparation method is disclosed by the source.",
+        "If attempting a home version: wash and juice the kale, spinach, romaine, parsley, cucumber, and celery, then stir in fresh lemon juice and a pinch of sea salt to taste.",
+        "Proportions here are a guess — the manufacturer's exact ratios aren't public."
       ],
       "prepMinutes": null,
       "cookMinutes": null,
