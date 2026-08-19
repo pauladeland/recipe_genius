@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-08-19T16:29:29.162Z",
+    "generatedAt": "2026-08-19T16:37:34.338Z",
     "schemaVersion": 1,
-    "recipeCount": 10,
+    "recipeCount": 15,
     "warnings": []
   },
   "avoidances": [
@@ -1280,6 +1280,445 @@
       "flags": [],
       "protocolCompliance": {
         "aip": true,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    },
+    {
+      "id": "pickled-fennel",
+      "title": "Pickled Fennel",
+      "status": "active",
+      "cuisine": null,
+      "protein": [],
+      "tags": [
+        "pickle",
+        "condiment"
+      ],
+      "ingredients": [
+        "White vinegar",
+        "Water",
+        "Lemon peels",
+        "Mustard seed",
+        "Whole peppercorns",
+        "Whole coriander",
+        "Sugar",
+        "Salt",
+        "Fennel, thinly sliced",
+        "Fennel fronds, a few pieces, for visual effect (optional)"
+      ],
+      "steps": [
+        "Combine the vinegar, water, lemon peels, mustard seed, peppercorns, coriander, sugar, and salt in a pot and simmer together.",
+        "Pour the hot brine over the thinly sliced fennel (add a few fennel fronds for visual effect, if desired).",
+        "Stir, then let sit; stir again periodically.",
+        "Enjoy once cooled and infused."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": null,
+      "totalMinutes": null,
+      "servingsCount": null,
+      "servings": null,
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "Instagram Story — @kirsteng117 (story expired, profile only: instagram.com/kirsteng117)",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "White vinegar",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "seeds",
+          "term": "mustard seed",
+          "level": "certain",
+          "line": "Mustard seed",
+          "lineIndex": 3
+        },
+        {
+          "allergenId": "seeds",
+          "term": "coriander",
+          "level": "certain",
+          "line": "Whole coriander",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "refined-sugar",
+          "term": "sugar",
+          "level": "certain",
+          "line": "Sugar",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "sugar",
+          "level": "certain",
+          "line": "Sugar",
+          "lineIndex": 6
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": false
+      }
+    },
+    {
+      "id": "quick-pickled-red-onions",
+      "title": "Quick Pickled Red Onions",
+      "status": "active",
+      "cuisine": null,
+      "protein": [],
+      "tags": [
+        "pickle",
+        "condiment",
+        "quick",
+        "make-ahead"
+      ],
+      "ingredients": [
+        "1 medium-to-large red onion",
+        "3/4 cup (180 ml) apple cider vinegar or distilled white vinegar",
+        "3/4 cup (180 ml) filtered water",
+        "1 tsp kosher, sea, or pink Himalayan salt",
+        "2 tsp sugar",
+        "1 tsp black peppercorns",
+        "Optional add-ins: 3-5 cloves garlic, 1 tsp mustard seeds, 1 chopped jalapeño, or 1-2 tsp fresh herbs"
+      ],
+      "steps": [
+        "Slice the onion into half or quarter-sized rings (a mandoline gives even thickness). Break up the slices and stuff them into a quart-sized glass mason jar.",
+        "Prepare the pickling liquid: add the vinegar, water, salt, sugar, and black peppercorns to a small pot over high heat, stirring to dissolve the salt and sugar.",
+        "Once the liquid boils, carefully pour it into the jar and let it sit on the counter until it cools to room temperature. Press down any onion pieces sticking above the liquid with a fork after 5-10 minutes.",
+        "Seal the jar and store in the fridge for up to one month. Most crisp within the first week, gradually softening with time."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": null,
+      "totalMinutes": null,
+      "servingsCount": null,
+      "servings": "Makes about 3 cups",
+      "sourceType": "screenshot-unknown",
+      "sourceName": null,
+      "sourceUrl": "Source account not captured in screenshot",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "3/4 cup (180 ml) apple cider vinegar or distilled white vinegar",
+          "lineIndex": 1
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "jalapeno",
+          "level": "certain",
+          "line": "Optional add-ins: 3-5 cloves garlic, 1 tsp mustard seeds, 1 chopped jalapeño, or 1-2 tsp fresh herbs",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "seeds",
+          "term": "mustard seeds",
+          "level": "certain",
+          "line": "Optional add-ins: 3-5 cloves garlic, 1 tsp mustard seeds, 1 chopped jalapeño, or 1-2 tsp fresh herbs",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "refined-sugar",
+          "term": "sugar",
+          "level": "certain",
+          "line": "2 tsp sugar",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "sugar",
+          "level": "certain",
+          "line": "2 tsp sugar",
+          "lineIndex": 4
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": false
+      }
+    },
+    {
+      "id": "dairy-free-mac-and-cheese",
+      "title": "15-Minute Dairy-Free Mac & Cheese",
+      "status": "active",
+      "cuisine": null,
+      "protein": [],
+      "tags": [
+        "vegan",
+        "dairy-free",
+        "quick",
+        "one-pan"
+      ],
+      "ingredients": [
+        "1 can lite coconut milk",
+        "1/3 cup nutritional yeast",
+        "6 oz hummus",
+        "1 tbsp smoked paprika",
+        "8 oz gluten-free macaroni",
+        "3/4 cup panko",
+        "1 tbsp @thefitcook LAND seasoning",
+        "1 tbsp olive oil"
+      ],
+      "steps": [
+        "Boil the pasta: cook the macaroni in boiling water until al dente, then drain.",
+        "Mix the sauce: in a pan over medium heat, whisk together the coconut milk, hummus, nutritional yeast, smoked paprika, and LAND seasoning until smooth and warm.",
+        "Combine: toss the cooked macaroni into the sauce until well coated.",
+        "Crisp the topping: toast the panko in a separate pan with the olive oil until golden brown.",
+        "Serve: plate the mac and cheese and top with the crispy panko."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": null,
+      "totalMinutes": 15,
+      "servingsCount": null,
+      "servings": null,
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://www.instagram.com/fitmencook/ (specific post permalink not captured)",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "milk",
+          "level": "certain",
+          "line": "1 can lite coconut milk",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "yeast",
+          "term": "nutritional yeast",
+          "level": "certain",
+          "line": "1/3 cup nutritional yeast",
+          "lineIndex": 1
+        },
+        {
+          "allergenId": "grains",
+          "term": "panko",
+          "level": "possible",
+          "line": "3/4 cup panko",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "legumes",
+          "term": "hummus",
+          "level": "possible",
+          "line": "6 oz hummus",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "paprika",
+          "level": "certain",
+          "line": "1 tbsp smoked paprika",
+          "lineIndex": 3
+        },
+        {
+          "allergenId": "seeds",
+          "term": "hummus",
+          "level": "possible",
+          "line": "6 oz hummus",
+          "lineIndex": 2
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": false,
+        "keto": true
+      }
+    },
+    {
+      "id": "butternut-squash-grilled-cheese-pickled-fennel",
+      "title": "Butternut Squash Grilled Cheese with Pickled Fennel",
+      "status": "active",
+      "cuisine": null,
+      "protein": [],
+      "tags": [
+        "sandwich",
+        "vegetarian",
+        "batch-prep",
+        "cheese"
+      ],
+      "ingredients": [
+        "1 small fennel bulb, stalks and fronds removed, thinly sliced",
+        "1/3 cup fresh dill, stems removed",
+        "1/4 cup white wine vinegar",
+        "Diamond Crystal kosher salt",
+        "Freshly ground black pepper",
+        "1 small butternut squash (1 1/2 pounds), halved and seeded",
+        "3 tablespoons salted butter, plus more for grilling the sandwiches",
+        "2 garlic cloves, finely grated",
+        "1 tablespoon finely chopped fresh rosemary",
+        "1 tablespoon fresh thyme leaves",
+        "5 fresh sage leaves, finely chopped",
+        "1 teaspoon smoked paprika",
+        "1/2 teaspoon ground nutmeg",
+        "1/2 teaspoon cayenne pepper",
+        "4 ounces Gouda cheese, freshly grated (about 1 1/2 packed cups)"
+      ],
+      "steps": [
+        "Position a rack in the center of the oven and preheat to 400°F. Line a sheet pan with parchment paper.",
+        "In a large bowl, combine the fennel, dill, vinegar, a generous pinch of salt, and a few cracks of pepper. Toss to quickly \"pickle\" and set aside.",
+        "Set the squash cut-side down on the lined sheet pan and roast until fork-tender, 30 to 45 minutes.",
+        "When the squash is cool enough to handle, peel off the skin and mash it with a potato masher, fork, or spoon until it resembles mashed potatoes — it won't be completely smooth. Don't discard any excess liquid.",
+        "Set a large Dutch oven over medium heat and melt 1 tablespoon of the butter. Add the garlic, rosemary, thyme, and sage and stir until fragrant, 30 to 45 seconds. Add the butternut squash, season with the paprika, nutmeg, cayenne, and a pinch of salt, and stir. Add about one-third of the grated cheese, 1 tablespoon of the butter, and the cream (quantity not visible in the photographed page — add to taste). Cook over medium-low, stirring constantly, until the butter and cheese melt together into a stringy mash. Add another one-third of the cheese and stir until melted, then add the remaining cheese and stir until melted in. Season to taste with additional salt and pepper and remove from heat."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": null,
+      "totalMinutes": null,
+      "servingsCount": 6,
+      "servings": "Serves 6",
+      "sourceType": "book",
+      "sourceName": null,
+      "sourceUrl": "Justine Cooks — cookbook, p. 106",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "butter",
+          "level": "certain",
+          "line": "3 tablespoons salted butter, plus more for grilling the sandwiches",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "milk",
+          "term": "gouda",
+          "level": "certain",
+          "line": "4 ounces Gouda cheese, freshly grated (about 1 1/2 packed cups)",
+          "lineIndex": 14
+        },
+        {
+          "allergenId": "milk",
+          "term": "cheese",
+          "level": "certain",
+          "line": "4 ounces Gouda cheese, freshly grated (about 1 1/2 packed cups)",
+          "lineIndex": 14
+        },
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1/4 cup white wine vinegar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "1/4 cup white wine vinegar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "paprika",
+          "level": "certain",
+          "line": "1 teaspoon smoked paprika",
+          "lineIndex": 11
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "cayenne",
+          "level": "certain",
+          "line": "1/2 teaspoon cayenne pepper",
+          "lineIndex": 13
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "pepper",
+          "level": "certain",
+          "line": "1/2 teaspoon cayenne pepper",
+          "lineIndex": 13
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1/4 cup white wine vinegar",
+          "lineIndex": 2
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": false,
+        "keto": true
+      }
+    },
+    {
+      "id": "quick-dill-pickles",
+      "title": "Quick Dill Pickles",
+      "status": "active",
+      "cuisine": null,
+      "protein": [],
+      "tags": [
+        "pickle",
+        "canning",
+        "vegan",
+        "quick"
+      ],
+      "ingredients": [
+        "6 pickling cucumbers",
+        "2 tsp mustard seeds",
+        "2 tsp dill seeds",
+        "4 cloves garlic",
+        "2 bay leaves",
+        "Handful of fresh dill (or 2 Tbsp dried)",
+        "2 cups white vinegar",
+        "2 cups water",
+        "1 Tbsp sea salt"
+      ],
+      "steps": [
+        "In a small saucepan over medium-high heat, combine the vinegar, water, and salt. Let the salt dissolve.",
+        "Split the spices, garlic, dill, and bay leaves between two pint jars.",
+        "Chop the cucumbers and pack the jars full.",
+        "Pour the boiling brine over the cucumbers and let sit for at least an hour, then enjoy.",
+        "Storage: keeps in the fridge for up to three months, or leave 1/2-inch headspace and process 10 minutes via water bath canning for shelf storage."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": null,
+      "totalMinutes": null,
+      "servingsCount": null,
+      "servings": "Makes two pints",
+      "sourceType": "screenshot-unknown",
+      "sourceName": null,
+      "sourceUrl": "Source account not captured in screenshot",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "2 cups white vinegar",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "seeds",
+          "term": "mustard seeds",
+          "level": "certain",
+          "line": "2 tsp mustard seeds",
+          "lineIndex": 1
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
         "vegetarian": true,
         "vegan": true,
         "keto": true
