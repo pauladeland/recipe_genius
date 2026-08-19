@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-19T16:21:27.636Z",
+    "generatedAt": "2026-08-19T16:29:29.162Z",
     "schemaVersion": 1,
     "recipeCount": 10,
     "warnings": []
@@ -522,10 +522,22 @@
         "quick"
       ],
       "ingredients": [
-        "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil"
+        "1 shallot, finely chopped",
+        "1 Fresno chile or red jalapeño, finely chopped",
+        "3-4 garlic cloves, thinly sliced or finely chopped",
+        "1/2 cup red wine vinegar",
+        "1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more",
+        "1/2 cup finely chopped fresh cilantro (leaves and tender stems)",
+        "1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)",
+        "2 Tbsp. finely chopped fresh oregano leaves",
+        "3/4 cup extra-virgin olive oil"
       ],
       "steps": [
-        "Combine shallot, chile, garlic, vinegar, and salt in a medium bowl. Let sit 10 minutes.\\nStir in cilantro, parsley, and oregano.\\nWhisk in the olive oil.\\nTransfer 1/2 cup chimichurri to a small bowl; season with salt and reserve as sauce.\\nOptional marinade: toss remaining chimichurri with beef, chicken, or pork. Cover and chill at least 3 hours or overnight, then grill and spoon reserved chimichurri over the meat."
+        "Combine shallot, chile, garlic, vinegar, and salt in a medium bowl. Let sit 10 minutes.",
+        "Stir in cilantro, parsley, and oregano.",
+        "Whisk in the olive oil.",
+        "Transfer 1/2 cup chimichurri to a small bowl; season with salt and reserve as sauce.",
+        "Optional marinade: toss remaining chimichurri with beef, chicken, or pork. Cover and chill at least 3 hours or overnight, then grill and spoon reserved chimichurri over the meat."
       ],
       "prepMinutes": 15,
       "cookMinutes": 0,
@@ -543,29 +555,29 @@
           "allergenId": "yeast",
           "term": "wine",
           "level": "possible",
-          "line": "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil",
-          "lineIndex": 0
+          "line": "1/2 cup red wine vinegar",
+          "lineIndex": 3
         },
         {
           "allergenId": "yeast",
           "term": "vinegar",
           "level": "possible",
-          "line": "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil",
-          "lineIndex": 0
+          "line": "1/2 cup red wine vinegar",
+          "lineIndex": 3
         },
         {
           "allergenId": "nightshades",
           "term": "jalapeno",
           "level": "certain",
-          "line": "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil",
-          "lineIndex": 0
+          "line": "1 Fresno chile or red jalapeño, finely chopped",
+          "lineIndex": 1
         },
         {
           "allergenId": "alcohol",
           "term": "wine",
           "level": "certain",
-          "line": "1 shallot, finely chopped\\n1 Fresno chile or red jalapeño, finely chopped\\n3-4 garlic cloves, thinly sliced or finely chopped\\n1/2 cup red wine vinegar\\n1 tsp. Diamond Crystal kosher salt (or 1/2 tsp. Morton), plus more\\n1/2 cup finely chopped fresh cilantro (leaves and tender stems)\\n1/4 cup finely chopped fresh flat-leaf parsley (leaves and tender stems)\\n2 Tbsp. finely chopped fresh oregano leaves\\n3/4 cup extra-virgin olive oil",
-          "lineIndex": 0
+          "line": "1/2 cup red wine vinegar",
+          "lineIndex": 3
         }
       ],
       "protocolCompliance": {
