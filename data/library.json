@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-24T15:08:45.915Z",
+    "generatedAt": "2026-08-24T15:16:06.572Z",
     "schemaVersion": 1,
     "recipeCount": 17,
     "warnings": []
@@ -69,9 +69,17 @@
         "plant-based butter",
         "plant-based cheese",
         "dairy-free yogurt",
-        "vegan yogurt"
+        "vegan yogurt",
+        "coconut milk",
+        "almond milk",
+        "oat milk",
+        "soy milk",
+        "cashew milk",
+        "rice milk",
+        "hemp milk",
+        "macadamia milk"
       ],
-      "substitutions": "oat milk; coconut cream; olive oil for butter|coconut milk|almond milk|oat milk|soy milk|cashew milk|rice milk|hemp milk|macadamia milk",
+      "substitutions": "oat milk; coconut cream; olive oil for butter",
       "notes": "True allergy. Also an AIP and vegan exclusion."
     },
     {
@@ -1492,13 +1500,6 @@
       "imageAlt": null,
       "flags": [
         {
-          "allergenId": "milk",
-          "term": "milk",
-          "level": "certain",
-          "line": "1 can lite coconut milk",
-          "lineIndex": 0
-        },
-        {
           "allergenId": "yeast",
           "term": "nutritional yeast",
           "level": "certain",
@@ -1537,7 +1538,7 @@
       "protocolCompliance": {
         "aip": false,
         "vegetarian": true,
-        "vegan": false,
+        "vegan": true,
         "keto": true
       }
     },
