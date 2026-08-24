@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-08-24T15:16:06.572Z",
+    "generatedAt": "2026-08-24T15:35:31.843Z",
     "schemaVersion": 1,
-    "recipeCount": 17,
+    "recipeCount": 28,
     "warnings": []
   },
   "avoidances": [
@@ -1933,6 +1933,1195 @@
           "level": "certain",
           "line": "Salt and a pinch of sugar",
           "lineIndex": 8
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": false
+      }
+    },
+    {
+      "id": "salmon-risotto",
+      "title": "Salmon Risotto",
+      "status": "active",
+      "cuisine": "Italian",
+      "protein": [
+        "salmon"
+      ],
+      "tags": [
+        "rice",
+        "main course",
+        "appetizer"
+      ],
+      "ingredients": [
+        "4 tablespoons butter, divided",
+        "1/2 cup minced shallots or yellow onion",
+        "2 cups risotto rice (Arborio, Carnaroli, or Vialone Nano)",
+        "1/2 cup Marsala or white wine",
+        "6 cups salmon stock or low-sodium chicken stock",
+        "6 ounces flaked, cooked salmon",
+        "3 tablespoons pesto",
+        "Black pepper, to taste"
+      ],
+      "steps": [
+        "Heat butter in a medium pot over medium-high heat. Add the minced shallots and saute until soft. Add the rice and stir well, cooking a few minutes before adding the Marsala or white wine. Stir constantly until the liquid mostly evaporates.",
+        "Add stock 1 cup at a time, stirring well. Reduce heat to medium-low and cook, stirring frequently, until each addition is mostly absorbed. Repeat until the rice is tender but slightly al dente, adding water if needed.",
+        "Once the rice reaches the desired consistency, stir in the salmon and pesto. Cook a few minutes longer. Adjust consistency with water as needed for a loose, bowl-ready texture. Season with pepper and serve."
+      ],
+      "prepMinutes": 20,
+      "cookMinutes": 40,
+      "totalMinutes": 60,
+      "servingsCount": 4,
+      "servings": "Serves 4",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/salmon-risotto-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/salmon-risotto.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "butter",
+          "level": "certain",
+          "line": "4 tablespoons butter, divided",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "milk",
+          "term": "pesto",
+          "level": "possible",
+          "line": "3 tablespoons pesto",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1/2 cup Marsala or white wine",
+          "lineIndex": 3
+        },
+        {
+          "allergenId": "grains",
+          "term": "rice",
+          "level": "certain",
+          "line": "2 cups risotto rice (Arborio, Carnaroli, or Vialone Nano)",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "nuts",
+          "term": "pesto",
+          "level": "possible",
+          "line": "3 tablespoons pesto",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1/2 cup Marsala or white wine",
+          "lineIndex": 3
+        },
+        {
+          "allergenId": "meat",
+          "term": "chicken",
+          "level": "certain",
+          "line": "6 cups salmon stock or low-sodium chicken stock",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "meat",
+          "term": "chicken stock",
+          "level": "possible",
+          "line": "6 cups salmon stock or low-sodium chicken stock",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "6 cups salmon stock or low-sodium chicken stock",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "6 ounces flaked, cooked salmon",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "rice",
+          "level": "certain",
+          "line": "2 cups risotto rice (Arborio, Carnaroli, or Vialone Nano)",
+          "lineIndex": 2
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": false
+      }
+    },
+    {
+      "id": "salmon-piccata",
+      "title": "Salmon Piccata",
+      "status": "active",
+      "cuisine": "Italian",
+      "protein": [
+        "salmon"
+      ],
+      "tags": [
+        "main course"
+      ],
+      "ingredients": [
+        "1 pound salmon fillets",
+        "Salt and black pepper",
+        "2 tablespoons olive oil",
+        "4 tablespoons unsalted butter, divided",
+        "1 shallot, minced, or 1/4 cup minced onion",
+        "2 tablespoons capers",
+        "3 tablespoons white wine",
+        "Juice and zest of 2 lemons",
+        "3 tablespoons minced parsley"
+      ],
+      "steps": [
+        "Salt the salmon and let rest while prepping vegetables. Heat olive oil in a saute pan over medium-high heat. Pat the salmon dry and place skin-side down in the hot pan.",
+        "Sear until the flesh turns opaque, basting with hot oil, about 5 minutes. Test readiness by gently jiggling the pan.",
+        "For thick portions, flip and cook 1-2 minutes on the other side. Thin portions need no flipping.",
+        "Transfer the cooked fish, crispy side up, to a cutting board and add black pepper.",
+        "Add 1 tablespoon butter and the shallots to the pan; cook 1 minute. Add capers and lemon zest, cook 30 seconds, then add the white wine, scraping up browned bits with a wooden spoon.",
+        "Add the lemon juice and parsley. Reduce heat to low. Incorporate the remaining butter one tablespoon at a time, swirling until fully incorporated. Do not boil.",
+        "Serve the sauce over the fish."
+      ],
+      "prepMinutes": 15,
+      "cookMinutes": 15,
+      "totalMinutes": 30,
+      "servingsCount": 4,
+      "servings": "Serves 4",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/salmon-piccata-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/salmon-piccata.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "butter",
+          "level": "certain",
+          "line": "4 tablespoons unsalted butter, divided",
+          "lineIndex": 3
+        },
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "3 tablespoons white wine",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "3 tablespoons white wine",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "1 pound salmon fillets",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": true
+      }
+    },
+    {
+      "id": "japanese-salmon-rice",
+      "title": "Japanese Salmon Rice",
+      "status": "active",
+      "cuisine": "Japanese",
+      "protein": [
+        "salmon"
+      ],
+      "tags": [
+        "rice",
+        "main course"
+      ],
+      "ingredients": [
+        "1 1/2 cups Japanese rice",
+        "1/2 cup sake (optional)",
+        "1 3/4 cups salmon stock or dashi (or water)",
+        "2 green onions, sliced thin",
+        "1/3 pound cooked salmon meat, flaked",
+        "2 tablespoons furikake seasoning",
+        "1 to 2 tablespoons sesame oil"
+      ],
+      "steps": [
+        "Rinse the rice in a bowl with water three times until the water runs mostly clear. Drain in a strainer while preparing the green onions and flaking the salmon.",
+        "Combine the rice, sake, and stock in a pot. Cover and bring to a boil on high heat. Reduce to medium-low and cook 10-15 minutes until the rice is mostly done.",
+        "Quickly uncover, add the green onions and salmon, then re-cover. Let rest 5 minutes.",
+        "Fluff the rice with the sesame oil and furikake seasoning before serving."
+      ],
+      "prepMinutes": 15,
+      "cookMinutes": 15,
+      "totalMinutes": 60,
+      "servingsCount": 4,
+      "servings": "Serves 4",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/japanese-salmon-rice/",
+      "sourceNote": null,
+      "image": "assets/photos/japanese-salmon-rice.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "grains",
+          "term": "rice",
+          "level": "certain",
+          "line": "1 1/2 cups Japanese rice",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "seeds",
+          "term": "sesame",
+          "level": "certain",
+          "line": "1 to 2 tablespoons sesame oil",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "1 3/4 cups salmon stock or dashi (or water)",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "1/3 pound cooked salmon meat, flaked",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "rice",
+          "level": "certain",
+          "line": "1 1/2 cups Japanese rice",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": false
+      }
+    },
+    {
+      "id": "salmon-stock",
+      "title": "Salmon Stock",
+      "status": "active",
+      "cuisine": "American",
+      "protein": [
+        "salmon"
+      ],
+      "tags": [
+        "soup",
+        "stock",
+        "make-ahead"
+      ],
+      "ingredients": [
+        "4 to 6 pounds salmon heads and bones",
+        "1 fennel bulb, chopped",
+        "2 celery stalks, chopped",
+        "2 carrots, chopped",
+        "1 large white or yellow onion, chopped",
+        "2 bay leaves",
+        "2 to 4 ounces dried kelp"
+      ],
+      "steps": [
+        "Cut the bones to fit into a large pot. Add the heads, bay leaves, and chopped vegetables. Cover with water by one inch. Set over medium-high heat and bring just barely to a simmer, about 15 minutes. Let steep at steaming point for 15-30 minutes only.",
+        "Turn off the heat. Strain through a fine-mesh strainer into a large bowl, keeping the fat. Discard the solids.",
+        "Pour the broth back into the cleaned pot. Add the dried kelp and heat to medium. Bring just to a simmer over about 30 minutes. The moment it simmers, turn off the heat and remove the kelp. Add salt to taste and serve."
+      ],
+      "prepMinutes": 10,
+      "cookMinutes": 60,
+      "totalMinutes": 70,
+      "servingsCount": 12,
+      "servings": "Serves 12",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/salmon-stock-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/salmon-stock.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "4 to 6 pounds salmon heads and bones",
+          "lineIndex": 0
+        }
+      ],
+      "protocolCompliance": {
+        "aip": true,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": true
+      }
+    },
+    {
+      "id": "salmon-cakes-with-crackers",
+      "title": "Salmon Patties with Crackers",
+      "status": "active",
+      "cuisine": "American",
+      "protein": [
+        "salmon"
+      ],
+      "tags": [
+        "appetizer",
+        "main course",
+        "side dish"
+      ],
+      "ingredients": [
+        "1 pound raw salmon meat",
+        "1 sleeve Saltines, pounded into meal",
+        "2 green onions, minced",
+        "1/4 cup mayonnaise",
+        "1 egg",
+        "1/2 teaspoon salt",
+        "1/2 teaspoon hot sauce",
+        "2 teaspoons Old Bay Seasoning",
+        "1 teaspoon Worcestershire sauce",
+        "1 teaspoon dry mustard",
+        "Grated zest and juice of 1 lemon",
+        "1 clove garlic, minced",
+        "1/2 cup Wondra flour",
+        "Oil, for frying",
+        "1/2 cup sour cream",
+        "1 tablespoon prepared horseradish",
+        "2 tablespoons whole milk",
+        "Salt and black pepper, to taste"
+      ],
+      "steps": [
+        "Combine the salmon, green onions, mayonnaise, egg, salt, hot sauce, Old Bay, Worcestershire, mustard, lemon zest, lemon juice, and garlic in a bowl.",
+        "Prepare the horseradish cream by mixing the sour cream, horseradish, and milk; adjust consistency as needed for drizzling.",
+        "Heat oil to 325-350°F in a heavy skillet, about 1 inch deep.",
+        "Incorporate the crushed Saltines into the salmon mixture (starting with 1/4 cup, adding more as needed for cohesion). Form patties with moistened hands.",
+        "Combine the remaining crushed Saltines with the Wondra flour for coating.",
+        "Coat the formed patties in the flour mixture and fry until golden on both sides, about 3-4 minutes per side.",
+        "Serve with salad and the horseradish cream."
+      ],
+      "prepMinutes": 15,
+      "cookMinutes": 20,
+      "totalMinutes": 35,
+      "servingsCount": 4,
+      "servings": "Serves 4",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/salmon-cakes-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/salmon-cakes-with-crackers.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "cream",
+          "level": "certain",
+          "line": "1/2 cup sour cream",
+          "lineIndex": 14
+        },
+        {
+          "allergenId": "milk",
+          "term": "milk",
+          "level": "certain",
+          "line": "2 tablespoons whole milk",
+          "lineIndex": 16
+        },
+        {
+          "allergenId": "egg",
+          "term": "mayonnaise",
+          "level": "possible",
+          "line": "1/4 cup mayonnaise",
+          "lineIndex": 3
+        },
+        {
+          "allergenId": "egg",
+          "term": "egg",
+          "level": "certain",
+          "line": "1 egg",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "yeast",
+          "term": "worcestershire",
+          "level": "possible",
+          "line": "1 teaspoon Worcestershire sauce",
+          "lineIndex": 8
+        },
+        {
+          "allergenId": "grains",
+          "term": "flour",
+          "level": "certain",
+          "line": "1/2 cup Wondra flour",
+          "lineIndex": 12
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "hot sauce",
+          "level": "possible",
+          "line": "1/2 teaspoon hot sauce",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "seeds",
+          "term": "mustard",
+          "level": "certain",
+          "line": "1 teaspoon dry mustard",
+          "lineIndex": 9
+        },
+        {
+          "allergenId": "meat",
+          "term": "worcestershire",
+          "level": "possible",
+          "line": "1 teaspoon Worcestershire sauce",
+          "lineIndex": 8
+        },
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "1 pound raw salmon meat",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "fish",
+          "term": "worcestershire",
+          "level": "possible",
+          "line": "1 teaspoon Worcestershire sauce",
+          "lineIndex": 8
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "flour",
+          "level": "certain",
+          "line": "1/2 cup Wondra flour",
+          "lineIndex": 12
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": false
+      }
+    },
+    {
+      "id": "shrimp-risotto",
+      "title": "Shrimp Risotto",
+      "status": "active",
+      "cuisine": "Italian",
+      "protein": [
+        "shrimp"
+      ],
+      "tags": [
+        "rice",
+        "main course",
+        "appetizer"
+      ],
+      "ingredients": [
+        "2 tablespoons butter",
+        "1 shallot, minced",
+        "2 cups risotto rice (Arborio, Vialone Nano, Carnaroli, or Bomba)",
+        "2 cloves garlic, minced",
+        "1/2 cup white wine",
+        "A large pinch of saffron, crumbled",
+        "6 cups shrimp stock",
+        "1/2 pound peeled shrimp, in small pieces",
+        "1 cup peas",
+        "1/4 cup minced parsley",
+        "2 tablespoons butter",
+        "Black pepper, to taste"
+      ],
+      "steps": [
+        "Warm the shrimp stock in a small pot.",
+        "Heat the first 2 tablespoons of butter in a medium pot over medium-high heat. Add the shallot and rice; saute, stirring often, until translucent, about 4-6 minutes. Add the garlic and cook another minute.",
+        "Pour in the white wine and stir. Add 2 ladles of shrimp stock and the saffron.",
+        "Stir frequently, allowing the rice to absorb the stock. Add additional ladles before the rice sticks to the pot. Continue for 20-25 minutes until the rice reaches an al dente texture.",
+        "Stir in the shrimp, peas, parsley, and another ladle of stock. Cook until the shrimp are cooked through, about 3-5 minutes.",
+        "Turn off the heat and add stock or water to achieve a porridge-like consistency. Stir in the butter and black pepper. Serve immediately."
+      ],
+      "prepMinutes": 20,
+      "cookMinutes": 35,
+      "totalMinutes": 55,
+      "servingsCount": 6,
+      "servings": "Serves 6",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/shrimp-risotto/",
+      "sourceNote": null,
+      "image": "assets/photos/shrimp-risotto.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "butter",
+          "level": "certain",
+          "line": "2 tablespoons butter",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "milk",
+          "term": "butter",
+          "level": "certain",
+          "line": "2 tablespoons butter",
+          "lineIndex": 10
+        },
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1/2 cup white wine",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "grains",
+          "term": "rice",
+          "level": "certain",
+          "line": "2 cups risotto rice (Arborio, Vialone Nano, Carnaroli, or Bomba)",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "legumes",
+          "term": "peas",
+          "level": "certain",
+          "line": "1 cup peas",
+          "lineIndex": 8
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1/2 cup white wine",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "fish",
+          "term": "shrimp",
+          "level": "certain",
+          "line": "6 cups shrimp stock",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "fish",
+          "term": "shrimp",
+          "level": "certain",
+          "line": "1/2 pound peeled shrimp, in small pieces",
+          "lineIndex": 7
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "rice",
+          "level": "certain",
+          "line": "2 cups risotto rice (Arborio, Vialone Nano, Carnaroli, or Bomba)",
+          "lineIndex": 2
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": false
+      }
+    },
+    {
+      "id": "wild-game-liver-creme-caramel",
+      "title": "Wild Game Liver Creme Caramel",
+      "status": "active",
+      "cuisine": "French-inspired wild game",
+      "protein": [
+        "wild game liver"
+      ],
+      "tags": [
+        "appetizer",
+        "offal",
+        "make-ahead"
+      ],
+      "ingredients": [
+        "2 tablespoons plus 1/3 scant tablespoon sugar",
+        "1 tablespoon honey",
+        "1 tablespoon red wine vinegar",
+        "1 large egg",
+        "1/4 cup whole or 2% milk",
+        "2/3 cup cream",
+        "40 grams (1 1/3 ounces) wild game liver",
+        "3-4 pieces dried porcini or morel mushroom, crushed",
+        "1/4 teaspoon quatre epices",
+        "1/2 tablespoon soy sauce",
+        "1 teaspoon sugar",
+        "Garnish: cherries, raspberries, or blackberries; dried figs soaked in balsamic vinegar; fried lardo, bacon, or pancetta; wild arugula or watercress"
+      ],
+      "steps": [
+        "Heat the sugar in a small pot over low heat until melted. Add the honey and red wine vinegar; stir well.",
+        "Paint the caramel into the bottom and sides of ramekins. Preheat the oven to 325°F.",
+        "Puree the liver and egg in a food processor, using pulses to avoid creating froth.",
+        "Heat the milk, cream, soy sauce, sugar, mushroom pieces, and quatre epices in a pot over medium heat until boiling slowly.",
+        "Temper the liver-egg mixture by slowly drizzling in the cream mixture while stirring (4-5 times), then pour the liver mixture into the cream.",
+        "Strain through a fine-meshed sieve.",
+        "Pour hot tap water into a casserole dish to halfway level.",
+        "Fill the ramekins with the mixture, leaving room at the top.",
+        "Cover with foil and bake in the water bath for 45 minutes; the custard should be set but wobbly.",
+        "Remove from the water bath and cool, covered, for 30 minutes.",
+        "Refrigerate for at least 1 hour.",
+        "To serve, run a knife around the edges and invert onto a plate; the caramel pools around the custard.",
+        "Garnish with crispy, sweet, tart, and bitter elements."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": 45,
+      "totalMinutes": 135,
+      "servingsCount": 4,
+      "servings": "Serves 4 (can be doubled)",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/wild-game/wild-pig-recipes/wild-game-liver-creme-caramel/",
+      "sourceNote": null,
+      "image": "assets/photos/wild-game-liver-creme-caramel.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "milk",
+          "level": "certain",
+          "line": "1/4 cup whole or 2% milk",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "milk",
+          "term": "cream",
+          "level": "certain",
+          "line": "2/3 cup cream",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "egg",
+          "term": "egg",
+          "level": "certain",
+          "line": "1 large egg",
+          "lineIndex": 3
+        },
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1 tablespoon red wine vinegar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "1 tablespoon red wine vinegar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "yeast",
+          "term": "soy sauce",
+          "level": "possible",
+          "line": "1/2 tablespoon soy sauce",
+          "lineIndex": 9
+        },
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "Garnish: cherries, raspberries, or blackberries; dried figs soaked in balsamic vinegar; fried lardo, bacon, or pancetta; wild arugula or watercress",
+          "lineIndex": 11
+        },
+        {
+          "allergenId": "grains",
+          "term": "soy sauce",
+          "level": "possible",
+          "line": "1/2 tablespoon soy sauce",
+          "lineIndex": 9
+        },
+        {
+          "allergenId": "legumes",
+          "term": "soy",
+          "level": "certain",
+          "line": "1/2 tablespoon soy sauce",
+          "lineIndex": 9
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1 tablespoon red wine vinegar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "refined-sugar",
+          "term": "sugar",
+          "level": "certain",
+          "line": "2 tablespoons plus 1/3 scant tablespoon sugar",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "refined-sugar",
+          "term": "sugar",
+          "level": "certain",
+          "line": "1 teaspoon sugar",
+          "lineIndex": 10
+        },
+        {
+          "allergenId": "meat",
+          "term": "bacon",
+          "level": "certain",
+          "line": "Garnish: cherries, raspberries, or blackberries; dried figs soaked in balsamic vinegar; fried lardo, bacon, or pancetta; wild arugula or watercress",
+          "lineIndex": 11
+        },
+        {
+          "allergenId": "honey",
+          "term": "honey",
+          "level": "certain",
+          "line": "1 tablespoon honey",
+          "lineIndex": 1
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "sugar",
+          "level": "certain",
+          "line": "2 tablespoons plus 1/3 scant tablespoon sugar",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "sugar",
+          "level": "certain",
+          "line": "1 teaspoon sugar",
+          "lineIndex": 10
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": false
+      }
+    },
+    {
+      "id": "grilled-venison-heart-peppers-onions",
+      "title": "Grilled Venison Heart with Peppers and Onions",
+      "status": "active",
+      "cuisine": "American",
+      "protein": [
+        "venison"
+      ],
+      "tags": [
+        "offal",
+        "grilled",
+        "appetizer",
+        "main course"
+      ],
+      "ingredients": [
+        "1 or 2 deer hearts, or 1 elk, moose, or beef heart",
+        "4 tablespoons olive oil, divided",
+        "1 tablespoon sherry or red wine vinegar",
+        "1 tablespoon Worcestershire sauce",
+        "1 teaspoon salt",
+        "1 teaspoon dried oregano",
+        "1 teaspoon dried thyme",
+        "1 teaspoon ground black pepper",
+        "3 or 4 colored bell peppers, cut into 2-3 pieces each",
+        "1 large onion, cut into large wedges"
+      ],
+      "steps": [
+        "Trim the hearts by removing visible fat from the top and slicing along the natural gaps into thick cutlets. Remove the vein-like structures from the interior walls. Mix 2 tablespoons olive oil with the vinegar, Worcestershire sauce, salt, oregano, thyme, and pepper. Massage the marinade into the meat, place in a container, and marinate 30 minutes to 2 days.",
+        "Heat the grill to high. Coat the peppers and onions in the remaining olive oil and season with salt.",
+        "Place the hearts and vegetables on the grill with the pepper skin-side down. Leave uncovered for 8 minutes without moving them.",
+        "Flip everything and grill uncovered for 5 more minutes.",
+        "Check the vegetables for char and remove to foil to steam. Peel any blackened pepper skin.",
+        "If the hearts need more cooking, cover the grill and cook 2-5 more minutes until internal temperature reaches 130°F.",
+        "Tent the hearts loosely with foil and rest 5-10 minutes before slicing. Season with black pepper and sea salt at the table."
+      ],
+      "prepMinutes": 20,
+      "cookMinutes": 15,
+      "totalMinutes": 35,
+      "servingsCount": 4,
+      "servings": "Serves 4",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/grilled-deer-heart-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/grilled-venison-heart-peppers-onions.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1 tablespoon sherry or red wine vinegar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "1 tablespoon sherry or red wine vinegar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "yeast",
+          "term": "worcestershire",
+          "level": "possible",
+          "line": "1 tablespoon Worcestershire sauce",
+          "lineIndex": 3
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "bell peppers",
+          "level": "certain",
+          "line": "3 or 4 colored bell peppers, cut into 2-3 pieces each",
+          "lineIndex": 8
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "sherry",
+          "level": "certain",
+          "line": "1 tablespoon sherry or red wine vinegar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1 tablespoon sherry or red wine vinegar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "meat",
+          "term": "elk",
+          "level": "certain",
+          "line": "1 or 2 deer hearts, or 1 elk, moose, or beef heart",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "meat",
+          "term": "beef",
+          "level": "certain",
+          "line": "1 or 2 deer hearts, or 1 elk, moose, or beef heart",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "meat",
+          "term": "worcestershire",
+          "level": "possible",
+          "line": "1 tablespoon Worcestershire sauce",
+          "lineIndex": 3
+        },
+        {
+          "allergenId": "fish",
+          "term": "worcestershire",
+          "level": "possible",
+          "line": "1 tablespoon Worcestershire sauce",
+          "lineIndex": 3
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": true
+      }
+    },
+    {
+      "id": "salmon-rillettes",
+      "title": "Salmon Rillettes",
+      "status": "active",
+      "cuisine": "French",
+      "protein": [
+        "salmon"
+      ],
+      "tags": [
+        "appetizer",
+        "spread",
+        "make-ahead"
+      ],
+      "ingredients": [
+        "1/2 pound fresh salmon or trout, skin and bones removed",
+        "1/2 pound smoked salmon or trout, skin and bones removed",
+        "1/4 cup sour cream or creme fraiche",
+        "2 tablespoons lemon juice",
+        "3 to 5 tablespoons unsalted butter, at room temperature",
+        "Finely grated zest of 1 lemon",
+        "3 tablespoons minced chives or parsley",
+        "About 1 tablespoon prepared horseradish, or to taste",
+        "Salt and black pepper, to taste",
+        "Pickled mustard seeds or trout caviar (optional)"
+      ],
+      "steps": [
+        "Bring about one quart of salted water to a boil. Add the fresh salmon and turn off the heat. Cover the pot and let sit for 15 minutes. Remove the salmon and flake into a large bowl when cool enough to handle.",
+        "Break up the smoked salmon and add to the bowl along with the sour cream, 3 tablespoons butter, lemon juice, lemon zest, and chives. Use a heavy fork to mash together into a rough spread. Add the remaining 2 tablespoons butter if needed for consistency.",
+        "Season with salt, pepper, and horseradish to taste. Cover and refrigerate for about an hour before serving. Top with pickled mustard seeds or caviar if desired."
+      ],
+      "prepMinutes": 15,
+      "cookMinutes": 15,
+      "totalMinutes": 30,
+      "servingsCount": 8,
+      "servings": "Serves 8",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/salmon-rillettes-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/salmon-rillettes.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "cream",
+          "level": "certain",
+          "line": "1/4 cup sour cream or creme fraiche",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "milk",
+          "term": "creme fraiche",
+          "level": "certain",
+          "line": "1/4 cup sour cream or creme fraiche",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "milk",
+          "term": "butter",
+          "level": "certain",
+          "line": "3 to 5 tablespoons unsalted butter, at room temperature",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "seeds",
+          "term": "mustard seeds",
+          "level": "certain",
+          "line": "Pickled mustard seeds or trout caviar (optional)",
+          "lineIndex": 9
+        },
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "1/2 pound fresh salmon or trout, skin and bones removed",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "1/2 pound smoked salmon or trout, skin and bones removed",
+          "lineIndex": 1
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": true
+      }
+    },
+    {
+      "id": "smoked-bluefish-pate",
+      "title": "Smoked Bluefish Pate",
+      "status": "active",
+      "cuisine": "American",
+      "protein": [
+        "bluefish"
+      ],
+      "tags": [
+        "appetizer",
+        "spread"
+      ],
+      "ingredients": [
+        "1/2 pound cooked (smoked) bluefish",
+        "1/4 pound cream cheese, softened",
+        "1/2 cup minced red onion",
+        "1 tablespoon chopped dill",
+        "1 tablespoon small capers",
+        "Zest and juice of 1 lemon",
+        "A few splashes of Tabasco or Worcestershire sauce, to taste",
+        "2 tablespoons brandy or bourbon (optional)",
+        "Salt and pepper, to taste"
+      ],
+      "steps": [
+        "Remove all red meat from the bluefish and discard (or give to a pet).",
+        "Combine all ingredients in a large bowl.",
+        "Mash together into a rough pate texture.",
+        "For a smoother consistency, double the cream cheese and mash more thoroughly.",
+        "Serve with crackers or flatbread.",
+        "Storage: keeps refrigerated for 7-10 days; does not freeze well."
+      ],
+      "prepMinutes": 20,
+      "cookMinutes": 0,
+      "totalMinutes": 20,
+      "servingsCount": 10,
+      "servings": "Serves 10",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/bluefish-pate-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/smoked-bluefish-pate.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "cream",
+          "level": "certain",
+          "line": "1/4 pound cream cheese, softened",
+          "lineIndex": 1
+        },
+        {
+          "allergenId": "milk",
+          "term": "cheese",
+          "level": "certain",
+          "line": "1/4 pound cream cheese, softened",
+          "lineIndex": 1
+        },
+        {
+          "allergenId": "yeast",
+          "term": "worcestershire",
+          "level": "possible",
+          "line": "A few splashes of Tabasco or Worcestershire sauce, to taste",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "pepper",
+          "level": "certain",
+          "line": "Salt and pepper, to taste",
+          "lineIndex": 8
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "brandy",
+          "level": "certain",
+          "line": "2 tablespoons brandy or bourbon (optional)",
+          "lineIndex": 7
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "bourbon",
+          "level": "certain",
+          "line": "2 tablespoons brandy or bourbon (optional)",
+          "lineIndex": 7
+        },
+        {
+          "allergenId": "meat",
+          "term": "worcestershire",
+          "level": "possible",
+          "line": "A few splashes of Tabasco or Worcestershire sauce, to taste",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "fish",
+          "term": "worcestershire",
+          "level": "possible",
+          "line": "A few splashes of Tabasco or Worcestershire sauce, to taste",
+          "lineIndex": 6
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": false,
+        "keto": true
+      }
+    },
+    {
+      "id": "corned-venison",
+      "title": "Corned Venison",
+      "status": "active",
+      "cuisine": "American",
+      "protein": [
+        "venison"
+      ],
+      "tags": [
+        "cured meat",
+        "main course"
+      ],
+      "ingredients": [
+        "1/2 gallon water",
+        "1/2 cup kosher salt",
+        "1/3 cup sugar",
+        "1/2 ounce Instacure No. 1 (sodium nitrite)",
+        "1 tablespoon cracked black pepper",
+        "1 tablespoon toasted coriander seeds",
+        "6 bay leaves, crushed",
+        "1 tablespoon mustard seeds",
+        "1 tablespoon dried thyme",
+        "1 teaspoon caraway seeds",
+        "1 cinnamon stick",
+        "5 chopped garlic cloves",
+        "3 to 5 pound venison roast"
+      ],
+      "steps": [
+        "Combine all ingredients except the roast in a pot; bring to a boil. Cover, remove from heat, and cool to room temperature (several hours). Meanwhile, trim silverskin from the roast. Once the brine cools, place the meat in a container, submerge completely using a clean stone as a weight, and refrigerate for 5-7 days.",
+        "After the brining period, rinse the meat thoroughly. Place the roast in a pot with fresh water, just enough to cover. Partially cover and simmer gently — do not boil — for 3-5 hours until the connective tissue softens.",
+        "Serve hot or cold with mustard and sauerkraut. Store the finished product in its cooking broth in the refrigerator to maintain moisture, or freeze separately for up to one year."
+      ],
+      "prepMinutes": 20,
+      "cookMinutes": 240,
+      "totalMinutes": 260,
+      "servingsCount": 12,
+      "servings": "Serves 12",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/corned-venison-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/corned-venison.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "seeds",
+          "term": "coriander",
+          "level": "certain",
+          "line": "1 tablespoon toasted coriander seeds",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "seeds",
+          "term": "mustard seeds",
+          "level": "certain",
+          "line": "1 tablespoon mustard seeds",
+          "lineIndex": 7
+        },
+        {
+          "allergenId": "refined-sugar",
+          "term": "sugar",
+          "level": "certain",
+          "line": "1/3 cup sugar",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "meat",
+          "term": "venison",
+          "level": "certain",
+          "line": "3 to 5 pound venison roast",
+          "lineIndex": 12
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "sugar",
+          "level": "certain",
+          "line": "1/3 cup sugar",
+          "lineIndex": 2
         }
       ],
       "protocolCompliance": {
