@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-08-19T16:37:34.338Z",
+    "generatedAt": "2026-08-24T13:54:18.448Z",
     "schemaVersion": 1,
-    "recipeCount": 15,
+    "recipeCount": 16,
     "warnings": []
   },
   "avoidances": [
@@ -1715,6 +1715,105 @@
           "level": "certain",
           "line": "2 tsp mustard seeds",
           "lineIndex": 1
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    },
+    {
+      "id": "mateos-gourmet-salsa-copycat",
+      "title": "Copycat Mateo's Gourmet Salsa",
+      "status": "active",
+      "cuisine": null,
+      "protein": [],
+      "tags": [
+        "salsa",
+        "condiment",
+        "quick",
+        "no-cook",
+        "copycat"
+      ],
+      "ingredients": [
+        "14.5 oz can diced fire-roasted tomatoes",
+        "1/2 jalapeño pepper (adjust for heat)",
+        "1/4 cup fresh cilantro",
+        "1 tsp garlic granules (not powder)",
+        "1 tsp ground cumin",
+        "1 tsp red wine vinegar",
+        "1 tbsp fresh lemon juice",
+        "1 tsp salt"
+      ],
+      "steps": [
+        "Place the half jalapeño in a food processor.",
+        "Pulse until finely chopped.",
+        "Add the fire-roasted tomatoes, cilantro, garlic granules, cumin, red wine vinegar, lemon juice, and salt.",
+        "Pulse a few times until blended to a light, slightly chunky consistency.",
+        "Chill in the fridge for 30 minutes before serving to let the flavors mix."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": null,
+      "totalMinutes": null,
+      "servingsCount": null,
+      "servings": null,
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://www.youtube.com/watch?v=sAR0mU5RBBI",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1 tsp red wine vinegar",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "1 tsp red wine vinegar",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "tomatoes",
+          "level": "certain",
+          "line": "14.5 oz can diced fire-roasted tomatoes",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "jalapeno",
+          "level": "certain",
+          "line": "1/2 jalapeño pepper (adjust for heat)",
+          "lineIndex": 1
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "pepper",
+          "level": "certain",
+          "line": "1/2 jalapeño pepper (adjust for heat)",
+          "lineIndex": 1
+        },
+        {
+          "allergenId": "seeds",
+          "term": "cumin",
+          "level": "certain",
+          "line": "1 tsp ground cumin",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1 tsp red wine vinegar",
+          "lineIndex": 5
         }
       ],
       "protocolCompliance": {
