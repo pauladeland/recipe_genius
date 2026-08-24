@@ -22,7 +22,8 @@ main h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; outline: none; }
   font-size: 13px; color: var(--ink-soft);
 }
 .search-input { flex: 1; min-width: 160px; padding: 9px 12px; }
-.chip { padding: 7px 13px; }
+.chip { padding: 7px 13px; cursor: pointer; }
+.chip[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
 .multiselect { position: relative; }
 .multiselect summary {
   list-style: none; cursor: pointer; padding: 7px 12px; display: flex; align-items: center; gap: 6px;

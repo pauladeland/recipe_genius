@@ -4,7 +4,10 @@ import { computeBadges } from '../ui/badges.js';
 export const PREP_SLIDER_MAX = 60;
 export const COOK_SLIDER_MAX = 300;
 
-export const TOTAL_SLIDER_MAX = 300;
+// Total time spans a much wider range than prep/cook (e.g. jerky/ferment
+// recipes run 1000+ min), so the "no limit" sentinel needs real headroom
+// above the data.
+export const TOTAL_SLIDER_MAX = 1800;
 
 export function applyFilters(recipes, filterState) {
   const {
@@ -69,7 +72,9 @@ function cuisineOptionsHtml(recipes, selected) {
 }
 
 function tagOptionsHtml(recipes, selected) {
-  const tags = [...new Set(recipes.flatMap((r) => r.tags || []))].sort();
+  // 'one-pan' is exposed via its own quick-filter chip, not here — a tag
+  // driven by two independent controls would let them contradict each other.
+  const tags = [...new Set(recipes.flatMap((r) => r.tags || []))].filter((t) => t !== 'one-pan').sort();
   return tags.map((t) => html`
     <label>
       <input type="checkbox" name="tag" value="${t}" ${selected.includes(t) ? html`checked` : ''}>
@@ -99,12 +104,12 @@ export function timeFilterDisplay(value, sliderMax) {
   return value >= sliderMax ? 'No limit' : `≤ ${value}m`;
 }
 
-function timeFilterHtml(id, label, currentMax, sliderMax) {
+function timeFilterHtml(id, label, currentMax, sliderMax, step = 5) {
   const value = currentMax === Infinity || currentMax > sliderMax ? sliderMax : currentMax;
   return html`
     <div class="timefilter">
       <label for="${id}">${label}</label>
-      <input type="range" id="${id}" min="0" max="${sliderMax}" step="5" value="${value}">
+      <input type="range" id="${id}" min="0" max="${sliderMax}" step="${step}" value="${value}">
       <span class="timefilter-value">${timeFilterDisplay(value, sliderMax)}</span>
     </div>
   `;
@@ -134,7 +139,7 @@ export function renderFilterBar(libraryData, filterState) {
       </details>
       ${timeFilterHtml('prep-slider', 'PREP ≤', filterState.maxPrep, PREP_SLIDER_MAX)}
       ${timeFilterHtml('cook-slider', 'COOK ≤', filterState.maxCook, COOK_SLIDER_MAX)}
-      ${timeFilterHtml('total-slider', 'TOTAL ≤', filterState.maxTotal ?? Infinity, TOTAL_SLIDER_MAX)}
+      ${timeFilterHtml('total-slider', 'TOTAL ≤', filterState.maxTotal ?? Infinity, TOTAL_SLIDER_MAX, 30)}
       <button type="button" class="chip" data-chip="one-pan" aria-pressed="${onePanOn ? 'true' : 'false'}">One-pan</button>
       <button type="button" class="chip" data-chip="max-7-ingredients" aria-pressed="${maxSevenOn ? 'true' : 'false'}">≤7 ingredients</button>
       <button type="button" class="chip" id="surprise-btn">Surprise us</button>

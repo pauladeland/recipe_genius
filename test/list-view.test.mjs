@@ -81,6 +81,25 @@ test('applyFilters treats an empty tags array and default onePanOnly/maxIngredie
   assert.equal(applyFilters(recipes, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).length, 2);
 });
 
+test('applyFilters composes onePanOnly and maxIngredients as AND, not OR', () => {
+  const withBoth = [
+    { ...recipes[0], tags: ['one-pan'], ingredients: ['a', 'b'] },       // passes both
+    { ...recipes[1], tags: ['one-pan'], ingredients: Array(8).fill('x') }, // one-pan but too many ingredients
+  ];
+  const result = applyFilters(withBoth, {
+    query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity,
+    onePanOnly: true, maxIngredients: 7,
+  });
+  assert.deepEqual(result.map((r) => r.id), ['a']);
+});
+
+test('renderFilterBar never lists one-pan as a Tags checkbox — it is the quick-filter chip\'s alone to control', () => {
+  const tagged = [{ ...recipes[0], tags: ['one-pan', 'sauce'] }];
+  const out = renderList({ meta: {}, avoidances, protocols: [], recipes: tagged }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();
+  assert.doesNotMatch(out, /name="tag" value="one-pan"/);
+  assert.match(out, /name="tag" value="sauce"/);
+});
+
 test('renderFilterBar renders a tag checkbox for every distinct tag across recipes', () => {
   const tagged = [{ ...recipes[0], tags: ['quick', 'sauce'] }, { ...recipes[1], tags: ['bake'] }];
   const out = renderList({ meta: {}, avoidances, protocols: [], recipes: tagged }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();

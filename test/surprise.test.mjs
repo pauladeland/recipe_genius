@@ -32,3 +32,8 @@ test('pickSurprise on a single-match filter always returns that one recipe', () 
   const result = pickSurprise(recipes, { ...noFilters, cuisines: ['Italian'] }, () => 0.7);
   assert.equal(result, 'a');
 });
+
+test('pickSurprise clamps an out-of-spec randomFn() === 1 to the last match instead of throwing', () => {
+  const result = pickSurprise(recipes, noFilters, () => 1);
+  assert.equal(result, 'c');
+});

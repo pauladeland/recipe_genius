@@ -159,8 +159,8 @@ function wireListFilters() {
   if (surpriseBtn) {
     surpriseBtn.addEventListener('click', () => {
       const id = pickSurprise(libraryData.recipes, filterState);
-      if (id) {
-        location.hash = `#/r/${id}`;
+      if (id != null) {
+        location.hash = `#/r/${encodeURIComponent(id)}`;
       } else {
         announce('Nothing matches your current filters to surprise you with.');
       }
