@@ -36,6 +36,51 @@ test('applyFilters narrows by prep and cook ceilings independently', () => {
   assert.deepEqual(result.map((r) => r.id), ['b']);
 });
 
+test('applyFilters matches a query against ingredient text, not just the title', () => {
+  const withIngredients = [
+    { ...recipes[0], ingredients: ['1 shallot', '2 cloves garlic'] },
+    { ...recipes[1], ingredients: ['1 cup flour', '2 eggs'] },
+  ];
+  const result = applyFilters(withIngredients, { query: 'garlic', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity });
+  assert.deepEqual(result.map((r) => r.id), ['a']);
+});
+
+test('applyFilters narrows by total-time ceiling independently of prep/cook', () => {
+  const result = applyFilters(recipes, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity, maxTotal: 30 });
+  assert.deepEqual(result.map((r) => r.id), ['a']);
+});
+
+test('applyFilters narrows by tags — an OR match, like allergenIds', () => {
+  const tagged = [
+    { ...recipes[0], tags: ['sauce', 'quick'] },
+    { ...recipes[1], tags: ['bake'] },
+  ];
+  const result = applyFilters(tagged, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity, tags: ['quick'] });
+  assert.deepEqual(result.map((r) => r.id), ['a']);
+});
+
+test('applyFilters onePanOnly keeps only recipes tagged one-pan', () => {
+  const tagged = [
+    { ...recipes[0], tags: ['one-pan'] },
+    { ...recipes[1], tags: ['bake'] },
+  ];
+  const result = applyFilters(tagged, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity, onePanOnly: true });
+  assert.deepEqual(result.map((r) => r.id), ['a']);
+});
+
+test('applyFilters maxIngredients keeps only recipes at or under the ingredient count', () => {
+  const withIngredients = [
+    { ...recipes[0], ingredients: ['a', 'b', 'c'] },
+    { ...recipes[1], ingredients: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] },
+  ];
+  const result = applyFilters(withIngredients, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity, maxIngredients: 7 });
+  assert.deepEqual(result.map((r) => r.id), ['a']);
+});
+
+test('applyFilters treats an empty tags array and default onePanOnly/maxIngredients as no restriction', () => {
+  assert.equal(applyFilters(recipes, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).length, 2);
+});
+
 test('renderList shows a result count and one card per matching recipe', () => {
   const out = renderList({ meta: {}, avoidances, protocols: [], recipes }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();
   assert.match(out, /2 recipes/);

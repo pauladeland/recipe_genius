@@ -4,15 +4,31 @@ import { computeBadges } from '../ui/badges.js';
 export const PREP_SLIDER_MAX = 60;
 export const COOK_SLIDER_MAX = 300;
 
+export const TOTAL_SLIDER_MAX = 300;
+
 export function applyFilters(recipes, filterState) {
-  const { query, cuisines, allergenIds, maxPrep, maxCook } = filterState;
+  const {
+    query, cuisines, allergenIds, maxPrep, maxCook,
+    tags = [], maxTotal = Infinity, maxIngredients = Infinity, onePanOnly = false,
+  } = filterState;
   const q = query.trim().toLowerCase();
 
   return recipes.filter((r) => {
-    if (q && !r.title.toLowerCase().includes(q)) return false;
+    if (q) {
+      const inTitle = r.title.toLowerCase().includes(q);
+      const inIngredients = (r.ingredients || []).some((line) => line.toLowerCase().includes(q));
+      if (!inTitle && !inIngredients) return false;
+    }
     if (cuisines.length && !cuisines.includes(r.cuisine)) return false;
     if (maxPrep != null && r.prepMinutes != null && r.prepMinutes > maxPrep) return false;
     if (maxCook != null && r.cookMinutes != null && r.cookMinutes > maxCook) return false;
+    if (maxTotal != null && r.totalMinutes != null && r.totalMinutes > maxTotal) return false;
+    if (maxIngredients != null && (r.ingredients || []).length > maxIngredients) return false;
+    if (onePanOnly && !(r.tags || []).includes('one-pan')) return false;
+    if (tags.length) {
+      const recipeTags = new Set(r.tags || []);
+      if (!tags.some((t) => recipeTags.has(t))) return false;
+    }
     if (allergenIds.length) {
       const flagged = new Set((r.flags || []).map((f) => f.allergenId));
       if (!allergenIds.some((id) => flagged.has(id))) return false;
