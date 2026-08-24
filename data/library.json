@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-08-19T16:37:34.338Z",
+    "generatedAt": "2026-08-24T14:50:09.434Z",
     "schemaVersion": 1,
-    "recipeCount": 15,
+    "recipeCount": 17,
     "warnings": []
   },
   "avoidances": [
@@ -1722,6 +1722,223 @@
         "vegetarian": true,
         "vegan": true,
         "keto": true
+      }
+    },
+    {
+      "id": "mateos-gourmet-salsa-copycat",
+      "title": "Copycat Mateo's Gourmet Salsa",
+      "status": "active",
+      "cuisine": null,
+      "protein": [],
+      "tags": [
+        "salsa",
+        "condiment",
+        "quick",
+        "no-cook",
+        "copycat"
+      ],
+      "ingredients": [
+        "14.5 oz can diced fire-roasted tomatoes",
+        "1/2 jalapeño pepper (adjust for heat)",
+        "1/4 cup fresh cilantro",
+        "1 tsp garlic granules (not powder)",
+        "1 tsp ground cumin",
+        "1 tsp red wine vinegar",
+        "1 tbsp fresh lemon juice",
+        "1 tsp salt"
+      ],
+      "steps": [
+        "Place the half jalapeño in a food processor.",
+        "Pulse until finely chopped.",
+        "Add the fire-roasted tomatoes, cilantro, garlic granules, cumin, red wine vinegar, lemon juice, and salt.",
+        "Pulse a few times until blended to a light, slightly chunky consistency.",
+        "Chill in the fridge for 30 minutes before serving to let the flavors mix."
+      ],
+      "prepMinutes": null,
+      "cookMinutes": null,
+      "totalMinutes": null,
+      "servingsCount": null,
+      "servings": null,
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://www.youtube.com/watch?v=sAR0mU5RBBI",
+      "sourceNote": null,
+      "image": null,
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1 tsp red wine vinegar",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "1 tsp red wine vinegar",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "tomatoes",
+          "level": "certain",
+          "line": "14.5 oz can diced fire-roasted tomatoes",
+          "lineIndex": 0
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "jalapeno",
+          "level": "certain",
+          "line": "1/2 jalapeño pepper (adjust for heat)",
+          "lineIndex": 1
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "pepper",
+          "level": "certain",
+          "line": "1/2 jalapeño pepper (adjust for heat)",
+          "lineIndex": 1
+        },
+        {
+          "allergenId": "seeds",
+          "term": "cumin",
+          "level": "certain",
+          "line": "1 tsp ground cumin",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1 tsp red wine vinegar",
+          "lineIndex": 5
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    },
+    {
+      "id": "salmon-cucumber-dill-sauce",
+      "title": "Salmon with Cucumber Dill Sauce",
+      "status": "active",
+      "cuisine": "German",
+      "protein": [
+        "salmon"
+      ],
+      "tags": [
+        "main course",
+        "seafood"
+      ],
+      "ingredients": [
+        "Dill oil (optional): 1/2 cup chopped fresh dill, plus sprigs for garnish",
+        "Dill oil (optional): 1 cup neutral oil (sunflower, canola, or grapeseed)",
+        "4 thick salmon, trout, or similar fish fillets",
+        "Salt, to taste",
+        "2-4 tablespoons clarified butter, walnut oil, or vegetable oil",
+        "1 large onion, minced",
+        "2 tablespoons walnut oil or vegetable oil",
+        "2 English cucumbers (1 peeled, 1 unpeeled)",
+        "Salt and a pinch of sugar",
+        "Lemon juice, to taste",
+        "White pepper, to taste (optional)",
+        "10-20 cherry tomatoes, halved"
+      ],
+      "steps": [
+        "Prepare the dill oil (optional): blend the oil and dill on high for one minute. Strain through cheesecloth into a bowl and refrigerate for gradual dripping. Can be made up to 3 days ahead.",
+        "Season the salmon: salt the fish pieces and refrigerate.",
+        "Cook the onions: gently cook the minced onion in walnut oil over medium-low heat in a covered pan until soft and translucent, avoiding browning. Puree and set aside.",
+        "Prepare the cucumbers: slice each lengthwise and scrape out the seeds with a spoon. Puree the unpeeled cucumber (with seeds) in a blender. Strain through a fine-mesh strainer into a bowl for 2 hours, undisturbed. Dice the peeled cucumber separately.",
+        "Make the sauce: whisk the strained cucumber liquid into the pureed onions until it reaches a melted-ice-cream consistency. Add 2 tablespoons of dill oil and season with lemon juice, salt, and white pepper. Serve at room temperature or gently warmed.",
+        "Sear the salmon: heat oil in a pan over high heat until nearly smoking. Pat the salmon dry and sear for 6-8 minutes on one side for a crispy crust. If very thick, flip and finish cooking; if under one inch thick, baste the exposed side with hot oil.",
+        "Plate: toss the diced cucumber and cherry tomatoes in the sauce. Pour into shallow bowls or plates with wells. Top with the salmon, seared-side up. Garnish with additional dill and salmon caviar if desired."
+      ],
+      "prepMinutes": 30,
+      "cookMinutes": 20,
+      "totalMinutes": 50,
+      "servingsCount": 4,
+      "servings": "Serves 4",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/salmon-cucumber-sauce-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/salmon-cucumber-dill-sauce.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "milk",
+          "term": "butter",
+          "level": "certain",
+          "line": "2-4 tablespoons clarified butter, walnut oil, or vegetable oil",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "pepper",
+          "level": "certain",
+          "line": "White pepper, to taste (optional)",
+          "lineIndex": 10
+        },
+        {
+          "allergenId": "nightshades",
+          "term": "tomatoes",
+          "level": "certain",
+          "line": "10-20 cherry tomatoes, halved",
+          "lineIndex": 11
+        },
+        {
+          "allergenId": "nuts",
+          "term": "walnut",
+          "level": "certain",
+          "line": "2-4 tablespoons clarified butter, walnut oil, or vegetable oil",
+          "lineIndex": 4
+        },
+        {
+          "allergenId": "nuts",
+          "term": "walnut",
+          "level": "certain",
+          "line": "2 tablespoons walnut oil or vegetable oil",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "refined-sugar",
+          "term": "sugar",
+          "level": "certain",
+          "line": "Salt and a pinch of sugar",
+          "lineIndex": 8
+        },
+        {
+          "allergenId": "fish",
+          "term": "salmon",
+          "level": "certain",
+          "line": "4 thick salmon, trout, or similar fish fillets",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "fish",
+          "term": "fish",
+          "level": "certain",
+          "line": "4 thick salmon, trout, or similar fish fillets",
+          "lineIndex": 2
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "sugar",
+          "level": "certain",
+          "line": "Salt and a pinch of sugar",
+          "lineIndex": 8
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": false,
+        "vegan": false,
+        "keto": false
       }
     }
   ]
