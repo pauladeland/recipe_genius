@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-24T14:50:09.434Z",
+    "generatedAt": "2026-08-24T15:08:45.915Z",
     "schemaVersion": 1,
     "recipeCount": 17,
     "warnings": []
@@ -71,7 +71,7 @@
         "dairy-free yogurt",
         "vegan yogurt"
       ],
-      "substitutions": "oat milk; coconut cream; olive oil for butter",
+      "substitutions": "oat milk; coconut cream; olive oil for butter|coconut milk|almond milk|oat milk|soy milk|cashew milk|rice milk|hemp milk|macadamia milk",
       "notes": "True allergy. Also an AIP and vegan exclusion."
     },
     {
