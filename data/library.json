@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-08-24T15:35:31.843Z",
+    "generatedAt": "2026-08-24T16:17:07.015Z",
     "schemaVersion": 1,
-    "recipeCount": 28,
+    "recipeCount": 31,
     "warnings": []
   },
   "avoidances": [
@@ -3129,6 +3129,224 @@
         "vegetarian": false,
         "vegan": false,
         "keto": false
+      }
+    },
+    {
+      "id": "pickled-artichokes",
+      "title": "Pickled, Marinated Artichokes",
+      "status": "active",
+      "cuisine": "Italian",
+      "protein": [],
+      "tags": [
+        "snack",
+        "pickle",
+        "canning",
+        "make-ahead"
+      ],
+      "ingredients": [
+        "40-50 baby artichokes",
+        "1 cup lemon juice",
+        "2 cups white vinegar",
+        "1 cup olive oil",
+        "5 sliced garlic cloves",
+        "4 dried chiles",
+        "About a dozen juniper berries (optional)",
+        "2 bay leaves",
+        "3 teaspoons salt",
+        "4 lemons, sliced in half"
+      ],
+      "steps": [
+        "Combine everything except the artichokes in a large pot and bring to a boil. Cover and turn off heat.",
+        "Fill a canning kettle with water to cover quart Mason jars, using a steamer rack or jar rims on the bottom. Set to medium heat.",
+        "Fill a large bowl with cold water, squeeze 2 lemons into it, and drop the lemon halves in. Remove tough outer artichoke leaves, slice off the top, trim the bottom, rub with lemon, and place in the lemon water to prevent browning.",
+        "Return heat to the vinegar pot. Add the artichokes, stir, and bring to a boil. Using a slotted spoon, fill Mason jars 3/4 full with artichokes. Ladle the vinegar-oil mixture over them evenly. Ensure jar rims are clean and use new lids.",
+        "Submerge jars in boiling water for 15 minutes. Cool to room temperature. Jars will keep for one year; refrigerate after opening."
+      ],
+      "prepMinutes": 45,
+      "cookMinutes": 20,
+      "totalMinutes": 65,
+      "servingsCount": 16,
+      "servings": "Makes 2 quarts (16 servings)",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/pickled-artichokes-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/pickled-artichokes.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "2 cups white vinegar",
+          "lineIndex": 2
+        }
+      ],
+      "protocolCompliance": {
+        "aip": true,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
+      }
+    },
+    {
+      "id": "pickled-sunchokes",
+      "title": "Pickled Sunchokes",
+      "status": "active",
+      "cuisine": "North African",
+      "protein": [],
+      "tags": [
+        "appetizer",
+        "pickle",
+        "canning",
+        "make-ahead"
+      ],
+      "ingredients": [
+        "2 to 3 pounds sunchokes (small ones preferred)",
+        "Juice of 2 to 3 lemons",
+        "4 cups water",
+        "1/4 cup kosher or pickling salt",
+        "2 tablespoons turmeric (or 1 large fresh turmeric root, sliced)",
+        "4 cups cider vinegar",
+        "1 cup white wine vinegar",
+        "1 cup water",
+        "1 to 2 cups sugar (adjust to taste)",
+        "2 tablespoons mustard seed",
+        "1 teaspoon dry mustard",
+        "1 tablespoon chile flakes (or 1 dried chile per quart)",
+        "1 clove per quart",
+        "1 bay leaf per quart"
+      ],
+      "steps": [
+        "Cut sunchokes into 1/2-inch pieces; place in water with lemon juice to prevent discoloration. Mix 4 cups water, 1 tablespoon turmeric, and salt. Brine the sunchokes overnight, 8-12 hours.",
+        "Combine the vinegar, sugar, 1 cup water, remaining turmeric, mustard seed, dry mustard, chiles, cloves, and bay leaves. Bring to a boil, stir, and cool to room temperature.",
+        "Prepare a hot water bath if canning (skip if refrigerating).",
+        "Place one chile, one clove, and one bay leaf in each jar.",
+        "Rinse the sunchokes thoroughly and pack into jars. Cover with the cooled vinegar mixture, leaving 1/4-inch headspace for canning.",
+        "Process in a hot water bath for 10-15 minutes. Wait at least one week before consuming."
+      ],
+      "prepMinutes": 30,
+      "cookMinutes": 30,
+      "totalMinutes": 60,
+      "servingsCount": 16,
+      "servings": "Makes about 2 quarts (16 servings)",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/pickled-jerusalem-artichokes-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/pickled-sunchokes.jpg",
+      "imageAlt": null,
+      "flags": [
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "4 cups cider vinegar",
+          "lineIndex": 5
+        },
+        {
+          "allergenId": "yeast",
+          "term": "wine",
+          "level": "possible",
+          "line": "1 cup white wine vinegar",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "yeast",
+          "term": "vinegar",
+          "level": "possible",
+          "line": "1 cup white wine vinegar",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "seeds",
+          "term": "mustard seed",
+          "level": "certain",
+          "line": "2 tablespoons mustard seed",
+          "lineIndex": 9
+        },
+        {
+          "allergenId": "seeds",
+          "term": "mustard",
+          "level": "certain",
+          "line": "1 teaspoon dry mustard",
+          "lineIndex": 10
+        },
+        {
+          "allergenId": "alcohol",
+          "term": "wine",
+          "level": "certain",
+          "line": "1 cup white wine vinegar",
+          "lineIndex": 6
+        },
+        {
+          "allergenId": "refined-sugar",
+          "term": "sugar",
+          "level": "certain",
+          "line": "1 to 2 cups sugar (adjust to taste)",
+          "lineIndex": 8
+        },
+        {
+          "allergenId": "high-carb",
+          "term": "sugar",
+          "level": "certain",
+          "line": "1 to 2 cups sugar (adjust to taste)",
+          "lineIndex": 8
+        }
+      ],
+      "protocolCompliance": {
+        "aip": false,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": false
+      }
+    },
+    {
+      "id": "fermented-carrots",
+      "title": "Lacto-Fermented Pickled Carrots",
+      "status": "active",
+      "cuisine": "American",
+      "protein": [],
+      "tags": [
+        "pickle",
+        "fermented",
+        "canning",
+        "make-ahead"
+      ],
+      "ingredients": [
+        "2 pounds small carrots, peeled",
+        "4 cups water",
+        "3 tablespoons kosher salt",
+        "1 sprig fresh thyme",
+        "2 bay leaves",
+        "1 dried hot chile",
+        "1 teaspoon cracked black peppercorns"
+      ],
+      "steps": [
+        "Cut the carrots into bite-sized pieces (cocktail party size) or halve lengthwise, keeping the thickest portions to about 1 inch wide.",
+        "Boil the salt, water, bay leaves, peppercorns, and chile for one minute. Cool to room temperature to let the flavors meld.",
+        "Pack the carrots and thyme sprig into a clean Mason jar. Pour the cooled brine over them, distributing the spices evenly.",
+        "Fill a plastic bag with leftover brine, tie it off, and insert into the jar to keep the carrots fully submerged. Alternatively, use a water-filled smaller jar as a weight.",
+        "Store in a cool, dark place (65°F is ideal) for a minimum of 4 days, preferably 2-4 weeks for tangier results. Temperature should stay between 45-75°F.",
+        "Remove the weight. Store refrigerated with the cap sealed, or boil the brine before returning it to the jar. Refrigerated pickles last up to 6 months."
+      ],
+      "prepMinutes": 20,
+      "cookMinutes": 0,
+      "totalMinutes": 20,
+      "servingsCount": 12,
+      "servings": "Makes about 1 quart (12 servings) — plus 4+ weeks fermentation",
+      "sourceType": "url",
+      "sourceName": null,
+      "sourceUrl": "https://honest-food.net/pickled-carrots-recipe/",
+      "sourceNote": null,
+      "image": "assets/photos/fermented-carrots.jpg",
+      "imageAlt": null,
+      "flags": [],
+      "protocolCompliance": {
+        "aip": true,
+        "vegetarian": true,
+        "vegan": true,
+        "keto": true
       }
     }
   ]
