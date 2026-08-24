@@ -68,6 +68,16 @@ function cuisineOptionsHtml(recipes, selected) {
   `);
 }
 
+function tagOptionsHtml(recipes, selected) {
+  const tags = [...new Set(recipes.flatMap((r) => r.tags || []))].sort();
+  return tags.map((t) => html`
+    <label>
+      <input type="checkbox" name="tag" value="${t}" ${selected.includes(t) ? html`checked` : ''}>
+      ${t}
+    </label>
+  `);
+}
+
 function allergenOptionsHtml(avoidances, selected) {
   const primary = avoidances.filter((a) => a.severity === 'allergy' || a.severity === 'sensitivity');
   const other = avoidances.filter((a) => a.severity !== 'allergy' && a.severity !== 'sensitivity');
@@ -103,13 +113,20 @@ function timeFilterHtml(id, label, currentMax, sliderMax) {
 export function renderFilterBar(libraryData, filterState) {
   const cuisineCount = filterState.cuisines.length;
   const allergenCount = filterState.allergenIds.length;
+  const tagCount = (filterState.tags || []).length;
+  const onePanOn = !!filterState.onePanOnly;
+  const maxSevenOn = (filterState.maxIngredients ?? Infinity) <= 7;
 
   return html`
     <div class="filterbar">
-      <input type="search" class="search-input" placeholder="Search recipes…" value="${filterState.query}">
+      <input type="search" class="search-input" placeholder="Search recipes or ingredients…" value="${filterState.query}">
       <details class="multiselect" id="cuisine-multiselect">
         <summary><span class="ms-label">Cuisine</span> ${cuisineCount ? html`<span class="ms-count">${cuisineCount}</span>` : ''}</summary>
         <div class="ms-panel">${cuisineOptionsHtml(libraryData.recipes, filterState.cuisines)}</div>
+      </details>
+      <details class="multiselect" id="tags-multiselect">
+        <summary><span class="ms-label">Tags</span> ${tagCount ? html`<span class="ms-count">${tagCount}</span>` : ''}</summary>
+        <div class="ms-panel">${tagOptionsHtml(libraryData.recipes, filterState.tags || [])}</div>
       </details>
       <details class="multiselect" id="allergen-multiselect">
         <summary><span class="ms-label">Allergens</span> ${allergenCount ? html`<span class="ms-count">${allergenCount}</span>` : ''}</summary>
@@ -117,6 +134,10 @@ export function renderFilterBar(libraryData, filterState) {
       </details>
       ${timeFilterHtml('prep-slider', 'PREP ≤', filterState.maxPrep, PREP_SLIDER_MAX)}
       ${timeFilterHtml('cook-slider', 'COOK ≤', filterState.maxCook, COOK_SLIDER_MAX)}
+      ${timeFilterHtml('total-slider', 'TOTAL ≤', filterState.maxTotal ?? Infinity, TOTAL_SLIDER_MAX)}
+      <button type="button" class="chip" data-chip="one-pan" aria-pressed="${onePanOn ? 'true' : 'false'}">One-pan</button>
+      <button type="button" class="chip" data-chip="max-7-ingredients" aria-pressed="${maxSevenOn ? 'true' : 'false'}">≤7 ingredients</button>
+      <button type="button" class="chip" id="surprise-btn">Surprise us</button>
     </div>
     <p class="card-meta" style="margin: -8px 0 16px;">Cook time filters on active cook minutes only — marinating and passive time are excluded and only count toward the total shown on each card.</p>
   `;

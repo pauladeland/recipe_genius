@@ -81,6 +81,32 @@ test('applyFilters treats an empty tags array and default onePanOnly/maxIngredie
   assert.equal(applyFilters(recipes, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).length, 2);
 });
 
+test('renderFilterBar renders a tag checkbox for every distinct tag across recipes', () => {
+  const tagged = [{ ...recipes[0], tags: ['quick', 'sauce'] }, { ...recipes[1], tags: ['bake'] }];
+  const out = renderList({ meta: {}, avoidances, protocols: [], recipes: tagged }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();
+  assert.match(out, /name="tag" value="quick"/);
+  assert.match(out, /name="tag" value="sauce"/);
+  assert.match(out, /name="tag" value="bake"/);
+});
+
+test('renderFilterBar renders a total-time slider alongside prep and cook', () => {
+  const out = renderList({ meta: {}, avoidances, protocols: [], recipes }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();
+  assert.match(out, /id="total-slider"/);
+  assert.match(out, /TOTAL ≤/);
+});
+
+test('renderFilterBar renders one-pan and max-7-ingredients quick chips, aria-pressed reflecting current state', () => {
+  const out = renderList({ meta: {}, avoidances, protocols: [], recipes }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity, onePanOnly: true }).toString();
+  assert.match(out, /data-chip="one-pan"[^>]*aria-pressed="true"/);
+  assert.match(out, /data-chip="max-7-ingredients"[^>]*aria-pressed="false"/);
+});
+
+test('renderFilterBar renders a Surprise Us button', () => {
+  const out = renderList({ meta: {}, avoidances, protocols: [], recipes }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();
+  assert.match(out, /id="surprise-btn"/);
+  assert.match(out, />Surprise us</);
+});
+
 test('renderList shows a result count and one card per matching recipe', () => {
   const out = renderList({ meta: {}, avoidances, protocols: [], recipes }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();
   assert.match(out, /2 recipes/);
