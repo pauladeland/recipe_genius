@@ -4,10 +4,11 @@ import { applyTheme } from './ui/theme.js';
 import { html } from './ui/html.js';
 import {
   renderList, renderResultsBody, applyFilters,
-  PREP_SLIDER_MAX, COOK_SLIDER_MAX, timeFilterDisplay,
+  PREP_SLIDER_MAX, COOK_SLIDER_MAX, TOTAL_SLIDER_MAX, timeFilterDisplay,
 } from './views/list.js';
 import { renderRecipe, renderNotFound } from './views/recipe.js';
 import { renderSettings } from './views/settings.js';
+import { pickSurprise } from './ui/surprise.js';
 
 const root = document.getElementById('main');
 const liveRegion = document.getElementById('live-region');
@@ -15,7 +16,11 @@ const source = createStaticJsonSource();
 
 let libraryData = null;
 let settings = loadSettings();
-let filterState = { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity };
+let filterState = {
+  query: '', cuisines: [], allergenIds: [], tags: [],
+  maxPrep: Infinity, maxCook: Infinity, maxTotal: Infinity,
+  maxIngredients: Infinity, onePanOnly: false,
+};
 
 applyTheme(settings.theme);
 
@@ -113,6 +118,52 @@ function wireListFilters() {
       filterState = { ...filterState, maxCook: raw >= COOK_SLIDER_MAX ? Infinity : raw };
       cookSlider.parentElement.querySelector('.timefilter-value').textContent = timeFilterDisplay(raw, COOK_SLIDER_MAX);
       updateListResults();
+    });
+  }
+  const totalSlider = root.querySelector('#total-slider');
+  if (totalSlider) {
+    totalSlider.addEventListener('input', (e) => {
+      const raw = Number(e.target.value);
+      filterState = { ...filterState, maxTotal: raw >= TOTAL_SLIDER_MAX ? Infinity : raw };
+      totalSlider.parentElement.querySelector('.timefilter-value').textContent = timeFilterDisplay(raw, TOTAL_SLIDER_MAX);
+      updateListResults();
+    });
+  }
+  root.querySelectorAll('input[name="tag"]').forEach((cb) => {
+    cb.addEventListener('change', () => {
+      const checked = [...root.querySelectorAll('input[name="tag"]:checked')].map((c) => c.value);
+      filterState = { ...filterState, tags: checked };
+      setMsCount('tags-multiselect', checked.length);
+      updateListResults();
+    });
+  });
+  const onePanChip = root.querySelector('[data-chip="one-pan"]');
+  if (onePanChip) {
+    onePanChip.addEventListener('click', () => {
+      const next = !filterState.onePanOnly;
+      filterState = { ...filterState, onePanOnly: next };
+      onePanChip.setAttribute('aria-pressed', next ? 'true' : 'false');
+      updateListResults();
+    });
+  }
+  const maxSevenChip = root.querySelector('[data-chip="max-7-ingredients"]');
+  if (maxSevenChip) {
+    maxSevenChip.addEventListener('click', () => {
+      const next = filterState.maxIngredients <= 7 ? Infinity : 7;
+      filterState = { ...filterState, maxIngredients: next };
+      maxSevenChip.setAttribute('aria-pressed', next <= 7 ? 'true' : 'false');
+      updateListResults();
+    });
+  }
+  const surpriseBtn = root.querySelector('#surprise-btn');
+  if (surpriseBtn) {
+    surpriseBtn.addEventListener('click', () => {
+      const id = pickSurprise(libraryData.recipes, filterState);
+      if (id) {
+        location.hash = `#/r/${id}`;
+      } else {
+        announce('Nothing matches your current filters to surprise you with.');
+      }
     });
   }
 }
