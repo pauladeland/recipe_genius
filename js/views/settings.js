@@ -18,14 +18,24 @@ function themeButton(value, label, current) {
   return html`<button type="button" data-theme-choice="${value}" aria-pressed="${pressed ? 'true' : 'false'}">${label}</button>`;
 }
 
-function protocolButton(protocol, currentId) {
-  const pressed = currentId === protocol.id;
-  const label = protocol.advisory ? `${protocol.label} (advisory)` : protocol.label;
-  return html`<button type="button" data-protocol-choice="${protocol.id}" aria-pressed="${pressed ? 'true' : 'false'}">${label}</button>`;
+// Shared by the Off button and every real protocol so both go through the
+// exact same aria-pressed/label logic -- no hand-inlined sibling to drift.
+export function protocolLabel(protocol) {
+  return protocol.advisory ? `${protocol.label} (advisory)` : protocol.label;
+}
+
+function protocolChoiceButton(id, label, currentId, knownIds) {
+  // Off is pressed whenever currentId doesn't resolve to a real protocol --
+  // not just when it's falsy -- so a stale id (one deactivated/removed in
+  // the Sheet since it was saved) still renders exactly one pressed button
+  // rather than a group with nothing selected, even before app.js's own
+  // boot-time reconciliation has run.
+  const pressed = id ? currentId === id : !knownIds.has(currentId);
+  return html`<button type="button" data-protocol-choice="${id}" aria-pressed="${pressed ? 'true' : 'false'}">${label}</button>`;
 }
 
 export function renderSettings(avoidances, protocols, settings) {
-  const offPressed = settings.activeProtocolId === null;
+  const knownProtocolIds = new Set(protocols.map((p) => p.id));
   return html`
     <h1 tabindex="-1">Settings</h1>
     <section class="settings-section">
@@ -37,8 +47,8 @@ export function renderSettings(avoidances, protocols, settings) {
       <h2>Diet protocol</h2>
       <p>Following one filters Browse down to compliant recipes, with a banner and a one-tap way to see everything anyway.</p>
       <div class="theme-row" role="group" aria-label="Diet protocol">
-        <button type="button" data-protocol-choice="" aria-pressed="${offPressed ? 'true' : 'false'}">Off</button>
-        ${protocols.map((p) => protocolButton(p, settings.activeProtocolId))}
+        ${protocolChoiceButton('', 'Off', settings.activeProtocolId, knownProtocolIds)}
+        ${protocols.map((p) => protocolChoiceButton(p.id, protocolLabel(p), settings.activeProtocolId, knownProtocolIds))}
       </div>
     </section>
     <section class="settings-section">

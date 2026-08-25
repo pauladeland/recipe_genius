@@ -23,7 +23,10 @@ export function loadSettings() {
     return {
       theme: parsed.theme === 'light' || parsed.theme === 'dark' ? parsed.theme : 'system',
       avoidanceIds: Array.isArray(parsed.avoidanceIds) ? parsed.avoidanceIds : [],
-      activeProtocolId: typeof parsed.activeProtocolId === 'string' ? parsed.activeProtocolId : null,
+      // Must be a non-empty string, or it normalizes to the one true "off"
+      // value -- rejects both wrong types (e.g. a stray 42) and a
+      // corrupt/hand-edited "".
+      activeProtocolId: typeof parsed.activeProtocolId === 'string' && parsed.activeProtocolId ? parsed.activeProtocolId : null,
       showNonCompliant: parsed.showNonCompliant === true,
     };
   } catch {

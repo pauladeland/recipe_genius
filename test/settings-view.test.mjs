@@ -66,3 +66,14 @@ test('an advisory protocol label says so, visibly', () => {
   const out = renderSettings(avoidances, protocols, { theme: 'system', avoidanceIds: [], activeProtocolId: null, showNonCompliant: false }).toString();
   assert.match(out, /Keto \(advisory\)/);
 });
+
+test('marks Off as pressed for a stale activeProtocolId that matches no known protocol', () => {
+  const out = renderSettings(avoidances, protocols, { theme: 'system', avoidanceIds: [], activeProtocolId: 'no-longer-exists', showNonCompliant: false }).toString();
+  const offIndex = out.indexOf('data-protocol-choice=""');
+  const offButton = out.slice(offIndex, offIndex + 120);
+  assert.match(offButton, /aria-pressed="true"/);
+  for (const p of protocols) {
+    const idx = out.indexOf(`data-protocol-choice="${p.id}"`);
+    assert.match(out.slice(idx, idx + 120), /aria-pressed="false"/);
+  }
+});

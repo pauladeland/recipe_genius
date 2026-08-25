@@ -6,7 +6,7 @@ function badgeHtml(badge) {
     <details class="badge-detail">
       <summary class="badge badge-${badge.weight}">${badge.text}</summary>
       <div class="badge-detail-body">
-        <ul class="badge-causes">${badge.causes.map((c) => html`<li>${c.line}</li>`)}</ul>
+        <ul class="badge-causes">${badge.causes.map((c) => html`<li>${c.line || c.term}</li>`)}</ul>
         ${badge.substitutions ? html`<p class="badge-sub">Try instead: ${badge.substitutions}</p>` : ''}
       </div>
     </details>

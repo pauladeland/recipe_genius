@@ -174,10 +174,11 @@ export function renderResultsBody(libraryData, filterState, badgeAvoidances = li
   `;
 }
 
-export function renderList(libraryData, filterState, badgeAvoidances = libraryData.avoidances) {
+export function renderList(libraryData, filterState, badgeAvoidances = libraryData.avoidances, optionsData = libraryData, bannerHtml = '') {
   return html`
     <h1 tabindex="-1">Browse recipes</h1>
-    ${renderFilterBar(libraryData, filterState)}
+    ${bannerHtml}
+    ${renderFilterBar(optionsData, filterState)}
     <div id="list-results">${renderResultsBody(libraryData, filterState, badgeAvoidances)}</div>
   `;
 }
