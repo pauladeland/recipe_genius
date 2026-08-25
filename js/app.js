@@ -338,3 +338,12 @@ async function main() {
 }
 
 main();
+
+// Registered after boot so a SW failure can never keep the app from rendering.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch((err) => {
+      console.warn('Service worker registration failed:', err.message);
+    });
+  });
+}
