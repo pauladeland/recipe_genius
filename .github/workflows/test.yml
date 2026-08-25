@@ -8,8 +8,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
         with:
-          node-version: '20'
+          # The CACHE_VERSION check diffs against origin/main; the default
+          # shallow clone has no origin/main to diff against.
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
       - run: node --test test/
+      - name: Check CACHE_VERSION was bumped with app-shell changes
+        run: node scripts/check-cache-version.mjs
