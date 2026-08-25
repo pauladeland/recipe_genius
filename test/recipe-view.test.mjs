@@ -38,6 +38,54 @@ test('renders a danger badge above the title for a certain allergy', () => {
   assert.match(out, /Contains milk/);
 });
 
+test('a badge with a cause renders as an expandable details/summary, not a bare span', () => {
+  const withCause = {
+    ...recipe,
+    flags: [{ allergenId: 'milk', term: 'parmesan', level: 'certain', line: '6 oz Parmesan, freshly grated', lineIndex: 1 }],
+  };
+  const out = renderRecipe(withCause, avoidances).toString();
+  assert.match(out, /<details class="badge-detail">/);
+  assert.match(out, /<summary class="badge badge-danger">Contains milk \/ dairy<\/summary>/);
+});
+
+test('expanding a badge shows the offending ingredient line', () => {
+  const withCause = {
+    ...recipe,
+    flags: [{ allergenId: 'milk', term: 'parmesan', level: 'certain', line: '6 oz Parmesan, freshly grated', lineIndex: 1 }],
+  };
+  const out = renderRecipe(withCause, avoidances).toString();
+  assert.match(out, /6 oz Parmesan, freshly grated/);
+});
+
+test('a badge with substitutions text shows a "Try instead" line', () => {
+  const avoidancesWithSubs = [{ ...avoidances[0], substitutions: 'oat milk; coconut cream' }];
+  const withCause = {
+    ...recipe,
+    flags: [{ allergenId: 'milk', term: 'parmesan', level: 'certain', line: '6 oz Parmesan, freshly grated', lineIndex: 1 }],
+  };
+  const out = renderRecipe(withCause, avoidancesWithSubs).toString();
+  assert.match(out, /Try instead: oat milk; coconut cream/);
+});
+
+test('a badge with no substitutions text omits the "Try instead" line entirely', () => {
+  const withCause = {
+    ...recipe,
+    flags: [{ allergenId: 'milk', term: 'parmesan', level: 'certain', line: '6 oz Parmesan, freshly grated', lineIndex: 1 }],
+  };
+  const out = renderRecipe(withCause, avoidances).toString(); // shared `avoidances` fixture has no substitutions
+  assert.doesNotMatch(out, /Try instead/);
+});
+
+test('badge cause lines are escaped, same as every other interpolated value', () => {
+  const malicious = {
+    ...recipe,
+    flags: [{ allergenId: 'milk', term: 'milk', level: 'certain', line: '<img src=x onerror=alert(1)> milk', lineIndex: 0 }],
+  };
+  const out = renderRecipe(malicious, avoidances).toString();
+  assert.doesNotMatch(out, /<img/);
+  assert.match(out, /&lt;img/);
+});
+
 test('renders source attribution quietly, without a source_url the text is plain (not linked)', () => {
   const out = renderRecipe(recipe, avoidances).toString();
   assert.match(out, /Justine Snacks \(cookbook\)/);

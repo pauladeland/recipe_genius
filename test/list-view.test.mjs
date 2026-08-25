@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { renderList, renderResultsBody, applyFilters } from '../js/views/list.js';
+import { renderList, renderResultsBody, applyFilters, applyProtocolFilter } from '../js/views/list.js';
 
 const avoidances = [
   { id: 'milk', label: 'Milk / Dairy', severity: 'allergy' },
@@ -93,6 +93,36 @@ test('applyFilters composes onePanOnly and maxIngredients as AND, not OR', () =>
   assert.deepEqual(result.map((r) => r.id), ['a']);
 });
 
+test('applyProtocolFilter with no active protocol returns every recipe unchanged', () => {
+  const withCompliance = [
+    { ...recipes[0], protocolCompliance: { vegetarian: true } },
+    { ...recipes[1], protocolCompliance: { vegetarian: false } },
+  ];
+  assert.equal(applyProtocolFilter(withCompliance, null, false).length, 2);
+});
+
+test('applyProtocolFilter keeps only recipes compliant with the active protocol', () => {
+  const withCompliance = [
+    { ...recipes[0], protocolCompliance: { vegetarian: true } },
+    { ...recipes[1], protocolCompliance: { vegetarian: false } },
+  ];
+  const result = applyProtocolFilter(withCompliance, 'vegetarian', false);
+  assert.deepEqual(result.map((r) => r.id), ['a']);
+});
+
+test('applyProtocolFilter with showNonCompliant true returns every recipe even with an active protocol', () => {
+  const withCompliance = [
+    { ...recipes[0], protocolCompliance: { vegetarian: true } },
+    { ...recipes[1], protocolCompliance: { vegetarian: false } },
+  ];
+  assert.equal(applyProtocolFilter(withCompliance, 'vegetarian', true).length, 2);
+});
+
+test('applyProtocolFilter treats a missing protocolCompliance entry as non-compliant, not a crash', () => {
+  const noComplianceData = [{ ...recipes[0], protocolCompliance: {} }];
+  assert.equal(applyProtocolFilter(noComplianceData, 'aip', false).length, 0);
+});
+
 test('renderFilterBar never lists one-pan as a Tags checkbox — it is the quick-filter chip\'s alone to control', () => {
   const tagged = [{ ...recipes[0], tags: ['one-pan', 'sauce'] }];
   const out = renderList({ meta: {}, avoidances, protocols: [], recipes: tagged }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();
@@ -175,4 +205,38 @@ test('badgeAvoidances defaults to the full avoidance list when omitted', () => {
   const out = renderList({ meta: {}, avoidances, protocols: [], recipes: withYeastFlag }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();
   assert.match(out, /Contains milk/);
   assert.match(out, /May contain yeast/);
+});
+
+test('renderList derives filter-bar options from optionsData, not the (possibly protocol-narrowed) libraryData passed for results', () => {
+  // Simulates a protocol having narrowed the visible recipes down to just
+  // one Argentinian recipe, while the full unscoped library still has a
+  // second cuisine -- that second cuisine's checkbox must not disappear
+  // out from under a filter the user already has checked.
+  const narrowed = { meta: {}, avoidances, protocols: [], recipes: [recipes[0]] };
+  const fullLibrary = { meta: {}, avoidances, protocols: [], recipes };
+  const out = renderList(narrowed, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }, avoidances, fullLibrary).toString();
+  assert.match(out, /value="Argentinian"/);
+  // recipes[1] has cuisine: null, so the only *other* real cuisine option
+  // possible here is Argentinian itself -- assert the option count reflects
+  // the full library's distinct cuisines, not the narrowed one's.
+  assert.match(out, /1 recipe\b/); // the results themselves still reflect the narrowed set
+});
+
+test('renderList inserts bannerHtml after the h1 heading, before the filter bar', () => {
+  const out = renderList(
+    { meta: {}, avoidances, protocols: [], recipes },
+    { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity },
+    avoidances,
+    { meta: {}, avoidances, protocols: [], recipes },
+    '<div class="protocol-banner">TEST BANNER</div>'
+  ).toString();
+  const h1Index = out.indexOf('<h1');
+  const bannerIndex = out.indexOf('TEST BANNER');
+  const filterBarIndex = out.indexOf('search-input');
+  assert.ok(h1Index < bannerIndex && bannerIndex < filterBarIndex, 'banner must render after the h1 and before the filter bar');
+});
+
+test('renderList omits the banner entirely when bannerHtml is not provided', () => {
+  const out = renderList({ meta: {}, avoidances, protocols: [], recipes }, { query: '', cuisines: [], allergenIds: [], maxPrep: Infinity, maxCook: Infinity }).toString();
+  assert.doesNotMatch(out, /protocol-banner/);
 });

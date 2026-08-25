@@ -68,6 +68,44 @@ test('an empty flags array produces no badges', () => {
   assert.deepEqual(computeBadges([], avoidances), []);
 });
 
+test('a badge carries the offending line and term as a cause', () => {
+  const flags = [{ allergenId: 'milk', term: 'parmesan', level: 'certain', line: '6 oz Parmesan, freshly grated', lineIndex: 2 }];
+  const badges = computeBadges(flags, avoidances);
+  assert.deepEqual(badges[0].causes, [{ line: '6 oz Parmesan, freshly grated', term: 'parmesan' }]);
+});
+
+test('multiple distinct lines for the same allergen all appear as separate causes', () => {
+  const flags = [
+    { allergenId: 'milk', term: 'butter', level: 'certain', line: '2 tbsp butter', lineIndex: 0 },
+    { allergenId: 'milk', term: 'cheese', level: 'certain', line: '1 cup shredded cheese', lineIndex: 3 },
+  ];
+  const badges = computeBadges(flags, avoidances);
+  assert.equal(badges[0].causes.length, 2);
+  assert.deepEqual(badges[0].causes.map((c) => c.line), ['2 tbsp butter', '1 cup shredded cheese']);
+});
+
+test('the same line/term pair is not duplicated in causes', () => {
+  const flags = [
+    { allergenId: 'milk', term: 'butter', level: 'certain', line: '2 tbsp butter', lineIndex: 0 },
+    { allergenId: 'milk', term: 'butter', level: 'certain', line: '2 tbsp butter', lineIndex: 0 },
+  ];
+  const badges = computeBadges(flags, avoidances);
+  assert.equal(badges[0].causes.length, 1);
+});
+
+test('substitutions text passes through from the avoidance row', () => {
+  const withSubs = [...avoidances, { id: 'milk', label: 'Milk / Dairy', severity: 'allergy', substitutions: 'oat milk; coconut cream' }];
+  const flags = [{ allergenId: 'milk', term: 'butter', level: 'certain', line: '2 tbsp butter', lineIndex: 0 }];
+  const badges = computeBadges(flags, withSubs);
+  assert.equal(badges[0].substitutions, 'oat milk; coconut cream');
+});
+
+test('a missing substitutions value on the avoidance row is null, not undefined', () => {
+  const flags = [{ allergenId: 'milk', term: 'butter', level: 'certain', line: '2 tbsp butter', lineIndex: 0 }];
+  const badges = computeBadges(flags, avoidances); // shared `avoidances` fixture has no substitutions field
+  assert.equal(badges[0].substitutions, null);
+});
+
 test('a flag referencing an unknown avoidance id is skipped rather than throwing', () => {
   const flags = [{ allergenId: 'unknown-thing', term: 'x', level: 'certain' }];
   assert.deepEqual(computeBadges(flags, avoidances), []);

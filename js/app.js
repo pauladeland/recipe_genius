@@ -3,11 +3,11 @@ import { parseRoute, loadSettings, saveSettings } from './state.js';
 import { applyTheme } from './ui/theme.js';
 import { html } from './ui/html.js';
 import {
-  renderList, renderResultsBody, applyFilters,
+  renderList, renderResultsBody, applyFilters, applyProtocolFilter,
   PREP_SLIDER_MAX, COOK_SLIDER_MAX, TOTAL_SLIDER_MAX, timeFilterDisplay,
 } from './views/list.js';
 import { renderRecipe, renderNotFound } from './views/recipe.js';
-import { renderSettings } from './views/settings.js';
+import { renderSettings, protocolLabel } from './views/settings.js';
 import { pickSurprise } from './ui/surprise.js';
 
 const root = document.getElementById('main');
@@ -67,10 +67,65 @@ function setMsCount(detailsId, count) {
   }
 }
 
+function protocolFilteredRecipes() {
+  return applyProtocolFilter(libraryData.recipes, settings.activeProtocolId, settings.showNonCompliant);
+}
+
+// Single source of truth for "how many recipes comply with protocol X" --
+// the banner, its live-region announcement, and the settings-screen
+// announcement on activation all read this instead of each hand-rolling
+// the same filter.
+function compliantCount(protocolId) {
+  return libraryData.recipes.filter((r) => r.protocolCompliance?.[protocolId] === true).length;
+}
+
+function protocolBannerHtml() {
+  if (!settings.activeProtocolId) return '';
+  const protocol = libraryData.protocols.find((p) => p.id === settings.activeProtocolId);
+  if (!protocol) return ''; // stale id from a protocol removed/deactivated in the Sheet -- reconciled at boot in main()
+  return html`
+    <div class="protocol-banner">
+      <span>${protocolLabel(protocol)} active &mdash; ${compliantCount(protocol.id)} of ${libraryData.recipes.length} recipes.</span>
+      <label><input type="checkbox" id="show-non-compliant" ${settings.showNonCompliant ? html`checked` : ''}> Show non-compliant</label>
+      <button type="button" id="protocol-off">Turn off</button>
+    </div>
+  `;
+}
+
+function wireProtocolBanner() {
+  const checkbox = document.getElementById('show-non-compliant');
+  if (checkbox) {
+    checkbox.addEventListener('change', (e) => {
+      settings = { ...settings, showNonCompliant: e.target.checked };
+      saveSettings(settings);
+      renderCurrentList();
+      // The banner (and this checkbox) survives this toggle -- stay on it
+      // rather than yanking focus up to the heading, same convention as
+      // the theme/protocol pickers in Settings.
+      const restored = document.getElementById('show-non-compliant');
+      if (restored) restored.focus();
+    });
+  }
+  const offBtn = document.getElementById('protocol-off');
+  if (offBtn) {
+    offBtn.addEventListener('click', () => {
+      settings = { ...settings, activeProtocolId: null, showNonCompliant: false };
+      saveSettings(settings);
+      renderCurrentList();
+      // Unlike the checkbox above, this control itself disappears once the
+      // protocol turns off -- there is nothing to restore focus to, so the
+      // heading is the correct fallback here (matching route-change focus).
+      focusHeading();
+      announce('Protocol turned off.');
+    });
+  }
+}
+
 function updateListResults() {
+  const scoped = { ...libraryData, recipes: protocolFilteredRecipes() };
   const resultsEl = document.getElementById('list-results');
-  resultsEl.innerHTML = renderResultsBody(libraryData, filterState, badgeAvoidances()).toString();
-  const count = applyFilters(libraryData.recipes, filterState).length;
+  resultsEl.innerHTML = renderResultsBody(scoped, filterState, badgeAvoidances()).toString();
+  const count = applyFilters(scoped.recipes, filterState).length;
   announce(`${count} recipe${count === 1 ? '' : 's'}`);
 }
 
@@ -158,7 +213,7 @@ function wireListFilters() {
   const surpriseBtn = root.querySelector('#surprise-btn');
   if (surpriseBtn) {
     surpriseBtn.addEventListener('click', () => {
-      const id = pickSurprise(libraryData.recipes, filterState);
+      const id = pickSurprise(protocolFilteredRecipes(), filterState);
       if (id != null) {
         location.hash = `#/r/${encodeURIComponent(id)}`;
       } else {
@@ -169,10 +224,16 @@ function wireListFilters() {
 }
 
 function renderCurrentList() {
-  root.innerHTML = renderList(libraryData, filterState, badgeAvoidances()).toString();
-  const count = applyFilters(libraryData.recipes, filterState).length;
+  const scoped = { ...libraryData, recipes: protocolFilteredRecipes() };
+  // Filter-bar options (Cuisine/Tags checkboxes) are derived from the FULL,
+  // unscoped library -- not `scoped` -- so a checkbox a protocol has
+  // narrowed to zero results never disappears out from under a filter the
+  // user already has checked (it would otherwise be impossible to uncheck).
+  root.innerHTML = renderList(scoped, filterState, badgeAvoidances(), libraryData, protocolBannerHtml()).toString();
+  const count = applyFilters(scoped.recipes, filterState).length;
   announce(`${count} recipe${count === 1 ? '' : 's'}`);
   wireListFilters();
+  wireProtocolBanner();
 }
 
 function wireSettingsForm() {
@@ -189,12 +250,31 @@ function wireSettingsForm() {
       settings = { ...settings, theme };
       saveSettings(settings);
       applyTheme(theme);
-      root.innerHTML = renderSettings(libraryData.avoidances, settings).toString();
+      root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
       wireSettingsForm();
       // Stay on the button the user just pressed rather than yanking focus
       // up to the page heading -- this is an in-place update, not a route change.
       const pressed = root.querySelector(`[data-theme-choice="${theme}"]`);
       if (pressed) pressed.focus();
+    });
+  });
+  root.querySelectorAll('[data-protocol-choice]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const chosenId = btn.getAttribute('data-protocol-choice');
+      settings = { ...settings, activeProtocolId: chosenId || null, showNonCompliant: false };
+      saveSettings(settings);
+      root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
+      wireSettingsForm();
+      // Find by attribute value rather than interpolating chosenId into a
+      // selector string -- a Sheet-authored protocol id containing a `"`
+      // would otherwise throw and abort the handler mid-way.
+      const pressed = [...root.querySelectorAll('[data-protocol-choice]')]
+        .find((el) => el.getAttribute('data-protocol-choice') === chosenId);
+      if (pressed) pressed.focus();
+      if (chosenId) {
+        const protocol = libraryData.protocols.find((p) => p.id === chosenId);
+        announce(`${protocolLabel(protocol)} active — ${compliantCount(chosenId)} of ${libraryData.recipes.length} recipes.`);
+      }
     });
   });
 }
@@ -209,7 +289,7 @@ async function render() {
     const recipe = libraryData.recipes.find((r) => r.id === route.recipeId);
     root.innerHTML = recipe ? renderRecipe(recipe, badgeAvoidances()).toString() : renderNotFound(route.recipeId).toString();
   } else if (route.name === 'settings') {
-    root.innerHTML = renderSettings(libraryData.avoidances, settings).toString();
+    root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
     wireSettingsForm();
   }
 
@@ -233,6 +313,15 @@ async function main() {
     root.innerHTML = html`<div class="empty-state"><h1 tabindex="-1">Couldn't load recipes</h1><p>Check your connection and reload. (${err.message})</p></div>`.toString();
     focusHeading();
     return;
+  }
+  // A protocol can be removed or deactivated by a single Sheet edit
+  // (scripts/sync.mjs drops it from `protocols` and from every recipe's
+  // `protocolCompliance`). Reconcile any stale saved id now, before the
+  // first render, rather than leaving a user permanently stuck on an empty
+  // "0 recipes" Browse with no banner and no visible way out.
+  if (settings.activeProtocolId && !libraryData.protocols.some((p) => p.id === settings.activeProtocolId)) {
+    settings = { ...settings, activeProtocolId: null, showNonCompliant: false };
+    saveSettings(settings);
   }
   window.addEventListener('hashchange', render);
   render();

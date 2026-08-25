@@ -40,6 +40,15 @@ export function applyFilters(recipes, filterState) {
   });
 }
 
+// Protocols filter FIRST, before every other filter dimension above —
+// allergens then badge whatever survives. Kept as a separate pipeline
+// stage (called before applyFilters, not folded into it) because it's
+// driven by persisted settings state, not the per-session filterState.
+export function applyProtocolFilter(recipes, activeProtocolId, showNonCompliant) {
+  if (!activeProtocolId || showNonCompliant) return recipes;
+  return recipes.filter((r) => r.protocolCompliance?.[activeProtocolId] === true);
+}
+
 function badgeHtml(badge) {
   return html`<span class="badge badge-${badge.weight}">${badge.text}</span>`;
 }
@@ -165,10 +174,11 @@ export function renderResultsBody(libraryData, filterState, badgeAvoidances = li
   `;
 }
 
-export function renderList(libraryData, filterState, badgeAvoidances = libraryData.avoidances) {
+export function renderList(libraryData, filterState, badgeAvoidances = libraryData.avoidances, optionsData = libraryData, bannerHtml = '') {
   return html`
     <h1 tabindex="-1">Browse recipes</h1>
-    ${renderFilterBar(libraryData, filterState)}
+    ${bannerHtml}
+    ${renderFilterBar(optionsData, filterState)}
     <div id="list-results">${renderResultsBody(libraryData, filterState, badgeAvoidances)}</div>
   `;
 }
