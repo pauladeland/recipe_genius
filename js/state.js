@@ -18,14 +18,16 @@ export function parseRoute(hash) {
 export function loadSettings() {
   try {
     const raw = localStorage.getItem(SETTINGS_KEY);
-    if (!raw) return { theme: 'system', avoidanceIds: [] };
+    if (!raw) return { theme: 'system', avoidanceIds: [], activeProtocolId: null, showNonCompliant: false };
     const parsed = JSON.parse(raw);
     return {
       theme: parsed.theme === 'light' || parsed.theme === 'dark' ? parsed.theme : 'system',
       avoidanceIds: Array.isArray(parsed.avoidanceIds) ? parsed.avoidanceIds : [],
+      activeProtocolId: typeof parsed.activeProtocolId === 'string' ? parsed.activeProtocolId : null,
+      showNonCompliant: parsed.showNonCompliant === true,
     };
   } catch {
-    return { theme: 'system', avoidanceIds: [] };
+    return { theme: 'system', avoidanceIds: [], activeProtocolId: null, showNonCompliant: false };
   }
 }
 
