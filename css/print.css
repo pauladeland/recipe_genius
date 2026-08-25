@@ -1,0 +1,34 @@
+/* Paper. Every rule stays inside @media print — this file must never be able
+   to affect the screen, which test/print-css.test.mjs enforces. */
+@media print {
+  .app-header, .filterbar, .app-footer, .skip-link, #live-region,
+  .protocol-banner, .result-count, #surprise-btn {
+    display: none !important;
+  }
+
+  /* A dark theme must not print a black page and drain a cartridge. */
+  html, body, .detail {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  main { max-width: none; padding: 0; }
+  .detail { border: none; padding: 0; }
+
+  /* Badges carry the safety information; on paper they lose their color, so
+     the border and the expanded cause text have to do that work instead. */
+  .badge { border: 1.5px solid #000 !important; color: #000 !important; background: #fff !important; }
+  .badge-detail summary { list-style: none; }
+  .badge-detail-body { display: block !important; border: 1px solid #000; }
+  .badge-causes li { padding: 1px 0; }
+
+  /* Two columns collapse to one; nothing should break across a page mid-step. */
+  .detail-cols { display: block; }
+  .ingredients li, .steps li { break-inside: avoid; }
+  .detail-photo { max-width: 320px; }
+
+  /* Print the destination of a source link rather than a dead underline. */
+  .detail-source a::after { content: " (" attr(href) ")"; font-size: 10px; }
+
+  .detail-footer { border-top: 1px solid #000; margin-top: 18px; }
+}
