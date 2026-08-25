@@ -33,6 +33,18 @@ function renderSyncStatus() {
   el.classList.toggle('is-stale', stale);
 }
 
+// A photo that fails to load — offline before it was ever cached, or a file
+// renamed out from under the Sheet — must leave no trace. The design is
+// explicit that a missing photo says nothing at all, and a broken-image strip
+// is not nothing.
+function hidePhotoIfUnavailable() {
+  const img = root.querySelector('.detail-photo');
+  if (!img) return;
+  const hide = () => img.remove();
+  if (img.complete && img.naturalWidth === 0) hide();
+  else img.addEventListener('error', hide, { once: true });
+}
+
 function announce(message) {
   liveRegion.textContent = message;
 }
@@ -297,6 +309,7 @@ async function render() {
   } else if (route.name === 'recipe') {
     const recipe = libraryData.recipes.find((r) => r.id === route.recipeId);
     root.innerHTML = recipe ? renderRecipe(recipe, badgeAvoidances()).toString() : renderNotFound(route.recipeId).toString();
+    hidePhotoIfUnavailable();
   } else if (route.name === 'settings') {
     root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
     wireSettingsForm();
@@ -321,6 +334,10 @@ async function main() {
   } catch (err) {
     root.innerHTML = html`<div class="empty-state"><h1 tabindex="-1">Couldn't load recipes</h1><p>Check your connection and reload. (${err.message})</p></div>`.toString();
     focusHeading();
+    // Still report sync state here. Leaving the footer on its "Checking sync…"
+    // placeholder in the one case it most needs to speak is exactly the
+    // silent-staleness failure this indicator exists to prevent.
+    renderSyncStatus();
     return;
   }
   renderSyncStatus();

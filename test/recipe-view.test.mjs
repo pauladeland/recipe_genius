@@ -135,7 +135,8 @@ test('renders a photo when the recipe has a local one', () => {
   const out = renderRecipe(withPhoto, avoidances).toString();
   assert.match(out, /<img class="detail-photo" src="assets\/photos\/salmon-risotto\.jpg"/);
   assert.match(out, /alt=""/, 'a photo with no alt text is decorative');
-  assert.match(out, /loading="lazy"/);
+  assert.match(out, /decoding="async"/);
+  assert.doesNotMatch(out, /loading="lazy"/, 'the hero photo must not be lazy — it is the largest paint');
 });
 
 test('announces populated alt text instead of leaving the photo decorative', () => {

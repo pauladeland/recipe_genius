@@ -45,6 +45,17 @@ test('surrounding whitespace from a Sheet cell is tolerated', () => {
   assert.equal(photoSrc({ image: '  assets/photos/x.jpg  ' }), 'assets/photos/x.jpg');
 });
 
+test('percent-encoded traversal is refused — the URL parser resolves %2e%2e as a dot segment', () => {
+  assert.equal(photoSrc({ image: 'assets/photos/%2e%2e/%2e%2e/x.png' }), null);
+  assert.equal(photoSrc({ image: 'assets/photos/a%2Fb.jpg' }), null);
+});
+
+test('a non-string image value returns null instead of throwing', () => {
+  assert.equal(photoSrc({ image: 42 }), null);
+  assert.equal(photoSrc({ image: true }), null);
+  assert.equal(photoSrc({ image: ['assets/photos/x.jpg'] }), null);
+});
+
 test('photoAlt passes through populated alt text', () => {
   assert.equal(photoAlt({ imageAlt: 'A bowl of risotto' }), 'A bowl of risotto');
 });

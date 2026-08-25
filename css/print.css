@@ -15,10 +15,22 @@
   main { max-width: none; padding: 0; }
   .detail { border: none; padding: 0; }
 
-  /* Badges carry the safety information; on paper they lose their color, so
-     the border and the expanded cause text have to do that work instead. */
-  .badge { border: 1.5px solid #000 !important; color: #000 !important; background: #fff !important; }
+  /* Badge weight must survive the loss of color. computeBadges emits the same
+     wording ("Contains milk / dairy") for a certain allergy and a certain
+     sensitivity — the visual weight is the ONLY thing separating them. So
+     danger prints as a solid black block with knocked-out text and caution as
+     an outline; flattening both to one outline would make a milk allergy and
+     a mild sensitivity indistinguishable on paper. */
+  .badge-danger { background: #000 !important; color: #fff !important; border: 1.5px solid #000 !important; }
+  .badge-caution { background: #fff !important; color: #000 !important; border: 1.5px solid #000 !important; }
+  .badge-info { background: #fff !important; color: #000 !important; border: none !important; }
+
+  /* A closed <details> hides its content through ::details-content's
+     content-visibility, which `display` alone cannot override — so allergen
+     cause lines would silently not print unless the reader happened to have
+     clicked every badge open first. */
   .badge-detail summary { list-style: none; }
+  .badge-detail::details-content { content-visibility: visible; block-size: auto; }
   .badge-detail-body { display: block !important; border: 1px solid #000; }
   .badge-causes li { padding: 1px 0; }
 

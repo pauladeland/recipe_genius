@@ -28,7 +28,9 @@ function sourceLine(recipe) {
 function photoHtml(recipe) {
   const src = photoSrc(recipe);
   if (!src) return '';
-  return html`<img class="detail-photo" src="${src}" alt="${photoAlt(recipe)}" loading="lazy" decoding="async">`;
+  // Eager, not lazy: this is the one image on the page and it sits just below
+  // the title, so deferring it only delays the largest paint.
+  return html`<img class="detail-photo" src="${src}" alt="${photoAlt(recipe)}" decoding="async">`;
 }
 
 export function renderRecipe(recipe, avoidances) {

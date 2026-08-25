@@ -1,11 +1,11 @@
 {
+  "id": "./",
   "name": "Recipe Genius",
   "short_name": "Recipes",
   "description": "A private recipe library with automatic allergen checks.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#FAFAF7",
   "theme_color": "#FAFAF7",
   "icons": [

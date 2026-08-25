@@ -12,10 +12,17 @@ const ALLOWED_PREFIX = 'assets/photos/';
 const ALLOWED_EXTENSIONS = /\.(jpe?g|png|webp)$/i;
 
 export function photoSrc(recipe) {
-  const raw = (recipe?.image || '').trim();
+  const value = recipe?.image;
+  // A Sheet cell can arrive as a number or a boolean; .trim() would throw.
+  if (typeof value !== 'string') return null;
+  const raw = value.trim();
   if (!raw) return null;
   if (!raw.startsWith(ALLOWED_PREFIX)) return null;
   if (raw.includes('..')) return null;
+  // Percent-encoding is never needed for these filenames (they are slugs), and
+  // allowing it would smuggle traversal past the check above: the URL parser
+  // resolves %2e%2e as a double-dot segment.
+  if (raw.includes('%')) return null;
   if (!ALLOWED_EXTENSIONS.test(raw)) return null;
   return raw;
 }

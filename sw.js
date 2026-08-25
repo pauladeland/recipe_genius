@@ -1,17 +1,27 @@
 /* Service worker. Runs in its own global scope — it CANNOT import anything
-   from js/. Constants duplicated here are guarded by test/sw.test.mjs.
+   from js/. The two paths it duplicates from the app (the library URL and the
+   photo directory) are pinned by test/sw.test.mjs against their real
+   definitions in js/data/static-json-source.js and js/ui/photo.js.
 
-   Bump CACHE_VERSION whenever anything under js/ or css/ changes. CI fails
-   the build if you forget (.github/workflows/test.yml), because a stale
-   precache serving old JS against a new library.json is invisible locally
-   and broken in the kitchen. */
+   Bump CACHE_VERSION whenever anything under js/, css/, index.html, or the
+   manifest changes. CI fails the build if you forget
+   (scripts/check-cache-version.mjs), because a stale precache serving old JS
+   against a new library.json is invisible locally and broken in the kitchen. */
 
 const CACHE_VERSION = 'v1';
 const SHELL_CACHE = `shell-${CACHE_VERSION}`;
-const DATA_CACHE = `data-${CACHE_VERSION}`;
-const PHOTO_CACHE = 'photos'; // deliberately unversioned — photo bytes never
-                              // change under a filename, and re-downloading
-                              // every JPEG on each release is pure waste.
+
+// DATA and PHOTO caches are deliberately UNVERSIONED, and that is load-bearing.
+// CI forces a CACHE_VERSION bump on any app-shell change, so versioning these
+// would mean every routine CSS tweak deletes the offline recipe library and the
+// downloaded photos — the app would lose its offline data on every release, in
+// exactly the situation (no signal, at the store) the cache exists for.
+const DATA_CACHE = 'data';
+const PHOTO_CACHE = 'photos';
+
+// Paths duplicated from the app; see the header note and test/sw.test.mjs.
+const LIBRARY_PATH = 'data/library.json';
+const PHOTO_PREFIX = 'assets/photos/';
 
 const PRECACHE_URLS = [
   './',
@@ -34,13 +44,50 @@ const PRECACHE_URLS = [
   'js/views/settings.js',
   'assets/icons/icon-192.png',
   'assets/icons/icon-512.png',
+  'assets/icons/icon-512-maskable.png',
 ];
 
+/**
+ * A response is only safe to cache if it came from our own origin as a real
+ * 200. Without this a captive portal — hotel, airport, café, i.e. exactly
+ * where someone opens a recipe app — can answer js/app.js with its own login
+ * HTML at status 200, which cache-first would then serve as the app's
+ * JavaScript forever, with no in-app way out.
+ */
+function isCacheable(response) {
+  return !!response && response.status === 200 && response.type === 'basic';
+}
+
+async function safePut(cacheName, request, response) {
+  if (!isCacheable(response)) return;
+  try {
+    const cache = await caches.open(cacheName);
+    await cache.put(request, response.clone());
+  } catch {
+    // Quota exceeded, or a response that cannot be stored. Not fatal — the
+    // network answer still reaches the page.
+  }
+}
+
 self.addEventListener('install', (event) => {
-  // No skipWaiting() — a new worker waits until every tab using the old one
-  // is gone. Swapping the app out from under someone mid-recipe is the one
+  // No skipWaiting() — a new worker waits until every tab using the old one is
+  // gone. Swapping the app out from under someone mid-recipe is the one
   // failure this app cannot afford.
-  event.waitUntil(caches.open(SHELL_CACHE).then((cache) => cache.addAll(PRECACHE_URLS)));
+  event.waitUntil((async () => {
+    const cache = await caches.open(SHELL_CACHE);
+    // `cache: 'reload'` bypasses the HTTP cache so a precache can never commit
+    // a stale — or captive-portal — copy of the shell.
+    await cache.addAll(PRECACHE_URLS.map((url) => new Request(url, { cache: 'reload' })));
+
+    // The library has to be seeded here, not left to the first page fetch.
+    // The app requests library.json during module evaluation, before this
+    // worker has claimed the page, so on a first visit that request bypasses
+    // the worker entirely and nothing is ever written to DATA_CACHE. Without
+    // this line the first offline open renders an empty library — the exact
+    // journey this milestone exists to make work.
+    const response = await fetch(new Request(LIBRARY_PATH, { cache: 'reload' }));
+    await safePut(DATA_CACHE, LIBRARY_PATH, response);
+  })());
 });
 
 self.addEventListener('activate', (event) => {
@@ -52,24 +99,38 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-/** Stale-while-revalidate: answer from cache now, refresh for next time. */
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(DATA_CACHE);
-  const cached = await cache.match(request);
-  const network = fetch(request)
-    .then((response) => {
-      if (response.ok) cache.put(request, response.clone());
+/**
+ * Stale-while-revalidate: answer from cache now, refresh for next time. The
+ * refresh is handed to event.waitUntil, without which the browser is free to
+ * terminate the worker the moment the cached response is returned — killing
+ * the in-flight update, so "next time" would never arrive.
+ */
+function staleWhileRevalidate(event, cacheName) {
+  const { request } = event;
+  const refresh = fetch(request)
+    .then(async (response) => {
+      await safePut(cacheName, request, response);
       return response;
     })
     .catch(() => null);
-  if (cached) return cached;
-  const fresh = await network;
-  if (fresh) return fresh;
-  // Offline with nothing cached yet. An empty-but-valid library lets the app
-  // render its own empty state instead of throwing a parse error.
-  return new Response('{"meta":{},"avoidances":[],"protocols":[],"recipes":[]}', {
-    headers: { 'Content-Type': 'application/json' },
-  });
+
+  return caches.open(cacheName)
+    .then((cache) => cache.match(request))
+    .then((cached) => {
+      if (cached) {
+        event.waitUntil(refresh);
+        return cached;
+      }
+      // Nothing cached yet: the network answer is all there is. If it fails,
+      // let the rejection through so the app renders its own "Couldn't load
+      // recipes" state. Synthesizing an empty-but-valid library here would
+      // instead render a confident "0 recipes — try clearing a filter",
+      // blaming the user's filters for a network problem.
+      return refresh.then((response) => {
+        if (response) return response;
+        throw new Error('offline and no cached library');
+      });
+    });
 }
 
 /** Cache-first, and remember anything new. Used for the shell and photos. */
@@ -78,7 +139,7 @@ async function cacheFirst(request, cacheName) {
   const cached = await cache.match(request);
   if (cached) return cached;
   const response = await fetch(request);
-  if (response.ok) cache.put(request, response.clone());
+  await safePut(cacheName, request, response);
   return response;
 }
 
@@ -89,26 +150,30 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  // Hash routing means every route is the same document; if a navigation
-  // can't reach the network, the cached shell is always the right answer.
+  // The document is served from the same versioned cache as its scripts and
+  // styles. Network-first here would let a freshly deployed index.html run
+  // against the previous version's cached JS for as long as the old worker
+  // stays alive — which, with skipWaiting deliberately absent, can be weeks on
+  // an installed phone. One policy for the whole shell keeps HTML and JS in
+  // lockstep; new content still arrives via the library's stale-while-
+  // revalidate, and new code arrives when the waiting worker activates.
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request).catch(() => caches.match('index.html', { cacheName: SHELL_CACHE }))
+      caches.match('index.html', { cacheName: SHELL_CACHE })
+        .then((cached) => cached || fetch(request))
     );
     return;
   }
 
-  if (url.pathname.endsWith('/data/library.json')) {
-    event.respondWith(staleWhileRevalidate(request));
+  if (url.pathname.endsWith(`/${LIBRARY_PATH}`)) {
+    event.respondWith(staleWhileRevalidate(event, DATA_CACHE));
     return;
   }
 
-  if (url.pathname.includes('/assets/photos/')) {
+  if (url.pathname.includes(`/${PHOTO_PREFIX}`)) {
     event.respondWith(cacheFirst(request, PHOTO_CACHE));
     return;
   }
 
-  event.respondWith(
-    cacheFirst(request, SHELL_CACHE).catch(() => caches.match(request, { cacheName: SHELL_CACHE }))
-  );
+  event.respondWith(cacheFirst(request, SHELL_CACHE));
 });
