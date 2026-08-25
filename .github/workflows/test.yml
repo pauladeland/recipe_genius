@@ -19,5 +19,10 @@ jobs:
       # Explicit glob, not `node --test test/`: Node >=22 resolves a bare
       # directory argument as a module path and fails with MODULE_NOT_FOUND.
       - run: node --test test/*.test.mjs
+      # The Apps Script endpoint is a public write endpoint acting with the
+      # owner's Google identity, and this repo is public. A leak here is
+      # permanent -- git history keeps it even after the file is deleted.
+      - name: Check no private-layer secrets were committed
+        run: node scripts/check-no-secrets.mjs
       - name: Check CACHE_VERSION was bumped with app-shell changes
         run: node scripts/check-cache-version.mjs
