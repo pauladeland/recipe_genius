@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { renderList, renderResultsBody, applyFilters } from '../js/views/list.js';
+import { renderList, renderResultsBody, applyFilters, applyProtocolFilter } from '../js/views/list.js';
 
 const avoidances = [
   { id: 'milk', label: 'Milk / Dairy', severity: 'allergy' },
@@ -91,6 +91,36 @@ test('applyFilters composes onePanOnly and maxIngredients as AND, not OR', () =>
     onePanOnly: true, maxIngredients: 7,
   });
   assert.deepEqual(result.map((r) => r.id), ['a']);
+});
+
+test('applyProtocolFilter with no active protocol returns every recipe unchanged', () => {
+  const withCompliance = [
+    { ...recipes[0], protocolCompliance: { vegetarian: true } },
+    { ...recipes[1], protocolCompliance: { vegetarian: false } },
+  ];
+  assert.equal(applyProtocolFilter(withCompliance, null, false).length, 2);
+});
+
+test('applyProtocolFilter keeps only recipes compliant with the active protocol', () => {
+  const withCompliance = [
+    { ...recipes[0], protocolCompliance: { vegetarian: true } },
+    { ...recipes[1], protocolCompliance: { vegetarian: false } },
+  ];
+  const result = applyProtocolFilter(withCompliance, 'vegetarian', false);
+  assert.deepEqual(result.map((r) => r.id), ['a']);
+});
+
+test('applyProtocolFilter with showNonCompliant true returns every recipe even with an active protocol', () => {
+  const withCompliance = [
+    { ...recipes[0], protocolCompliance: { vegetarian: true } },
+    { ...recipes[1], protocolCompliance: { vegetarian: false } },
+  ];
+  assert.equal(applyProtocolFilter(withCompliance, 'vegetarian', true).length, 2);
+});
+
+test('applyProtocolFilter treats a missing protocolCompliance entry as non-compliant, not a crash', () => {
+  const noComplianceData = [{ ...recipes[0], protocolCompliance: {} }];
+  assert.equal(applyProtocolFilter(noComplianceData, 'aip', false).length, 0);
 });
 
 test('renderFilterBar never lists one-pan as a Tags checkbox — it is the quick-filter chip\'s alone to control', () => {

@@ -40,6 +40,15 @@ export function applyFilters(recipes, filterState) {
   });
 }
 
+// Protocols filter FIRST, before every other filter dimension above —
+// allergens then badge whatever survives. Kept as a separate pipeline
+// stage (called before applyFilters, not folded into it) because it's
+// driven by persisted settings state, not the per-session filterState.
+export function applyProtocolFilter(recipes, activeProtocolId, showNonCompliant) {
+  if (!activeProtocolId || showNonCompliant) return recipes;
+  return recipes.filter((r) => r.protocolCompliance?.[activeProtocolId] === true);
+}
+
 function badgeHtml(badge) {
   return html`<span class="badge badge-${badge.weight}">${badge.text}</span>`;
 }
