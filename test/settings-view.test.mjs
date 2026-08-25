@@ -77,3 +77,62 @@ test('marks Off as pressed for a stale activeProtocolId that matches no known pr
     assert.match(out.slice(idx, idx + 120), /aria-pressed="false"/);
   }
 });
+
+// --- M6: device pairing -----------------------------------------------------
+
+const PAIRED = { endpoint: 'https://script.google.com/macros/s/AKfycbxSAMPLE/exec', token: 'sekrit-token' };
+const UNPAIRED = { endpoint: '', token: '' };
+const baseSettings = { theme: 'system', avoidanceIds: [], activeProtocolId: null, showNonCompliant: false };
+
+test('unpaired: offers the two pairing fields and a Pair button', () => {
+  const out = renderSettings(avoidances, [], baseSettings, UNPAIRED, 0).toString();
+  assert.match(out, /id="pair-endpoint"/);
+  assert.match(out, /id="pair-token"/);
+  assert.match(out, /id="pair-submit"/);
+});
+
+test('unpaired: the copy reassures rather than reading as data loss', () => {
+  const out = renderSettings(avoidances, [], baseSettings, UNPAIRED, 0).toString();
+  assert.match(out, /Your notes are safe/i);
+  assert.doesNotMatch(out, /error/i);
+});
+
+test('the token field is a password input and never autocompletes', () => {
+  const out = renderSettings(avoidances, [], baseSettings, UNPAIRED, 0).toString();
+  const idx = out.indexOf('id="pair-token"');
+  const field = out.slice(Math.max(0, idx - 200), idx + 200);
+  assert.match(field, /type="password"/);
+  assert.match(field, /autocomplete="off"/);
+});
+
+test('paired: shows the paired state plus re-pair and unpair controls', () => {
+  const out = renderSettings(avoidances, [], baseSettings, PAIRED, 0).toString();
+  assert.match(out, /Paired as household/i);
+  assert.match(out, /id="pair-repair"/);
+  assert.match(out, /id="pair-unpair"/);
+});
+
+test('paired: NEVER renders the token or the endpoint back into the page', () => {
+  // Both are secrets. Echoing them into the DOM puts them in screenshots, in
+  // screen-share, and in any future "copy page source" support request.
+  const out = renderSettings(avoidances, [], baseSettings, PAIRED, 0).toString();
+  assert.doesNotMatch(out, /sekrit-token/);
+  assert.doesNotMatch(out, /AKfycbxSAMPLE/);
+  assert.doesNotMatch(out, /script\.google\.com/);
+});
+
+test('a pending write count is shown when the queue is not empty', () => {
+  const out = renderSettings(avoidances, [], baseSettings, PAIRED, 3).toString();
+  assert.match(out, /3 .*(waiting|send)/i);
+});
+
+test('no pending-count line when the queue is empty', () => {
+  const out = renderSettings(avoidances, [], baseSettings, PAIRED, 0).toString();
+  assert.doesNotMatch(out, /waiting to send/i);
+});
+
+test('renderSettings still works with the pre-M6 three-argument signature', () => {
+  const out = renderSettings(avoidances, [], baseSettings).toString();
+  assert.match(out, /<h1[^>]*tabindex="-1"[^>]*>Settings<\/h1>/);
+  assert.match(out, /id="pair-endpoint"/);
+});
