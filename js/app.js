@@ -3,7 +3,7 @@ import { parseRoute, loadSettings, saveSettings } from './state.js';
 import { applyTheme } from './ui/theme.js';
 import { html } from './ui/html.js';
 import {
-  renderList, renderResultsBody, applyFilters,
+  renderList, renderResultsBody, applyFilters, applyProtocolFilter,
   PREP_SLIDER_MAX, COOK_SLIDER_MAX, TOTAL_SLIDER_MAX, timeFilterDisplay,
 } from './views/list.js';
 import { renderRecipe, renderNotFound } from './views/recipe.js';
@@ -67,10 +67,51 @@ function setMsCount(detailsId, count) {
   }
 }
 
+function protocolFilteredRecipes() {
+  return applyProtocolFilter(libraryData.recipes, settings.activeProtocolId, settings.showNonCompliant);
+}
+
+function protocolBannerHtml() {
+  if (!settings.activeProtocolId) return '';
+  const protocol = libraryData.protocols.find((p) => p.id === settings.activeProtocolId);
+  if (!protocol) return '';
+  const compliantCount = libraryData.recipes.filter((r) => r.protocolCompliance?.[protocol.id] === true).length;
+  return html`
+    <div class="protocol-banner" role="status">
+      <span>${protocol.label} active &mdash; ${compliantCount} of ${libraryData.recipes.length} recipes.</span>
+      <label><input type="checkbox" id="show-non-compliant" ${settings.showNonCompliant ? html`checked` : ''}> Show non-compliant</label>
+      <button type="button" id="protocol-off">Turn off</button>
+    </div>
+  `.toString();
+}
+
+function wireProtocolBanner() {
+  const checkbox = document.getElementById('show-non-compliant');
+  if (checkbox) {
+    checkbox.addEventListener('change', (e) => {
+      settings = { ...settings, showNonCompliant: e.target.checked };
+      saveSettings(settings);
+      renderCurrentList();
+      focusHeading();
+    });
+  }
+  const offBtn = document.getElementById('protocol-off');
+  if (offBtn) {
+    offBtn.addEventListener('click', () => {
+      settings = { ...settings, activeProtocolId: null, showNonCompliant: false };
+      saveSettings(settings);
+      renderCurrentList();
+      focusHeading();
+      announce('Protocol turned off.');
+    });
+  }
+}
+
 function updateListResults() {
+  const scoped = { ...libraryData, recipes: protocolFilteredRecipes() };
   const resultsEl = document.getElementById('list-results');
-  resultsEl.innerHTML = renderResultsBody(libraryData, filterState, badgeAvoidances()).toString();
-  const count = applyFilters(libraryData.recipes, filterState).length;
+  resultsEl.innerHTML = renderResultsBody(scoped, filterState, badgeAvoidances()).toString();
+  const count = applyFilters(scoped.recipes, filterState).length;
   announce(`${count} recipe${count === 1 ? '' : 's'}`);
 }
 
@@ -169,10 +210,12 @@ function wireListFilters() {
 }
 
 function renderCurrentList() {
-  root.innerHTML = renderList(libraryData, filterState, badgeAvoidances()).toString();
-  const count = applyFilters(libraryData.recipes, filterState).length;
+  const scoped = { ...libraryData, recipes: protocolFilteredRecipes() };
+  root.innerHTML = protocolBannerHtml() + renderList(scoped, filterState, badgeAvoidances()).toString();
+  const count = applyFilters(scoped.recipes, filterState).length;
   announce(`${count} recipe${count === 1 ? '' : 's'}`);
   wireListFilters();
+  wireProtocolBanner();
 }
 
 function wireSettingsForm() {
@@ -189,12 +232,28 @@ function wireSettingsForm() {
       settings = { ...settings, theme };
       saveSettings(settings);
       applyTheme(theme);
-      root.innerHTML = renderSettings(libraryData.avoidances, settings).toString();
+      root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
       wireSettingsForm();
       // Stay on the button the user just pressed rather than yanking focus
       // up to the page heading -- this is an in-place update, not a route change.
       const pressed = root.querySelector(`[data-theme-choice="${theme}"]`);
       if (pressed) pressed.focus();
+    });
+  });
+  root.querySelectorAll('[data-protocol-choice]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const chosenId = btn.getAttribute('data-protocol-choice');
+      settings = { ...settings, activeProtocolId: chosenId || null, showNonCompliant: false };
+      saveSettings(settings);
+      root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
+      wireSettingsForm();
+      const pressed = root.querySelector(`[data-protocol-choice="${chosenId}"]`);
+      if (pressed) pressed.focus();
+      if (chosenId) {
+        const protocol = libraryData.protocols.find((p) => p.id === chosenId);
+        const compliantCount = libraryData.recipes.filter((r) => r.protocolCompliance?.[chosenId] === true).length;
+        announce(`${protocol.label} active — ${compliantCount} of ${libraryData.recipes.length} recipes.`);
+      }
     });
   });
 }
@@ -209,7 +268,7 @@ async function render() {
     const recipe = libraryData.recipes.find((r) => r.id === route.recipeId);
     root.innerHTML = recipe ? renderRecipe(recipe, badgeAvoidances()).toString() : renderNotFound(route.recipeId).toString();
   } else if (route.name === 'settings') {
-    root.innerHTML = renderSettings(libraryData.avoidances, settings).toString();
+    root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
     wireSettingsForm();
   }
 
