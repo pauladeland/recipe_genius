@@ -157,3 +157,80 @@ test('never renders an external image URL sitting in the image column', () => {
   assert.doesNotMatch(out, /detail-photo/);
   assert.doesNotMatch(out, /instagram/i);
 });
+
+// --- M6: private layer ------------------------------------------------------
+
+const PRIVATE_ON = { private: true, write: true };
+const entry = {
+  lastCooked: '2026-08-20',
+  timesCooked: 3,
+  rating: 4,
+  notes: '2026-08-01 - Doubled the garlic.\n2026-08-20 - Better with butter beans.',
+};
+
+// This block is the public-view privacy test. If any of it starts failing,
+// the read-only public site has begun leaking the household's private layer.
+test('unpaired renders NO note section, rating, or cooked affordance', () => {
+  const out = renderRecipe(recipe, avoidances).toString();
+  assert.doesNotMatch(out, /private-section/);
+  assert.doesNotMatch(out, /note-form/);
+  assert.doesNotMatch(out, /rating-row/);
+  assert.doesNotMatch(out, /Made it/i);
+});
+
+test('unpaired renders nothing private even if a private entry is somehow passed in', () => {
+  const out = renderRecipe(recipe, avoidances, entry, { private: false, write: false }).toString();
+  assert.doesNotMatch(out, /Doubled the garlic/);
+  assert.doesNotMatch(out, /private-section/);
+});
+
+test('unpaired shows no "not paired" prompt on the recipe -- absent, not broken', () => {
+  const out = renderRecipe(recipe, avoidances).toString();
+  assert.doesNotMatch(out, /pair/i);
+});
+
+test('paired renders the note section', () => {
+  const out = renderRecipe(recipe, avoidances, entry, PRIVATE_ON).toString();
+  assert.match(out, /private-section/);
+  assert.match(out, /note-form/);
+});
+
+test('each dated note renders as its own line', () => {
+  const out = renderRecipe(recipe, avoidances, entry, PRIVATE_ON).toString();
+  assert.match(out, /Doubled the garlic/);
+  assert.match(out, /Better with butter beans/);
+  assert.equal((out.match(/<li>2026-08-/g) || []).length, 2);
+});
+
+test('the rating renders five real buttons with the current one pressed', () => {
+  const out = renderRecipe(recipe, avoidances, entry, PRIVATE_ON).toString();
+  assert.equal((out.match(/data-rating="/g) || []).length, 5);
+  assert.match(out, /data-rating="4"[^>]*aria-pressed="true"/);
+  assert.match(out, /data-rating="5"[^>]*aria-pressed="false"/);
+});
+
+test('cooked history renders when present', () => {
+  const out = renderRecipe(recipe, avoidances, entry, PRIVATE_ON).toString();
+  // Tolerant of the <b> emphasis the times row already uses -- this asserts
+  // the history is shown, not how the count is marked up.
+  assert.match(out, /Cooked\s*<b>3<\/b>\s*times/);
+  assert.match(out, /2026-08-20/);
+});
+
+test('a never-cooked recipe says so rather than showing a zero', () => {
+  const out = renderRecipe(recipe, avoidances, null, PRIVATE_ON).toString();
+  assert.match(out, /private-section/);
+  assert.doesNotMatch(out, /0 times/);
+});
+
+test('note text containing markup is escaped', () => {
+  const malicious = { ...entry, notes: '2026-08-01 - <img src=x onerror=alert(1)>' };
+  const out = renderRecipe(recipe, avoidances, malicious, PRIVATE_ON).toString();
+  assert.doesNotMatch(out, /<img/);
+  assert.match(out, /&lt;img/);
+});
+
+test('renderRecipe still works with the pre-M6 two-argument signature', () => {
+  const out = renderRecipe(recipe, avoidances).toString();
+  assert.match(out, /Parmesan-Crusted Butter Beans/);
+});
