@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-25T13:26:14.969Z",
+    "generatedAt": "2026-08-25T13:43:33.579Z",
     "schemaVersion": 1,
     "recipeCount": 31,
     "warnings": []
@@ -586,13 +586,6 @@
           "level": "certain",
           "line": "1/2 cup red wine vinegar",
           "lineIndex": 3
-        },
-        {
-          "allergenId": "seeds",
-          "term": "test override",
-          "level": "certain",
-          "line": "test override",
-          "lineIndex": -1
         }
       ],
       "protocolCompliance": {
