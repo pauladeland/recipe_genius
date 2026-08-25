@@ -8,7 +8,7 @@
    (scripts/check-cache-version.mjs), because a stale precache serving old JS
    against a new library.json is invisible locally and broken in the kitchen. */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const SHELL_CACHE = `shell-${CACHE_VERSION}`;
 
 // DATA and PHOTO caches are deliberately UNVERSIONED, and that is load-bearing.
@@ -39,6 +39,9 @@ const PRECACHE_URLS = [
   'js/ui/surprise.js',
   'js/ui/photo.js',
   'js/ui/sync-status.js',
+  'js/ui/pairing.js',
+  'js/data/apps-script-source.js',
+  'js/data/write-queue.js',
   'js/views/list.js',
   'js/views/recipe.js',
   'js/views/settings.js',

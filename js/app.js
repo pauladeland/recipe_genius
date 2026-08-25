@@ -9,6 +9,9 @@ import {
 import { renderRecipe, renderNotFound } from './views/recipe.js';
 import { renderSettings, protocolLabel } from './views/settings.js';
 import { pickSurprise } from './ui/surprise.js';
+import { loadPairing, savePairing, clearPairing, validateEndpoint, isPaired } from './ui/pairing.js';
+import { createAppsScriptSource } from './data/apps-script-source.js';
+import { enqueue, dequeue, queueLength, replayQueue } from './data/write-queue.js';
 import { syncStatus } from './ui/sync-status.js';
 
 const root = document.getElementById('main');
@@ -22,6 +25,10 @@ let filterState = {
   maxPrep: Infinity, maxCook: Infinity, maxTotal: Infinity,
   maxIngredients: Infinity, onePanOnly: false,
 };
+
+let pairing = loadPairing();
+let privateSource = createAppsScriptSource({ pairing });
+let privateData = loadPrivateCache();
 
 applyTheme(settings.theme);
 
@@ -257,7 +264,227 @@ function renderCurrentList() {
   wireProtocolBanner();
 }
 
+// --- private layer ---------------------------------------------------------
+// The private cache is what makes notes and ratings readable offline. It is
+// deliberately a plain localStorage mirror of the last successful fetch: the
+// service worker never sees this traffic (it is a cross-origin POST to Apps
+// Script), so the SW's caching strategies do not apply to it.
+const PRIVATE_CACHE_KEY = 'recipe-genius:private-cache';
+
+function loadPrivateCache() {
+  try {
+    const raw = localStorage.getItem(PRIVATE_CACHE_KEY);
+    if (!raw) return { byRecipe: {} };
+    const parsed = JSON.parse(raw);
+    return parsed && parsed.byRecipe && typeof parsed.byRecipe === 'object' ? parsed : { byRecipe: {} };
+  } catch {
+    return { byRecipe: {} };
+  }
+}
+
+function savePrivateCache(data) {
+  try {
+    localStorage.setItem(PRIVATE_CACHE_KEY, JSON.stringify(data));
+  } catch {
+    // Quota or private browsing -- the layer just will not read offline.
+  }
+}
+
+function privateEntryFor(recipeId) {
+  return privateData && privateData.byRecipe ? privateData.byRecipe[recipeId] || null : null;
+}
+
+/**
+ * Refresh the private layer. Never blocks and never breaks the public view: a
+ * failure here leaves the last cached copy in place, because a household whose
+ * Apps Script is down should still be able to read their recipes.
+ */
+async function refreshPrivate({ rerender = false } = {}) {
+  if (!privateSource.capabilities.private) return;
+  try {
+    const data = await privateSource.loadPrivate();
+    privateData = data;
+    savePrivateCache(data);
+    if (rerender && parseRoute(location.hash).name === 'recipe') render();
+  } catch {
+    // Offline, or the endpoint is down. The cached copy stands.
+  }
+}
+
+function newOpId() {
+  return crypto.randomUUID
+    ? crypto.randomUUID()
+    : String(Date.now()) + Math.random().toString(16).slice(2);
+}
+
+function setPrivateStatus(message, state = '') {
+  const el = document.getElementById('private-status');
+  if (!el) return;
+  el.textContent = message;
+  el.setAttribute('data-state', state);
+}
+
+/**
+ * Every write goes through the queue, never straight to the network. Enqueue
+ * first, then attempt: if the attempt fails the op is already durably stored,
+ * so closing the tab mid-write cannot lose it.
+ */
+async function submitWrite(action, args, { pending, done }) {
+  const opId = newOpId();
+  enqueue({ opId, action, args, queuedAt: new Date().toISOString() });
+  setPrivateStatus(pending);
+  try {
+    const data = await privateSource[action]({ ...args, opId });
+    dequeue(opId);
+    privateData = data;
+    savePrivateCache(data);
+    setPrivateStatus(done);
+    render();
+    return true;
+  } catch {
+    setPrivateStatus('Saved on this device. It will sync next time you are online.');
+    return false;
+  }
+}
+
+const noteDraftKey = (recipeId) => `recipe-genius:note-draft:${recipeId}`;
+
+function wireRecipePrivate(recipeId) {
+  const cookedBtn = document.getElementById('mark-cooked');
+  if (cookedBtn) {
+    cookedBtn.addEventListener('click', () => {
+      submitWrite('markCooked', { recipeId }, { pending: 'Saving…', done: 'Marked as cooked.' });
+    });
+  }
+
+  document.querySelectorAll('[data-rating]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const rating = Number(btn.getAttribute('data-rating'));
+      submitWrite('setRating', { recipeId, rating }, { pending: 'Saving…', done: 'Rating saved.' });
+    });
+  });
+
+  const input = document.getElementById('note-input');
+  if (input) {
+    // Restore any draft first. Losing a half-typed note to an interruption is
+    // the single most common recipe-app complaint.
+    try {
+      const draft = localStorage.getItem(noteDraftKey(recipeId));
+      if (draft) input.value = draft;
+    } catch { /* no draft available */ }
+
+    input.addEventListener('input', () => {
+      try {
+        localStorage.setItem(noteDraftKey(recipeId), input.value);
+      } catch { /* draft just will not persist */ }
+    });
+  }
+
+  const saveBtn = document.getElementById('note-save');
+  if (saveBtn && input) {
+    saveBtn.addEventListener('click', async () => {
+      const text = input.value.trim();
+      if (!text) {
+        setPrivateStatus('Type a note first.');
+        return;
+      }
+      const sent = await submitWrite('saveNote', { recipeId, text }, { pending: 'Saving…', done: 'Note added.' });
+      // Clear the draft only on a confirmed send. A queued-but-unsent note
+      // must stay recoverable on this device.
+      if (sent) {
+        try {
+          localStorage.removeItem(noteDraftKey(recipeId));
+        } catch { /* nothing to clear */ }
+      }
+    });
+  }
+}
+
+function rebuildPrivateSource() {
+  privateSource = createAppsScriptSource({ pairing });
+}
+
+function wirePairingForm() {
+  const submit = document.getElementById('pair-submit');
+  if (submit) {
+    submit.addEventListener('click', async () => {
+      const endpointEl = document.getElementById('pair-endpoint');
+      const tokenEl = document.getElementById('pair-token');
+      const status = document.getElementById('pair-status');
+      const endpoint = endpointEl.value.trim();
+      const token = tokenEl.value.trim();
+
+      const fail = (msg) => {
+        if (!status) return;
+        status.textContent = msg;
+        status.setAttribute('data-state', 'error');
+      };
+
+      if (!validateEndpoint(endpoint)) {
+        fail('That does not look like a deployed Apps Script URL. It should start with https://script.google.com/macros/s/ and end with /exec.');
+        return;
+      }
+      if (!token) {
+        fail('Enter the device token.');
+        return;
+      }
+
+      if (status) {
+        status.textContent = 'Checking…';
+        status.removeAttribute('data-state');
+      }
+
+      // Verify the credential live BEFORE storing it. Saving first and finding
+      // out the token is wrong later is how a device ends up looking paired
+      // while silently failing every write.
+      const candidate = createAppsScriptSource({ pairing: { endpoint, token } });
+      try {
+        const data = await candidate.loadPrivate();
+        pairing = { endpoint, token };
+        savePairing(pairing);
+        rebuildPrivateSource();
+        privateData = data;
+        savePrivateCache(data);
+        render();
+        announce('This device is now paired.');
+      } catch (err) {
+        const msg = String((err && err.message) || err);
+        fail(/unauthorized/i.test(msg)
+          ? 'That token was rejected. Check it matches the DEVICE_TOKEN script property exactly.'
+          : msg);
+      }
+    });
+  }
+
+  const unpairDevice = (message) => {
+    pairing = { endpoint: '', token: '' };
+    clearPairing();
+    rebuildPrivateSource();
+    // Drop the local mirror too. Leaving the household's notes readable on a
+    // device that was just unpaired defeats the point of unpairing.
+    privateData = { byRecipe: {} };
+    try {
+      localStorage.removeItem(PRIVATE_CACHE_KEY);
+    } catch { /* nothing to clear */ }
+    render();
+    if (message) announce(message);
+  };
+
+  const repair = document.getElementById('pair-repair');
+  if (repair) repair.addEventListener('click', () => unpairDevice(''));
+
+  const unpair = document.getElementById('pair-unpair');
+  if (unpair) unpair.addEventListener('click', () => unpairDevice('This device is no longer paired.'));
+}
+
+async function syncQueue() {
+  if (!privateSource.capabilities.write || queueLength() === 0) return;
+  const result = await replayQueue(privateSource);
+  if (result.sent > 0) await refreshPrivate({ rerender: true });
+}
+
 function wireSettingsForm() {
+  wirePairingForm();
   root.querySelectorAll('input[name="avoidance"]').forEach((cb) => {
     cb.addEventListener('change', () => {
       const checked = [...root.querySelectorAll('input[name="avoidance"]:checked')].map((c) => c.value);
@@ -271,7 +498,7 @@ function wireSettingsForm() {
       settings = { ...settings, theme };
       saveSettings(settings);
       applyTheme(theme);
-      root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
+      root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings, pairing, queueLength()).toString();
       wireSettingsForm();
       // Stay on the button the user just pressed rather than yanking focus
       // up to the page heading -- this is an in-place update, not a route change.
@@ -284,7 +511,7 @@ function wireSettingsForm() {
       const chosenId = btn.getAttribute('data-protocol-choice');
       settings = { ...settings, activeProtocolId: chosenId || null, showNonCompliant: false };
       saveSettings(settings);
-      root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
+      root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings, pairing, queueLength()).toString();
       wireSettingsForm();
       // Find by attribute value rather than interpolating chosenId into a
       // selector string -- a Sheet-authored protocol id containing a `"`
@@ -308,10 +535,13 @@ async function render() {
     renderCurrentList();
   } else if (route.name === 'recipe') {
     const recipe = libraryData.recipes.find((r) => r.id === route.recipeId);
-    root.innerHTML = recipe ? renderRecipe(recipe, badgeAvoidances()).toString() : renderNotFound(route.recipeId).toString();
+    root.innerHTML = recipe
+      ? renderRecipe(recipe, badgeAvoidances(), privateEntryFor(route.recipeId), privateSource.capabilities).toString()
+      : renderNotFound(route.recipeId).toString();
     hidePhotoIfUnavailable();
+    if (recipe && privateSource.capabilities.private) wireRecipePrivate(recipe.id);
   } else if (route.name === 'settings') {
-    root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings).toString();
+    root.innerHTML = renderSettings(libraryData.avoidances, libraryData.protocols, settings, pairing, queueLength()).toString();
     wireSettingsForm();
   }
 
@@ -350,6 +580,14 @@ async function main() {
     settings = { ...settings, activeProtocolId: null, showNonCompliant: false };
     saveSettings(settings);
   }
+  // Both are deliberately un-awaited: the public library must render
+  // immediately whether or not the private endpoint is reachable.
+  refreshPrivate({ rerender: true });
+  syncQueue();
+  // A write made offline should go up the moment the device reconnects,
+  // without the user having to reopen the app or retry by hand.
+  window.addEventListener('online', syncQueue);
+
   window.addEventListener('hashchange', render);
   render();
 }
