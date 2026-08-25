@@ -17,7 +17,12 @@ export function loadQueue() {
     const raw = localStorage.getItem(QUEUE_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    if (!Array.isArray(parsed)) return [];
+    // Drop malformed elements. Array.isArray alone is not enough: a stored
+    // [null, {...}] made replayQueue throw on `op.action`, and because
+    // syncQueue is called un-awaited that surfaced as an unhandled rejection
+    // with the queue wedged permanently and no signal to the user.
+    return parsed.filter((op) => op && typeof op.action === 'string' && typeof op.opId === 'string');
   } catch {
     return [];
   }
@@ -60,11 +65,17 @@ export function dequeue(opId) {
  * after it -- and ordering is the one thing an append-only log has to get
  * right. The failed op stays at the head of the queue for the next attempt.
  */
-export async function replayQueue(source) {
+export async function replayQueue(source, { skipOpIds = new Set() } = {}) {
   let sent = 0;
   let dropped = 0;
 
   for (const op of loadQueue()) {
+    // Never re-send an op that submitWrite currently has in flight. The op
+    // stays queued for its whole round trip, so a connectivity flap firing
+    // 'online' mid-request would otherwise replay the SAME opId concurrently
+    // -- and two server executions can both pass the idempotency check before
+    // either records it.
+    if (skipOpIds.has(op.opId)) continue;
     if (!REPLAYABLE.has(op.action)) {
       // Written by a newer build than this one (e.g. an M8 setWeekPlan). It
       // can never succeed here, so drop it rather than wedge the queue

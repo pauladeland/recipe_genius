@@ -311,10 +311,16 @@ async function refreshPrivate({ rerender = false } = {}) {
   }
 }
 
+// Ops currently being POSTed. They stay in the durable queue for the whole
+// round trip (so a crash mid-write cannot lose them), which means a replay
+// triggered by 'online' could otherwise re-send the same opId concurrently.
+const inFlightOpIds = new Set();
+let syncing = false;
+
 function newOpId() {
-  return crypto.randomUUID
+  return 'op-' + (crypto.randomUUID
     ? crypto.randomUUID()
-    : String(Date.now()) + Math.random().toString(16).slice(2);
+    : String(Date.now()) + Math.random().toString(16).slice(2));
 }
 
 function setPrivateStatus(message, state = '') {
@@ -329,38 +335,78 @@ function setPrivateStatus(message, state = '') {
  * first, then attempt: if the attempt fails the op is already durably stored,
  * so closing the tab mid-write cannot lose it.
  */
-async function submitWrite(action, args, { pending, done }) {
+async function submitWrite(action, args, { pending, done, onSuccess }) {
   const opId = newOpId();
   enqueue({ opId, action, args, queuedAt: new Date().toISOString() });
   setPrivateStatus(pending);
+  inFlightOpIds.add(opId);
   try {
     const data = await privateSource[action]({ ...args, opId });
     dequeue(opId);
     privateData = data;
     savePrivateCache(data);
-    setPrivateStatus(done);
+    // Runs BEFORE the re-render. Clearing the note draft afterwards was too
+    // late: render() destroys and recreates the textarea, and the rewiring
+    // restored the just-saved draft into it -- so the note appeared in the
+    // list AND stayed in the box, and tapping again created a duplicate with
+    // a fresh opId that server-side dedupe could not catch.
+    if (onSuccess) onSuccess();
     render();
+    // After the re-render, not before: render() replaces #private-status, so
+    // a message set earlier was written to a detached element and never seen.
+    setPrivateStatus(done);
+    announce(done);
     return true;
-  } catch {
-    setPrivateStatus('Saved on this device. It will sync next time you are online.');
+  } catch (err) {
+    const message = String((err && err.message) || err);
+    // Offline and "your credential is bad" are completely different problems.
+    // Telling someone a rejected token will "sync when you're online" leaves
+    // them waiting forever for something that can never happen.
+    if (isAuthFailure(message)) {
+      dequeue(opId);
+      setPrivateStatus('This device is no longer authorised. Re-pair it in Settings.', 'error');
+    } else {
+      setPrivateStatus('Saved on this device. It will send next time you are online.');
+    }
     return false;
+  } finally {
+    inFlightOpIds.delete(opId);
   }
 }
 
+function isAuthFailure(message) {
+  return /unauthorized|not paired|rejected/i.test(message);
+}
+
 const noteDraftKey = (recipeId) => `recipe-genius:note-draft:${recipeId}`;
+
+// render() ends in focusHeading(), which is right for a route change and
+// wrong for an in-place update -- tapping a rating star would throw a
+// keyboard or screen-reader user back to the recipe title. Same convention
+// the theme and protocol pickers already follow.
+function restoreFocus(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.focus();
+}
 
 function wireRecipePrivate(recipeId) {
   const cookedBtn = document.getElementById('mark-cooked');
   if (cookedBtn) {
     cookedBtn.addEventListener('click', () => {
-      submitWrite('markCooked', { recipeId }, { pending: 'Saving…', done: 'Marked as cooked.' });
+      submitWrite('markCooked', { recipeId }, {
+        pending: 'Saving…', done: 'Marked as cooked.',
+        onSuccess: () => queueMicrotask(() => restoreFocus('#mark-cooked')),
+      });
     });
   }
 
   document.querySelectorAll('[data-rating]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const rating = Number(btn.getAttribute('data-rating'));
-      submitWrite('setRating', { recipeId, rating }, { pending: 'Saving…', done: 'Rating saved.' });
+      submitWrite('setRating', { recipeId, rating }, {
+        pending: 'Saving…', done: 'Rating saved.',
+        onSuccess: () => queueMicrotask(() => restoreFocus(`[data-rating="${rating}"]`)),
+      });
     });
   });
 
@@ -388,14 +434,18 @@ function wireRecipePrivate(recipeId) {
         setPrivateStatus('Type a note first.');
         return;
       }
-      const sent = await submitWrite('saveNote', { recipeId, text }, { pending: 'Saving…', done: 'Note added.' });
-      // Clear the draft only on a confirmed send. A queued-but-unsent note
-      // must stay recoverable on this device.
-      if (sent) {
-        try {
-          localStorage.removeItem(noteDraftKey(recipeId));
-        } catch { /* nothing to clear */ }
-      }
+      await submitWrite('saveNote', { recipeId, text }, {
+        pending: 'Saving…',
+        done: 'Note added.',
+        // Clearing here, before render(), is what stops the saved text being
+        // restored into the fresh textarea as a draft.
+        onSuccess: () => {
+          try {
+            localStorage.removeItem(noteDraftKey(recipeId));
+          } catch { /* nothing to clear */ }
+          queueMicrotask(() => restoreFocus('#note-input'));
+        },
+      });
     });
   }
 }
@@ -463,8 +513,18 @@ function wirePairingForm() {
     // Drop the local mirror too. Leaving the household's notes readable on a
     // device that was just unpaired defeats the point of unpairing.
     privateData = { byRecipe: {} };
+    // Purge EVERY local trace, not just the cache. Half-typed note drafts and
+    // the unsent write queue both contain the household's note text verbatim.
+    // Leaving them means the next person to pair this device to a different
+    // sheet sees the previous household's draft restored into the textarea,
+    // and their queued ops replay to the NEW endpoint on the first 'online'.
     try {
       localStorage.removeItem(PRIVATE_CACHE_KEY);
+      localStorage.removeItem('recipe-genius:write-queue');
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith('recipe-genius:note-draft:')) localStorage.removeItem(k);
+      }
     } catch { /* nothing to clear */ }
     render();
     if (message) announce(message);
@@ -478,9 +538,23 @@ function wirePairingForm() {
 }
 
 async function syncQueue() {
+  // Non-reentrant: a connectivity flap can fire 'online' twice in quick
+  // succession, and two loops over the same loadQueue() snapshot would send
+  // every op twice.
+  if (syncing) return;
   if (!privateSource.capabilities.write || queueLength() === 0) return;
-  const result = await replayQueue(privateSource);
-  if (result.sent > 0) await refreshPrivate({ rerender: true });
+  syncing = true;
+  try {
+    const result = await replayQueue(privateSource, { skipOpIds: inFlightOpIds });
+    if (result.sent > 0) await refreshPrivate({ rerender: true });
+    if (result.remaining > 0 && parseRoute(location.hash).name === 'settings') {
+      // Re-render Settings so its pending count reflects what is actually
+      // still stuck, rather than the number from page load.
+      render();
+    }
+  } finally {
+    syncing = false;
+  }
 }
 
 function wireSettingsForm() {

@@ -26,17 +26,20 @@ const FORBIDDEN = [
 
 // Files that legitimately describe the URL *shape* without containing a real
 // one. Kept explicit and tiny so it cannot quietly become a blanket exemption.
-const ALLOWLIST = new Set([
-  'scripts/check-no-secrets.mjs',
+// Kept to the ABSOLUTE MINIMUM: only files that genuinely contain a
+// realistic-looking URL because they test the guard or the validator.
+//
+// This list previously also held js/ui/pairing.js, js/views/settings.js,
+// js/app.js, apps-script/README.md and the plan -- none of which actually
+// matched a pattern, and three of which are exactly where someone would add a
+// "default endpoint so I stop retyping it". A review proved the hole by
+// planting a real-shaped URL in pairing.js and watching the guard pass.
+// Every entry here is asserted to be load-bearing by check-no-secrets.test.mjs.
+export const ALLOWLIST = new Set([
   'test/check-no-secrets.test.mjs',
-  'apps-script/README.md',
-  'js/ui/pairing.js',
-  'js/views/settings.js',
-  'js/app.js',
   'test/pairing.test.mjs',
   'test/apps-script-source.test.mjs',
   'test/settings-view.test.mjs',
-  'docs/superpowers/plans/2026-08-25-m6-write-path-pairing.md',
 ]);
 
 export function scanContent(content) {

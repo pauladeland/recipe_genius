@@ -62,21 +62,56 @@ function doPost(e) {
     return json_({ ok: false, error: 'bad_request' });
   }
 
+  // A body of literal `null`, or a non-string token such as {"length":5},
+  // would otherwise throw below and hand back Apps Script's HTML error page --
+  // which the client then misdiagnoses to the user as a deployment-access
+  // problem, sending them to the wrong setting entirely.
+  if (!body || typeof body !== 'object' || typeof body.token !== 'string') {
+    return json_({ ok: false, error: 'bad_request' });
+  }
+
   // Token check BEFORE any SpreadsheetApp access. Do not move this.
   if (!tokensMatch_(body.token, getExpectedToken_())) {
     return json_({ ok: false, error: 'unauthorized' });
   }
 
+  // Reads need no lock.
+  if (body.action === 'loadPrivate') {
+    try {
+      return json_({ ok: true, data: loadPrivate_() });
+    } catch (err) {
+      return json_({ ok: false, error: String((err && err.message) || err) });
+    }
+  }
+
+  // Every MUTATION serialises. Apps Script does not serialise doPost, and the
+  // client can genuinely send the same opId twice at once: an op stays in the
+  // write queue for the whole in-flight window, and a connectivity flap fires
+  // the 'online' handler, which replays it. Without this lock both executions
+  // reach alreadyApplied_ before either reaches recordOp_, both see false, and
+  // one tap of "Made it" increments times_cooked twice -- exactly the silent
+  // corruption opIds exist to prevent. It also makes markCooked_'s
+  // read-then-write increment safe against lost updates.
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(30000);
+  } catch (err) {
+    // Could not get the lock in time. Reported as a failure so the client
+    // keeps the op queued and retries, rather than dropping the write.
+    return json_({ ok: false, error: 'busy' });
+  }
+
   try {
     switch (body.action) {
-      case 'loadPrivate': return json_({ ok: true, data: loadPrivate_() });
-      case 'saveNote':    return json_({ ok: true, data: saveNote_(body) });
-      case 'setRating':   return json_({ ok: true, data: setRating_(body) });
-      case 'markCooked':  return json_({ ok: true, data: markCooked_(body) });
-      default:            return json_({ ok: false, error: 'unknown_action' });
+      case 'saveNote':   return json_({ ok: true, data: saveNote_(body) });
+      case 'setRating':  return json_({ ok: true, data: setRating_(body) });
+      case 'markCooked': return json_({ ok: true, data: markCooked_(body) });
+      default:           return json_({ ok: false, error: 'unknown_action' });
     }
   } catch (err) {
     return json_({ ok: false, error: String((err && err.message) || err) });
+  } finally {
+    lock.releaseLock();
   }
 }
 
@@ -148,6 +183,14 @@ function recordOp_(opId, action) {
   sheet_('OpLog', OPLOG_HEADERS).appendRow([opId, new Date().toISOString(), action]);
 }
 
+function asDateString_(value) {
+  if (!value) return null;
+  if (Object.prototype.toString.call(value) === '[object Date]') {
+    return Utilities.formatDate(value, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  }
+  return String(value);
+}
+
 function today_() {
   return Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
 }
@@ -171,7 +214,10 @@ function loadPrivate_() {
       headers.forEach(function (h, i) { rec[h] = row[i]; });
       if (!rec.recipe_id) return;
       byRecipe[String(rec.recipe_id).trim()] = {
-        lastCooked: rec.last_cooked ? String(rec.last_cooked) : null,
+        // Sheets parses 'YYYY-MM-DD' on write and hands back a Date on read,
+        // so String() would render "Tue Aug 25 2026 00:00:00 GMT-0400..."
+        // straight into the UI. Format it back to the shape we stored.
+        lastCooked: asDateString_(rec.last_cooked),
         timesCooked: Number(rec.times_cooked) || 0,
         rating: (rec.rating === '' || rec.rating == null) ? null : Number(rec.rating),
         notes: rec.notes ? String(rec.notes) : ''
@@ -216,7 +262,9 @@ function markCooked_(body) {
   var timesCol = colIndex_(sh, 'times_cooked');
   var current = Number(sh.getRange(row, timesCol).getValue()) || 0;
   sh.getRange(row, timesCol).setValue(current + 1);
-  sh.getRange(row, colIndex_(sh, 'last_cooked')).setValue(body.date || today_());
+  // Always the server's date. A client-supplied one was an unused parameter
+  // and a needless write surface on the trust boundary.
+  sh.getRange(row, colIndex_(sh, 'last_cooked')).setValue(today_());
   recordOp_(body.opId, 'markCooked');
   return loadPrivate_();
 }
