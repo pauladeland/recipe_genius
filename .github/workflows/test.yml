@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - run: node --test test/
+      # Explicit glob, not `node --test test/`: Node >=22 resolves a bare
+      # directory argument as a module path and fails with MODULE_NOT_FOUND.
+      - run: node --test test/*.test.mjs
       - name: Check CACHE_VERSION was bumped with app-shell changes
         run: node scripts/check-cache-version.mjs

@@ -11,8 +11,12 @@ on:
         default: 'false'
   push:
     branches: [main]
+    # Only the files that actually change sync OUTPUT. A blanket 'scripts/**'
+    # fires a live Sheets sync for unrelated tooling — the icon generator and
+    # the CACHE_VERSION guard both live here and have nothing to do with it.
     paths:
-      - 'scripts/**'
+      - 'scripts/sync.mjs'
+      - 'scripts/validate.mjs'
       - 'lib/**'
 
 permissions:
