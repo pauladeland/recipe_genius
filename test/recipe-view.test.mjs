@@ -129,3 +129,30 @@ test('renderNotFound exposes an h1 heading so route-change focus management can 
   const out = renderNotFound('made-up-id').toString();
   assert.match(out, /<h1[^>]*tabindex="-1"[^>]*>Recipe not found<\/h1>/);
 });
+
+test('renders a photo when the recipe has a local one', () => {
+  const withPhoto = { ...recipe, image: 'assets/photos/salmon-risotto.jpg', imageAlt: null };
+  const out = renderRecipe(withPhoto, avoidances).toString();
+  assert.match(out, /<img class="detail-photo" src="assets\/photos\/salmon-risotto\.jpg"/);
+  assert.match(out, /alt=""/, 'a photo with no alt text is decorative');
+  assert.match(out, /loading="lazy"/);
+});
+
+test('announces populated alt text instead of leaving the photo decorative', () => {
+  const withAlt = { ...recipe, image: 'assets/photos/x.jpg', imageAlt: 'Risotto in a wide bowl' };
+  const out = renderRecipe(withAlt, avoidances).toString();
+  assert.match(out, /alt="Risotto in a wide bowl"/);
+});
+
+test('renders no photo element at all when there is none — silence, not a placeholder', () => {
+  const out = renderRecipe(recipe, avoidances).toString();
+  assert.doesNotMatch(out, /detail-photo/);
+  assert.doesNotMatch(out, /no photo/i);
+});
+
+test('never renders an external image URL sitting in the image column', () => {
+  const misplaced = { ...recipe, image: 'https://www.instagram.com/modhippiehabits/' };
+  const out = renderRecipe(misplaced, avoidances).toString();
+  assert.doesNotMatch(out, /detail-photo/);
+  assert.doesNotMatch(out, /instagram/i);
+});

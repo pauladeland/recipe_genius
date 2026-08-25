@@ -1,5 +1,6 @@
 import { html } from '../ui/html.js';
 import { computeBadges } from '../ui/badges.js';
+import { photoSrc, photoAlt } from '../ui/photo.js';
 
 function badgeHtml(badge) {
   return html`
@@ -22,6 +23,14 @@ function sourceLine(recipe) {
   return html`<p class="detail-source">From ${recipe.sourceName || recipe.sourceUrl}</p>`;
 }
 
+// A recipe with no usable photo renders no element at all — no placeholder,
+// no broken-image icon. Silence is the designed state for most recipes.
+function photoHtml(recipe) {
+  const src = photoSrc(recipe);
+  if (!src) return '';
+  return html`<img class="detail-photo" src="${src}" alt="${photoAlt(recipe)}" loading="lazy" decoding="async">`;
+}
+
 export function renderRecipe(recipe, avoidances) {
   const badges = computeBadges(recipe.flags || [], avoidances);
   const source = sourceLine(recipe);
@@ -31,6 +40,7 @@ export function renderRecipe(recipe, avoidances) {
       <div class="detail-badges">${badges.map(badgeHtml)}</div>
       <h1 class="detail-title" tabindex="-1">${recipe.title}</h1>
       ${source}
+      ${photoHtml(recipe)}
       <div class="detail-times">
         ${recipe.prepMinutes != null ? html`<span><b>${recipe.prepMinutes}</b> min prep</span>` : ''}
         ${recipe.cookMinutes != null ? html`<span><b>${recipe.cookMinutes}</b> min cook</span>` : ''}
