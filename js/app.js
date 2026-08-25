@@ -9,6 +9,7 @@ import {
 import { renderRecipe, renderNotFound } from './views/recipe.js';
 import { renderSettings, protocolLabel } from './views/settings.js';
 import { pickSurprise } from './ui/surprise.js';
+import { syncStatus } from './ui/sync-status.js';
 
 const root = document.getElementById('main');
 const liveRegion = document.getElementById('live-region');
@@ -23,6 +24,14 @@ let filterState = {
 };
 
 applyTheme(settings.theme);
+
+function renderSyncStatus() {
+  const el = document.getElementById('sync-status');
+  if (!el) return;
+  const { text, stale } = syncStatus(libraryData?.meta?.generatedAt);
+  el.textContent = text;
+  el.classList.toggle('is-stale', stale);
+}
 
 function announce(message) {
   liveRegion.textContent = message;
@@ -314,6 +323,7 @@ async function main() {
     focusHeading();
     return;
   }
+  renderSyncStatus();
   // A protocol can be removed or deactivated by a single Sheet edit
   // (scripts/sync.mjs drops it from `protocols` and from every recipe's
   // `protocolCompliance`). Reconcile any stale saved id now, before the

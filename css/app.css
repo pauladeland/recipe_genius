@@ -121,3 +121,14 @@ main h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; outline: none; }
 .theme-row button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
 
 @media (max-width: 620px) { .detail-cols { grid-template-columns: 1fr; } }
+
+.app-footer {
+  max-width: 900px; margin: 0 auto; padding: 20px;
+  border-top: 1px solid var(--border); font-size: 11.5px; color: var(--ink-soft);
+}
+.app-footer a { color: var(--ink-soft); text-decoration: none; }
+.app-footer a:hover { text-decoration: underline; }
+.app-footer a.is-stale {
+  display: inline-block; color: var(--ink); font-weight: 600;
+  border: 1px solid var(--ink); border-radius: var(--radius); padding: 4px 9px;
+}
