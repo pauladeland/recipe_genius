@@ -38,19 +38,33 @@ export function computeBadges(flags, avoidances) {
     const avoidance = byId.get(flag.allergenId);
     if (!avoidance) continue;
 
+    const cause = { line: flag.line, term: flag.term };
     const existing = seen.get(flag.allergenId);
-    const isUpgrade = !existing || (existing.level === 'possible' && flag.level === 'certain');
-    if (existing && !isUpgrade) continue;
+
+    if (existing) {
+      const isDuplicateCause = existing.causes.some((c) => c.line === cause.line && c.term === cause.term);
+      if (!isDuplicateCause) existing.causes.push(cause);
+
+      const isUpgrade = existing.level === 'possible' && flag.level === 'certain';
+      if (isUpgrade) {
+        existing.level = flag.level;
+        existing.weight = weightFor(avoidance.severity, flag.level);
+        existing.text = copyFor(avoidance.severity, flag.level, avoidance.label);
+      }
+      continue;
+    }
 
     seen.set(flag.allergenId, {
       allergenId: flag.allergenId,
       level: flag.level,
       weight: weightFor(avoidance.severity, flag.level),
       text: copyFor(avoidance.severity, flag.level, avoidance.label),
+      causes: [cause],
+      substitutions: avoidance.substitutions || null,
     });
   }
 
   return [...seen.values()]
     .sort((a, b) => WEIGHT_ORDER[a.weight] - WEIGHT_ORDER[b.weight])
-    .map(({ allergenId, weight, text }) => ({ allergenId, weight, text }));
+    .map(({ allergenId, weight, text, causes, substitutions }) => ({ allergenId, weight, text, causes, substitutions }));
 }
