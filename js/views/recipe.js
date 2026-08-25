@@ -2,7 +2,15 @@ import { html } from '../ui/html.js';
 import { computeBadges } from '../ui/badges.js';
 
 function badgeHtml(badge) {
-  return html`<span class="badge badge-${badge.weight}">${badge.text}</span>`;
+  return html`
+    <details class="badge-detail">
+      <summary class="badge badge-${badge.weight}">${badge.text}</summary>
+      <div class="badge-detail-body">
+        <ul class="badge-causes">${badge.causes.map((c) => html`<li>${c.line}</li>`)}</ul>
+        ${badge.substitutions ? html`<p class="badge-sub">Try instead: ${badge.substitutions}</p>` : ''}
+      </div>
+    </details>
+  `;
 }
 
 function sourceLine(recipe) {
